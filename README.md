@@ -42,7 +42,7 @@ Can a small shop's own data predict what an item will sell for, and how fast? An
 
 The honest conclusion is that this dataset can't support price prediction yet, and the asking price is the best predictor available. The failed models aren't registered or shown as predictions. The time-to-sell result is useful for rough ranking only, and it could weaken with more data.
 
-Half of items sell within about 53 days. Unsold items are treated as censored rather than dropped, which avoids overstating how fast things sell.
+Half of items sell within about 54 days. Unsold items are treated as censored rather than dropped, which avoids overstating how fast things sell.
 
 ### Method
 
