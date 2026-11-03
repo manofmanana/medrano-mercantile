@@ -18,7 +18,7 @@ import mlflow.sklearn
 import numpy as np
 import pandas as pd
 import psycopg
-from lifelines import CoxPHFitter, KaplanMeierFitter
+from lifelines import CoxPHFitter, KaplanMeierFitter, WeibullAFTFitter
 from lifelines.utils import concordance_index
 from sklearn.base import BaseEstimator, RegressorMixin
 from sklearn.compose import ColumnTransformer, TransformedTargetRegressor
@@ -39,6 +39,7 @@ BOOTSTRAPS = 4000
 PERMUTATIONS = 100
 HOLDOUT_SHARE = 0.25
 SELL_WINDOW_DAYS = 30
+PENALIZER = 0.2
 TIME_ZERO_OFFSET = 0.5  # same-day sales still need a positive duration
 OUTPUT_DIR = os.environ.get("ML_OUTPUT_DIR", "/opt/mercantile-ml/output")
 
@@ -286,7 +287,6 @@ def sell_probability(items, final, frame, passes, overall):
     """Chance each unsold item sells in the next window, given how long it has already waited."""
     unsold = items[items["event"] == 0]
     rows = frame.loc[unsold.index]
-    # Past the longest observed sale the curve goes flat, which would read as a false 0% chance.
     longest_sale = items.loc[items["event"] == 1, "duration"].max()
     if passes:
         now = final.predict_survival_function(rows, times=sorted(set(unsold["duration"])))
@@ -296,7 +296,16 @@ def sell_probability(items, final, frame, passes, overall):
         now = overall.predict(unsold["duration"])
         later = overall.predict(unsold["duration"] + SELL_WINDOW_DAYS)
         chance = pd.Series(1 - later.to_numpy() / np.clip(now.to_numpy(), 1e-6, None), index=unsold.index)
-    return chance.where(unsold["duration"] + SELL_WINDOW_DAYS <= longest_sale)
+    # Past the longest observed sale the Cox curve goes flat, which would read as a false 0% chance.
+    # A Weibull curve can continue past the data, so older items get a labeled extrapolation instead.
+    within_history = unsold["duration"] + SELL_WINDOW_DAYS <= longest_sale
+    weibull = WeibullAFTFitter(penalizer=PENALIZER).fit(frame, "duration", "event")
+    for i in unsold.index[~within_history]:
+        start = unsold.loc[i, "duration"]
+        survival = weibull.predict_survival_function(rows.loc[[i]], times=[start, start + SELL_WINDOW_DAYS]).iloc[:, 0].to_numpy()
+        chance[i] = 1 - survival[1] / max(survival[0], 1e-6)
+    basis = within_history.map({True: "history", False: "extrapolated"})
+    return chance, basis, float(weibull.rho_) if hasattr(weibull, "rho_") else float(np.exp(weibull.params_.loc["rho_", "Intercept"]))
 
 
 def scorecard_row(question, result):
@@ -323,12 +332,13 @@ def publish_to_warehouse(report, predictions):
             create table if not exists ml.listed_item_predictions (sku text, item_name text, category text, asking_price numeric, days_listed int, chance_sells_next_30d numeric, trained_at timestamptz default now());
             create table if not exists ml.time_to_sell_by_category (category text, items int, sold int, median_days numeric, sold_by_30d numeric, trained_at timestamptz default now());
             create table if not exists ml.time_to_sell_summary (items int, sold int, median_days numeric, sold_by_14d numeric, sold_by_30d numeric, sold_by_60d numeric, sold_by_90d numeric, c_index numeric, permutation_p numeric, trained_at timestamptz default now());
+            alter table ml.listed_item_predictions add column if not exists estimate_basis text;
             truncate ml.model_scorecard, ml.listed_item_predictions, ml.time_to_sell_by_category, ml.time_to_sell_summary;
         """)
         cur.executemany("insert into ml.model_scorecard (question,best_baseline,baseline_score,best_model,model_score,metric,passes_gate) values (%s,%s,%s,%s,%s,%s,%s)", scorecard)
         cur.executemany(
-            "insert into ml.listed_item_predictions (sku,item_name,category,asking_price,days_listed,chance_sells_next_30d) values (%s,%s,%s,%s,%s,%s)",
-            [(r.sku, r.item_name, r.category, float(r.asking_price), int(r.days_listed), None if pd.isna(getattr(r, chance)) else float(getattr(r, chance))) for r in predictions.itertuples()],
+            "insert into ml.listed_item_predictions (sku,item_name,category,asking_price,days_listed,chance_sells_next_30d,estimate_basis) values (%s,%s,%s,%s,%s,%s,%s)",
+            [(r.sku, r.item_name, r.category, float(r.asking_price), int(r.days_listed), None if pd.isna(getattr(r, chance)) else float(getattr(r, chance)), r.estimate_basis) for r in predictions.itertuples()],
         )
         cur.executemany(
             "insert into ml.time_to_sell_by_category (category,items,sold,median_days,sold_by_30d) values (%s,%s,%s,%s,%s)",
@@ -372,8 +382,11 @@ def main():
     if realized["passes_gate"]:
         unsold["expected_sale_at_current_ask"] = realized_model.predict(unsold).round(0)
         columns.append("expected_sale_at_current_ask")
-    unsold[f"chance_sells_next_{SELL_WINDOW_DAYS}d"] = sell_probability(items, cox, frame, speed["passes_gate"], overall).round(2)
-    columns.append(f"chance_sells_next_{SELL_WINDOW_DAYS}d")
+    chance, basis, weibull_shape = sell_probability(items, cox, frame, speed["passes_gate"], overall)
+    unsold[f"chance_sells_next_{SELL_WINDOW_DAYS}d"] = chance.round(2)
+    unsold["estimate_basis"] = basis
+    speed["weibull_shape"] = weibull_shape
+    columns += [f"chance_sells_next_{SELL_WINDOW_DAYS}d", "estimate_basis"]
     unsold = unsold[columns].sort_values("days_listed", ascending=False)
     path = os.path.join(OUTPUT_DIR, "listed_item_predictions.csv")
     unsold.to_csv(path, index=False)
