@@ -1,0 +1,449 @@
+{
+ "updated": "2026-11-03T18:59Z",
+ "last_sale_month": "2026-11",
+ "totals": {
+  "items_listed": 99,
+  "items_sold": 73,
+  "revenue": 5367.0,
+  "average_sale": 73.52,
+  "sell_through": 0.737,
+  "median_days_to_sell": 53.5
+ },
+ "monthly": [
+  {
+   "month": "2026-04",
+   "items": 20,
+   "revenue": 1660.0
+  },
+  {
+   "month": "2026-05",
+   "items": 11,
+   "revenue": 1755.0
+  },
+  {
+   "month": "2026-06",
+   "items": 11,
+   "revenue": 665.0
+  },
+  {
+   "month": "2026-07",
+   "items": 9,
+   "revenue": 360.0
+  },
+  {
+   "month": "2026-08",
+   "items": 10,
+   "revenue": 515.0
+  },
+  {
+   "month": "2026-09",
+   "items": 8,
+   "revenue": 277.0
+  },
+  {
+   "month": "2026-10",
+   "items": 3,
+   "revenue": 125.0
+  },
+  {
+   "month": "2026-11",
+   "items": 1,
+   "revenue": 10.0
+  }
+ ],
+ "categories": [
+  {
+   "category": "Other",
+   "items": 18,
+   "sold": 11,
+   "revenue": 1605.0
+  },
+  {
+   "category": "Computers & Accessories",
+   "items": 7,
+   "sold": 7,
+   "revenue": 807.0
+  },
+  {
+   "category": "Computer Parts",
+   "items": 18,
+   "sold": 18,
+   "revenue": 595.0
+  },
+  {
+   "category": "Phones & Accessories",
+   "items": 6,
+   "sold": 2,
+   "revenue": 440.0
+  },
+  {
+   "category": "Video Games & Consoles",
+   "items": 6,
+   "sold": 5,
+   "revenue": 425.0
+  },
+  {
+   "category": "Clothing & Shoes",
+   "items": 9,
+   "sold": 4,
+   "revenue": 345.0
+  },
+  {
+   "category": "Audio & Wearables",
+   "items": 7,
+   "sold": 5,
+   "revenue": 345.0
+  },
+  {
+   "category": "Accessories",
+   "items": 5,
+   "sold": 4,
+   "revenue": 190.0
+  },
+  {
+   "category": "Furniture",
+   "items": 4,
+   "sold": 3,
+   "revenue": 180.0
+  },
+  {
+   "category": "Bikes & Cycling",
+   "items": 7,
+   "sold": 6,
+   "revenue": 170.0
+  },
+  {
+   "category": "Appliances",
+   "items": 4,
+   "sold": 3,
+   "revenue": 160.0
+  },
+  {
+   "category": "Bags & Luggage",
+   "items": 8,
+   "sold": 5,
+   "revenue": 105.0
+  }
+ ],
+ "time_to_sell": {
+  "curve": [
+   [
+    0.0,
+    0.0
+   ],
+   [
+    0.5,
+    0.051
+   ],
+   [
+    1.5,
+    0.071
+   ],
+   [
+    2.5,
+    0.082
+   ],
+   [
+    4.5,
+    0.092
+   ],
+   [
+    6.5,
+    0.102
+   ],
+   [
+    7.5,
+    0.122
+   ],
+   [
+    8.5,
+    0.133
+   ],
+   [
+    9.5,
+    0.153
+   ],
+   [
+    11.5,
+    0.173
+   ],
+   [
+    14.5,
+    0.194
+   ],
+   [
+    15.5,
+    0.214
+   ],
+   [
+    16.5,
+    0.255
+   ],
+   [
+    19.5,
+    0.265
+   ],
+   [
+    20.5,
+    0.265
+   ],
+   [
+    21.5,
+    0.276
+   ],
+   [
+    23.5,
+    0.307
+   ],
+   [
+    24.5,
+    0.328
+   ],
+   [
+    25.5,
+    0.339
+   ],
+   [
+    27.5,
+    0.349
+   ],
+   [
+    28.5,
+    0.37
+   ],
+   [
+    29.5,
+    0.381
+   ],
+   [
+    32.5,
+    0.402
+   ],
+   [
+    34.5,
+    0.412
+   ],
+   [
+    36.5,
+    0.433
+   ],
+   [
+    38.5,
+    0.444
+   ],
+   [
+    40.5,
+    0.454
+   ],
+   [
+    41.5,
+    0.465
+   ],
+   [
+    43.5,
+    0.475
+   ],
+   [
+    45.5,
+    0.475
+   ],
+   [
+    50.5,
+    0.475
+   ],
+   [
+    52.5,
+    0.5
+   ],
+   [
+    53.5,
+    0.536
+   ],
+   [
+    59.5,
+    0.548
+   ],
+   [
+    64.5,
+    0.561
+   ],
+   [
+    65.5,
+    0.585
+   ],
+   [
+    67.5,
+    0.609
+   ],
+   [
+    68.5,
+    0.622
+   ],
+   [
+    69.5,
+    0.634
+   ],
+   [
+    74.5,
+    0.646
+   ],
+   [
+    76.5,
+    0.646
+   ],
+   [
+    81.5,
+    0.661
+   ],
+   [
+    83.5,
+    0.661
+   ],
+   [
+    84.5,
+    0.705
+   ],
+   [
+    86.5,
+    0.734
+   ],
+   [
+    90.5,
+    0.749
+   ],
+   [
+    95.5,
+    0.764
+   ],
+   [
+    114.5,
+    0.779
+   ],
+   [
+    121.5,
+    0.793
+   ],
+   [
+    127.5,
+    0.808
+   ],
+   [
+    128.5,
+    0.808
+   ],
+   [
+    133.5,
+    0.826
+   ],
+   [
+    162.5,
+    0.826
+   ]
+  ],
+  "sold_by_30d": 0.381,
+  "sold_by_90d": 0.734,
+  "by_category": [
+   {
+    "category": "Computer Parts",
+    "items": 18,
+    "sold": 18,
+    "median_days": 21.5
+   },
+   {
+    "category": "Furniture",
+    "items": 4,
+    "sold": 3,
+    "median_days": 25.5
+   },
+   {
+    "category": "Bags & Luggage",
+    "items": 8,
+    "sold": 5,
+    "median_days": 34.5
+   },
+   {
+    "category": "Computers & Accessories",
+    "items": 7,
+    "sold": 7,
+    "median_days": 40.5
+   },
+   {
+    "category": "Video Games & Consoles",
+    "items": 6,
+    "sold": 5,
+    "median_days": 43.5
+   },
+   {
+    "category": "Bikes & Cycling",
+    "items": 7,
+    "sold": 6,
+    "median_days": 52.5
+   },
+   {
+    "category": "Accessories",
+    "items": 5,
+    "sold": 4,
+    "median_days": 64.5
+   },
+   {
+    "category": "Clothing & Shoes",
+    "items": 8,
+    "sold": 3,
+    "median_days": 68.5
+   },
+   {
+    "category": "Other",
+    "items": 18,
+    "sold": 11,
+    "median_days": 84.5
+   },
+   {
+    "category": "Audio & Wearables",
+    "items": 7,
+    "sold": 5,
+    "median_days": 86.5
+   },
+   {
+    "category": "Appliances",
+    "items": 4,
+    "sold": 3,
+    "median_days": 95.5
+   },
+   {
+    "category": "Phones & Accessories",
+    "items": 6,
+    "sold": 2,
+    "median_days": null
+   }
+  ]
+ },
+ "scorecard": [
+  {
+   "question": "Sale price from category and name",
+   "baseline": "global median",
+   "baseline_score": 54.72,
+   "model": "ridge: category",
+   "model_score": 54.96,
+   "metric": "average error, $",
+   "passes": false
+  },
+  {
+   "question": "Sale price given asking price",
+   "baseline": "asking price",
+   "baseline_score": 16.29,
+   "model": "ridge: asking",
+   "model_score": 20.97,
+   "metric": "average error, $",
+   "passes": false
+  },
+  {
+   "question": "Time to sell",
+   "baseline": "shuffled labels",
+   "baseline_score": 0.51,
+   "model": "Cox: category + asking price",
+   "model_score": 0.61,
+   "metric": "C-index, higher is better",
+   "passes": true
+  }
+ ]
+}

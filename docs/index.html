@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Medrano Mercantile</title>
+<meta name="description" content="Public, read-only view of a small reselling business, built from Postgres, dbt, Airflow and MLflow. Aggregate figures only.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: light;
+    --page: #ffffff; --ink: #16181d; --ink-soft: #565b65; --rule: #c9ccd2; --rule-soft: #e4e6ea;
+    --orange: #e8590c; --orange-text: #bf4708; --pass: #14664a; --fail: #b3122a; --hover: #fff3ec;
+    --gutter: 3rem;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body { background: var(--page); color: var(--ink); font: 400 1rem/1.5 'Libre Franklin', system-ui, sans-serif; font-variant-numeric: tabular-nums; }
+  ::selection { background: var(--orange); color: #fff; }
+  a { color: var(--orange-text); text-underline-offset: 2px; }
+  a:focus-visible, summary:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
+  main { max-width: 76rem; margin: 0 auto; padding: 2rem var(--gutter) 4rem; }
+  header { position: relative; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 0.25rem 1.5rem; padding-bottom: 0.7rem; border-bottom: 2px solid var(--ink); }
+  header::after { content: ""; position: absolute; left: 0; bottom: -3px; width: 4.5rem; height: 4px; background: var(--orange); }
+  h1 { font-size: 2.1rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.15; }
+  .updated { font-size: 0.875rem; color: var(--ink-soft); }
+  .caption { margin-top: 1rem; max-width: 62rem; }
+  .caption b { font-weight: 800; }
+  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); gap: 1.5rem; margin: 2rem 0 2.5rem; }
+  .tile dt { font-size: 0.85rem; color: var(--ink-soft); }
+  .tile dd { font-size: 2rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1.2; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 30rem), 1fr)); gap: 3rem; }
+  h2 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.15rem; }
+  .sub { font-size: 0.85rem; color: var(--ink-soft); margin-bottom: 0.75rem; }
+  figure { position: relative; }
+  svg { display: block; width: 100%; height: auto; overflow: visible; }
+  svg text { font: 400 12px 'Libre Franklin', system-ui, sans-serif; fill: var(--ink-soft); font-variant-numeric: tabular-nums; }
+  svg .label { fill: var(--ink); font-weight: 500; }
+  .tip { position: absolute; pointer-events: none; background: var(--ink); color: #fff; font-size: 0.8rem; line-height: 1.35; padding: 0.35rem 0.55rem; border-radius: 3px; white-space: nowrap; opacity: 0; transition: opacity 80ms ease; transform: translate(-50%, calc(-100% - 8px)); z-index: 2; }
+  .tip.on { opacity: 1; }
+  details { margin-top: 0.6rem; font-size: 0.85rem; }
+  summary { cursor: pointer; color: var(--ink-soft); }
+  table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+  th { text-align: left; font-weight: 600; border-bottom: 1px solid var(--ink); padding: 0.4rem 0.75rem 0.4rem 0; }
+  td { border-bottom: 1px solid var(--rule-soft); padding: 0.45rem 0.75rem 0.45rem 0; vertical-align: top; }
+  th.n, td.n { text-align: right; }
+  .wide { margin-top: 3rem; }
+  .scroll { overflow-x: auto; }
+  .pass { color: var(--pass); font-weight: 600; }
+  .fail { color: var(--fail); font-weight: 600; }
+  .note { margin-top: 0.75rem; max-width: 62rem; font-size: 0.9rem; color: var(--ink-soft); }
+  footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--rule); font-size: 0.875rem; color: var(--ink-soft); }
+  .error { margin-top: 2rem; color: var(--fail); }
+  @media (max-width: 639px) { :root { --gutter: 1rem; } h1 { font-size: 1.75rem; } .tile dd { font-size: 1.6rem; } }
+  @media (prefers-reduced-motion: reduce) { .tip { transition: none; } }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Medrano Mercantile</h1>
+    <span class="updated" id="updated"></span>
+  </header>
+  <p class="caption" id="caption">Loading figures.</p>
+  <div id="content" hidden>
+    <dl class="tiles" id="tiles"></dl>
+    <div class="grid">
+      <section>
+        <h2>Revenue by month</h2>
+        <p class="sub">Dollars from items sold in each month.</p>
+        <figure id="monthly"></figure>
+      </section>
+      <section>
+        <h2>Revenue by category</h2>
+        <p class="sub">Categories with fewer than 4 items are grouped as Other.</p>
+        <figure id="categories"></figure>
+      </section>
+      <section>
+        <h2>How fast items sell</h2>
+        <p class="sub">Share sold by days since listing. Unsold items count too, as Kaplan-Meier censored data.</p>
+        <figure id="curve"></figure>
+      </section>
+      <section>
+        <h2>Median days to sell, by category</h2>
+        <p class="sub">Categories where under half have sold have no median yet.</p>
+        <figure id="speed"></figure>
+      </section>
+    </div>
+    <section class="wide">
+      <h2>Can the models beat a simple baseline?</h2>
+      <p class="sub">A model only counts if it clearly beats the baseline in cross-validation. Results tracked in MLflow.</p>
+      <div class="scroll"><table id="scorecard"></table></div>
+      <p class="note" id="scorenote"></p>
+    </section>
+  </div>
+  <footer>
+    Aggregate figures from a live Postgres warehouse, refreshed by Airflow. No item, customer or consignor details are published.
+    <a href="https://github.com/manofmanana/medrano-mercantile">Project repo</a> ·
+    <a href="https://github.com/manofmanana/medrano-mercantile-dbt">dbt repo</a>
+  </footer>
+</main>
+<script>
+(function () {
+  "use strict";
+  const SVG = "http://www.w3.org/2000/svg";
+  const money = (v) => "$" + Math.round(v).toLocaleString("en-US");
+  const pct = (v) => Math.round(v * 100) + "%";
+
+  function el(tag, attrs, text) {
+    const node = document.createElementNS(SVG, tag);
+    Object.entries(attrs || {}).forEach(([k, v]) => node.setAttribute(k, v));
+    if (text !== undefined) node.textContent = text;
+    return node;
+  }
+
+  function tooltip(figure) {
+    const tip = document.createElement("div");
+    tip.className = "tip";
+    figure.appendChild(tip);
+    return {
+      show(html, x, y) {
+        const svg = figure.querySelector("svg");
+        const scale = svg.getBoundingClientRect().width / svg.viewBox.baseVal.width;
+        tip.textContent = html;
+        const half = tip.offsetWidth / 2;
+        const px = Math.min(Math.max(x * scale, half), figure.clientWidth - half);
+        tip.style.left = px + "px";
+        tip.style.top = y * scale + "px";
+        tip.classList.add("on");
+      },
+      hide() { tip.classList.remove("on"); },
+    };
+  }
+
+  function tableView(figure, headers, rows) {
+    const details = document.createElement("details");
+    details.innerHTML = "<summary>View as table</summary>";
+    const table = document.createElement("table");
+    const head = table.createTHead().insertRow();
+    headers.forEach((h, i) => { const th = document.createElement("th"); th.textContent = h; if (i) th.className = "n"; head.appendChild(th); });
+    const body = table.createTBody();
+    rows.forEach((row) => { const tr = body.insertRow(); row.forEach((c, i) => { const td = tr.insertCell(); td.textContent = c; if (i) td.className = "n"; }); });
+    details.appendChild(table);
+    figure.after(details);
+  }
+
+  function niceMax(v) {
+    const p = Math.pow(10, Math.floor(Math.log10(v || 1)));
+    for (const m of [1, 2, 2.5, 5, 10]) if (m * p >= v) return m * p;
+    return 10 * p;
+  }
+
+  function columns(id, rows) {
+    const figure = document.getElementById(id);
+    const w = 560, h = 260, left = 44, bottom = 24, top = 10;
+    const plotH = h - bottom - top, plotW = w - left;
+    const max = niceMax(Math.max(...rows.map((r) => r.value)));
+    const svg = el("svg", { viewBox: `0 0 ${w} ${h}`, role: "img", "aria-label": "Revenue by month column chart" });
+    for (let i = 0; i <= 4; i += 1) {
+      const y = top + plotH - (plotH * i) / 4;
+      svg.appendChild(el("line", { x1: left, x2: w, y1: y, y2: y, stroke: i ? "var(--rule-soft)" : "var(--ink)" }));
+      svg.appendChild(el("text", { x: left - 6, y: y + 4, "text-anchor": "end" }, money((max * i) / 4)));
+    }
+    const slot = plotW / rows.length;
+    const barW = Math.min(slot - 2, 28);
+    const tip = tooltip(figure);
+    rows.forEach((r, i) => {
+      const cx = left + slot * i + slot / 2;
+      const barH = Math.max((r.value / max) * plotH, r.value ? 2 : 0);
+      const y = top + plotH - barH;
+      const radius = Math.min(4, barW / 2, barH);
+      svg.appendChild(el("path", { d: `M${cx - barW / 2} ${y + barH}V${y + radius}Q${cx - barW / 2} ${y} ${cx - barW / 2 + radius} ${y}H${cx + barW / 2 - radius}Q${cx + barW / 2} ${y} ${cx + barW / 2} ${y + radius}V${y + barH}Z`, fill: "var(--orange)" }));
+      if (rows.length <= 8 || i % 2 === 0) svg.appendChild(el("text", { x: cx, y: h - 6, "text-anchor": "middle" }, r.short));
+      const hit = el("rect", { x: left + slot * i, y: top, width: slot, height: plotH, fill: "transparent" });
+      hit.addEventListener("pointerenter", () => tip.show(`${r.label}: ${money(r.value)}, ${r.items} sold`, cx, y));
+      hit.addEventListener("pointerleave", tip.hide);
+      svg.appendChild(hit);
+    });
+    figure.appendChild(svg);
+  }
+
+  function bars(id, rows, format, ariaLabel) {
+    const figure = document.getElementById(id);
+    const rowH = 26, labelW = 170, valueW = 64, w = 560;
+    const h = rows.length * rowH;
+    const max = Math.max(...rows.map((r) => r.value || 0)) || 1;
+    const svg = el("svg", { viewBox: `0 0 ${w} ${h}`, role: "img", "aria-label": ariaLabel });
+    const tip = tooltip(figure);
+    rows.forEach((r, i) => {
+      const y = i * rowH;
+      svg.appendChild(el("text", { x: labelW - 8, y: y + 17, "text-anchor": "end", class: "label" }, r.label));
+      const has = r.value !== null;
+      const barW = has ? Math.max((r.value / max) * (w - labelW - valueW), 2) : 0;
+      if (has) svg.appendChild(el("rect", { x: labelW, y: y + 6, width: barW, height: 14, rx: 4, fill: "var(--orange)" }));
+      svg.appendChild(el("text", { x: labelW + barW + 6, y: y + 17 }, format(r.value)));
+      const hit = el("rect", { x: 0, y, width: w, height: rowH, fill: "transparent" });
+      hit.addEventListener("pointerenter", () => tip.show(r.tip, labelW + barW / 2, y + 4));
+      hit.addEventListener("pointerleave", tip.hide);
+      svg.appendChild(hit);
+    });
+    figure.appendChild(svg);
+  }
+
+  function curve(id, points) {
+    const figure = document.getElementById(id);
+    const w = 560, h = 260, left = 44, bottom = 28, top = 10, right = 8;
+    const plotH = h - bottom - top, plotW = w - left - right;
+    const maxDay = Math.max(...points.map((p) => p[0]));
+    const x = (d) => left + (d / maxDay) * plotW;
+    const y = (s) => top + plotH - s * plotH;
+    const svg = el("svg", { viewBox: `0 0 ${w} ${h}`, role: "img", "aria-label": "Share of items sold by days since listing" });
+    [0, 0.25, 0.5, 0.75, 1].forEach((s) => {
+      svg.appendChild(el("line", { x1: left, x2: w - right, y1: y(s), y2: y(s), stroke: s ? "var(--rule-soft)" : "var(--ink)" }));
+      svg.appendChild(el("text", { x: left - 6, y: y(s) + 4, "text-anchor": "end" }, pct(s)));
+    });
+    for (let d = 0; d <= maxDay; d += 30) svg.appendChild(el("text", { x: x(d), y: h - 8, "text-anchor": "middle" }, d));
+    let path = `M${x(points[0][0])} ${y(points[0][1])}`;
+    points.slice(1).forEach((p) => { path += `H${x(p[0])}V${y(p[1])}`; });
+    svg.appendChild(el("path", { d: path, fill: "none", stroke: "var(--orange)", "stroke-width": 2 }));
+    const guide = el("line", { y1: top, y2: top + plotH, stroke: "var(--ink)", opacity: 0 });
+    const marker = el("circle", { r: 5, fill: "var(--orange)", stroke: "var(--page)", "stroke-width": 2, opacity: 0 });
+    svg.appendChild(guide);
+    svg.appendChild(marker);
+    const tip = tooltip(figure);
+    const hit = el("rect", { x: left, y: top, width: plotW, height: plotH, fill: "transparent" });
+    hit.addEventListener("pointermove", (event) => {
+      const box = svg.getBoundingClientRect();
+      const day = ((event.clientX - box.left) * (w / box.width) - left) / plotW * maxDay;
+      let current = points[0];
+      points.forEach((p) => { if (p[0] <= day) current = p; });
+      const cx = x(Math.max(day, 0));
+      guide.setAttribute("x1", cx); guide.setAttribute("x2", cx); guide.setAttribute("opacity", 0.35);
+      marker.setAttribute("cx", cx); marker.setAttribute("cy", y(current[1])); marker.setAttribute("opacity", 1);
+      tip.show(`${Math.round(day)} days: ${pct(current[1])} sold`, cx, y(current[1]));
+    });
+    hit.addEventListener("pointerleave", () => { guide.setAttribute("opacity", 0); marker.setAttribute("opacity", 0); tip.hide(); });
+    svg.appendChild(hit);
+    figure.appendChild(svg);
+  }
+
+  function render(data) {
+    const t = data.totals;
+    document.getElementById("updated").textContent = "Updated " + data.updated.replace("T", " ").replace("Z", " UTC");
+    const speedRow = data.scorecard[data.scorecard.length - 1];
+    document.getElementById("caption").innerHTML = "";
+    const lead = document.createElement("b");
+    lead.textContent = `Fig. 1 | ${t.items_sold} of ${t.items_listed} items sold.`;
+    const rest = document.createTextNode(` Half of items sell within ${Math.round(t.median_days_to_sell)} days. Live, read-only view of a one-person reselling business, built with Postgres, dbt, Airflow and MLflow.`);
+    document.getElementById("caption").append(lead, rest);
+
+    const tiles = [["Revenue", money(t.revenue)], ["Items sold", t.items_sold], ["Average sale", money(t.average_sale)], ["Sell-through", pct(t.sell_through)], ["Median days to sell", Math.round(t.median_days_to_sell)]];
+    document.getElementById("tiles").innerHTML = tiles.map(([k, v]) => `<div class="tile"><dt>${k}</dt><dd>${v}</dd></div>`).join("");
+
+    const months = data.monthly.map((m) => {
+      const date = new Date(m.month + "-15T00:00:00Z");
+      return { value: m.revenue, items: m.items, short: date.toLocaleString("en-US", { month: "short", timeZone: "UTC" }), label: date.toLocaleString("en-US", { month: "long", year: "numeric", timeZone: "UTC" }) };
+    });
+    columns("monthly", months);
+    tableView(document.getElementById("monthly"), ["Month", "Revenue", "Items sold"], months.map((m) => [m.label, money(m.value), m.items]));
+
+    bars("categories", data.categories.map((c) => ({ label: c.category, value: c.revenue, tip: `${c.category}: ${money(c.revenue)}, ${c.sold} of ${c.items} sold` })), money, "Revenue by category bar chart");
+    tableView(document.getElementById("categories"), ["Category", "Revenue", "Sold", "Items"], data.categories.map((c) => [c.category, money(c.revenue), c.sold, c.items]));
+
+    curve("curve", data.time_to_sell.curve);
+    tableView(document.getElementById("curve"), ["Days listed", "Share sold"], [[30, pct(data.time_to_sell.sold_by_30d)], [90, pct(data.time_to_sell.sold_by_90d)]]);
+
+    const speed = data.time_to_sell.by_category;
+    bars("speed", speed.map((c) => ({ label: c.category, value: c.median_days === null ? null : Math.round(c.median_days), tip: c.median_days === null ? `${c.category}: ${c.sold} of ${c.items} sold, no median yet` : `${c.category}: ${Math.round(c.median_days)} days, ${c.sold} of ${c.items} sold` })), (v) => (v === null ? "not yet" : v + " d"), "Median days to sell by category bar chart");
+    tableView(document.getElementById("speed"), ["Category", "Median days", "Sold", "Items"], speed.map((c) => [c.category, c.median_days === null ? "not yet" : Math.round(c.median_days), c.sold, c.items]));
+
+    const table = document.getElementById("scorecard");
+    table.innerHTML = "<thead><tr><th>Question</th><th>Baseline</th><th class='n'>Score</th><th>Best model</th><th class='n'>Score</th><th>Measure</th><th>Verdict</th></tr></thead>";
+    const body = table.createTBody();
+    data.scorecard.forEach((r) => {
+      const row = body.insertRow();
+      [r.question, r.baseline, r.baseline_score, r.model, r.model_score, r.metric].forEach((v, i) => { const c = row.insertCell(); c.textContent = v; if (i === 2 || i === 4) c.className = "n"; });
+      const verdict = row.insertCell();
+      verdict.textContent = r.passes ? "Passed" : "Failed";
+      verdict.className = r.passes ? "pass" : "fail";
+    });
+    document.getElementById("scorenote").textContent = `Sample is small, so read these as early results. The time-to-sell model ranks items only moderately well, with a C-index of ${speedRow.model_score} where 0.5 is chance.`;
+    document.getElementById("content").hidden = false;
+  }
+
+  fetch("data.json", { cache: "no-store" })
+    .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(render)
+    .catch(() => {
+      const caption = document.getElementById("caption");
+      caption.className = "error";
+      caption.textContent = "The figures couldn't load. Refresh the page to try again.";
+    });
+})();
+</script>
+</body>
+</html>
