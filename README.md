@@ -16,7 +16,7 @@ flowchart LR
     F --> G[MLflow and MinIO: experiments and artifacts]
     F --> H[(Postgres: ml schema)]
     H --> D
-    E --> I[Public aggregates]
+    E --> I[Public data export]
     I --> J[GitHub Pages dashboard]
 ```
 
@@ -28,7 +28,7 @@ flowchart LR
 | Modeling | scikit-learn, lifelines | [`ml/train.py`](ml/train.py) |
 | Experiment tracking | MLflow, MinIO | Private |
 | Internal dashboard | Metabase | Private |
-| Public dashboard | GitHub Pages | [`docs/`](docs/index.html), built by [`ml/publish.py`](ml/publish.py) |
+| Public read-only mirror | GitHub Pages | [`docs/`](docs/index.html), built by [`ml/publish.py`](ml/publish.py) |
 
 ## What the models found
 
@@ -40,7 +40,7 @@ Can a small shop's own data predict what an item will sell for, and how fast? An
 | Sale price given asking price | Asking price, $16.29 error | Ridge on asking price, $20.97 error | Failed |
 | Time to sell | C-index 0.51 with shuffled labels | Cox model, C-index 0.61 | Weak signal, p = 0.0495 |
 
-The honest conclusion is that this dataset can't support price prediction yet, and the asking price is the best predictor available. The failed models aren't registered or shown as predictions. The time-to-sell result is useful for rough ranking only, and it could weaken with more data.
+Items listed longer than any past sale get a Weibull estimate that is labeled as rough, because it extends beyond the observed data. The honest conclusion is that this dataset can't support price prediction yet, and the asking price is the best predictor available. The failed models aren't registered or shown as predictions. The time-to-sell result is useful for rough ranking only, and it could weaken with more data.
 
 Half of items sell within about 54 days. Unsold items are treated as censored rather than dropped, which avoids overstating how fast things sell.
 
@@ -53,7 +53,7 @@ Half of items sell within about 54 days. Unsold items are treated as censored ra
 
 ## Privacy
 
-The public dashboard publishes aggregates only: revenue, sales counts and timing, with small categories grouped together. Item names, consignors, buyers, profit and costs stay private, and no credentials or internal addresses are in this repo. Model training reads through a read-only session and writes only to its own `ml` schema, using a role that can't change business data.
+The public dashboard is a read-only mirror of the private Metabase dashboard, including item names, sale prices and net profit. Consignor details, buyers, notes, SKUs and editing tools stay private, and no credentials or internal addresses are in this repo. Model training reads through a read-only session and writes only to its own `ml` schema, using a role that can't change business data.
 
 ## Running it
 

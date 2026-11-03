@@ -1,81 +1,70 @@
 #!/usr/bin/env python3
-"""Build the public dashboard data: aggregates only, with no item, consignor, buyer, profit or cost fields."""
+"""Build the data behind the public read-only mirror of the Metabase dashboard.
+
+Consignors, payouts, buyers, notes and SKUs are never selected, so they can't reach the page.
+"""
 import json
 import os
 import sys
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
+from decimal import Decimal
 
 import psycopg
 
 OUTPUT_DIR = os.environ.get("ML_OUTPUT_DIR", "/opt/mercantile-ml/output")
-MIN_CATEGORY_SIZE = 4
-CURVE_MAX_POINTS = 60
 
-TOTALS = """
-select count(*) filter (where is_sold), count(*), coalesce(sum(sale_price), 0), coalesce(avg(sale_price), 0), max(sold_date)
-from marts.dim_items
+SALES = """
+select item_name as item, category, platform, sold_date as sold, sale_price as price, net_profit, days_to_sell_from_listed as days
+from marts.fct_sales order by sold_date
 """
-MONTHLY = """
-select to_char(sold_date, 'YYYY-MM'), count(*), sum(sale_price)
-from marts.dim_items where is_sold group by 1 order by 1
+INVENTORY = """
+select item_name as item, category, status, asking_price as asking, potential_profit, days_in_inventory as days, aging_bucket as aging, aging_bucket_order as aging_order, is_stale
+from marts.fct_inventory order by days_in_inventory desc
 """
-CATEGORIES = """
-with sized as (select *, count(*) over (partition by category) as size from marts.dim_items),
-grouped as (select case when size >= %s then category else 'Other' end as grp, is_sold, sale_price from sized)
-select grp, count(*), count(*) filter (where is_sold), coalesce(sum(sale_price), 0)
-from grouped group by 1 order by 4 desc
+CATEGORY_ITEMS = """
+select category, count(*) as items, count(*) filter (where is_sold) as sold from marts.dim_items group by 1
 """
+REFRESHED = "select refreshed_at from marts.rpt_kpis limit 1"
+SCORECARD = """
+select question, best_baseline as baseline, round(baseline_score, 2) as baseline_score, best_model as model, round(model_score, 2) as model_score, metric, passes_gate as passes
+from ml.model_scorecard order by question
+"""
+SPEED = "select category, median_days from ml.time_to_sell_by_category where median_days is not null order by median_days"
+PREDICTIONS = """
+select item_name as item, category, asking_price as asking, days_listed as days, chance_sells_next_30d as chance, estimate_basis as basis
+from ml.listed_item_predictions order by chance_sells_next_30d desc nulls last, days_listed desc
+"""
+TRAINED = "select max(trained_at) from ml.model_scorecard"
 
 
-def scorecard(report):
-    rows = []
-    for question, result in (("Sale price from category and name", report["list_price"]), ("Sale price given asking price", report["sale_given_asking"])):
-        rows.append({
-            "question": question, "baseline": result["best_baseline"], "baseline_score": round(result["results"][result["best_baseline"]]["mae"], 2),
-            "model": result["best_model"], "model_score": round(result["results"][result["best_model"]]["mae"], 2),
-            "metric": "average error, $", "passes": result["passes_gate"],
-        })
-    speed = report["time_to_sell"]
-    rows.append({
-        "question": "Time to sell", "baseline": "shuffled labels", "baseline_score": round(speed["null_c_index"], 2),
-        "model": "Cox: category + asking price", "model_score": round(speed["cv_c_index"], 2),
-        "metric": "C-index, higher is better", "passes": speed["passes_gate"],
-    })
-    return rows
+def plain(value):
+    if isinstance(value, Decimal):
+        return float(value)
+    if isinstance(value, (date, datetime)):
+        return value.isoformat()
+    return value
 
 
-def thin(curve):
-    step = max(1, len(curve) // CURVE_MAX_POINTS)
-    points = curve[::step]
-    if points[-1] != curve[-1]:
-        points.append(curve[-1])
-    return [[round(day, 1), round(share, 3)] for day, share in points]
+def rows(cur, sql):
+    cur.execute(sql)
+    names = [c.name for c in cur.description]
+    return [{n: plain(v) for n, v in zip(names, row)} for row in cur.fetchall()]
 
 
 def build():
-    with open(os.path.join(OUTPUT_DIR, "report.json"), encoding="utf-8") as handle:
-        report = json.load(handle)
     with psycopg.connect(
         host=os.environ["ML_PG_HOST"], dbname=os.environ["ML_PG_DB"],
         user=os.environ["ML_PG_USER"], password=os.environ["ML_PG_PASSWORD"],
         options="-c default_transaction_read_only=on",
     ) as conn, conn.cursor() as cur:
-        sold, listed, revenue, average, last_sale = cur.execute(TOTALS).fetchone()
-        monthly = cur.execute(MONTHLY).fetchall()
-        categories = cur.execute(CATEGORIES, (MIN_CATEGORY_SIZE,)).fetchall()
-    speed = report["time_to_sell"]
-    return {
-        "updated": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%MZ"),
-        "last_sale_month": last_sale.strftime("%Y-%m") if last_sale else None,
-        "totals": {"items_listed": listed, "items_sold": sold, "revenue": float(revenue), "average_sale": round(float(average), 2), "sell_through": round(sold / listed, 3), "median_days_to_sell": speed["median_days"]},
-        "monthly": [{"month": m, "items": n, "revenue": float(r)} for m, n, r in monthly],
-        "categories": [{"category": g, "items": n, "sold": s, "revenue": float(r)} for g, n, s, r in categories],
-        "time_to_sell": {
-            "curve": thin(speed["curve"]), "sold_by_30d": round(speed["sold_by_30d"], 3), "sold_by_90d": round(speed["sold_by_90d"], 3),
-            "by_category": [{"category": name, "items": c["items"], "sold": c["sold"], "median_days": c["median_days"]} for name, c in sorted(speed["by_category"].items(), key=lambda kv: (kv[1]["median_days"] is None, kv[1]["median_days"] or 0))],
-        },
-        "scorecard": scorecard(report),
-    }
+        refreshed = cur.execute(REFRESHED).fetchone()[0]
+        trained = cur.execute(TRAINED).fetchone()[0]
+        return {
+            "published": datetime.now(timezone.utc).isoformat(timespec="minutes"),
+            "refreshed": plain(refreshed), "trained": plain(trained),
+            "sales": rows(cur, SALES), "inventory": rows(cur, INVENTORY), "category_items": rows(cur, CATEGORY_ITEMS),
+            "scorecard": rows(cur, SCORECARD), "median_days": rows(cur, SPEED), "predictions": rows(cur, PREDICTIONS),
+        }
 
 
 if __name__ == "__main__":
