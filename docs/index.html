@@ -4,144 +4,167 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Medrano Mercantile</title>
-<meta name="description" content="Public, read-only view of a small reselling business, built from Postgres, dbt, Airflow and MLflow. Aggregate figures only.">
+<meta name="description" content="Read-only mirror of the Medrano Mercantile business dashboard: sales, inventory and sales models.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
   :root {
-    color-scheme: light;
-    --page: #ffffff; --ink: #16181d; --ink-soft: #565b65; --rule: #c9ccd2; --rule-soft: #e4e6ea;
-    --orange: #e8590c; --orange-text: #bf4708; --pass: #14664a; --fail: #b3122a; --hover: #fff3ec;
-    --gutter: 3rem;
+    color-scheme: light dark;
+    --bg: #f9fbfc; --card: #ffffff; --ink: #4c5773; --strong: #2e353b; --soft: #696e7b; --line: #eeecec; --field: #ffffff; --row: #f3f7fb;
+    --brand: #509ee3; --green: #88bf4d; --purple: #a989c5; --red: #ef8c8c; --yellow: #f9d45c; --orange: #f2a86f; --teal: #98d9d9; --indigo: #7172ad;
+    --up: #2e8540; --down: #c0392b; --progress: #16a34a; --models: #e8590c; --shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1b1c1f; --card: #26282c; --ink: #c9ced6; --strong: #eef0f3; --soft: #a2a8b3; --line: #393c42; --field: #26282c; --row: #2f3238;
+      --up: #6fcf81; --down: #ff8f80; --shadow: none;
+    }
   }
   * { box-sizing: border-box; margin: 0; }
-  body { background: var(--page); color: var(--ink); font: 400 1rem/1.5 'Libre Franklin', system-ui, sans-serif; font-variant-numeric: tabular-nums; }
-  ::selection { background: var(--orange); color: #fff; }
-  a { color: var(--orange-text); text-underline-offset: 2px; }
-  a:focus-visible, summary:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
-  main { max-width: 76rem; margin: 0 auto; padding: 2rem var(--gutter) 4rem; }
-  header { position: relative; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 0.25rem 1.5rem; padding-bottom: 0.7rem; border-bottom: 2px solid var(--ink); }
-  header::after { content: ""; position: absolute; left: 0; bottom: -3px; width: 4.5rem; height: 4px; background: var(--orange); }
-  h1 { font-size: 2.1rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.15; }
-  .updated { font-size: 0.875rem; color: var(--ink-soft); }
-  .caption { margin-top: 1rem; max-width: 62rem; }
-  .caption b { font-weight: 800; }
-  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); gap: 1.5rem; margin: 2rem 0 2.5rem; }
-  .tile dt { font-size: 0.85rem; color: var(--ink-soft); }
-  .tile dd { font-size: 2rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1.2; }
-  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 30rem), 1fr)); gap: 3rem; }
-  h2 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.15rem; }
-  .sub { font-size: 0.85rem; color: var(--ink-soft); margin-bottom: 0.75rem; }
-  figure { position: relative; }
-  svg { display: block; width: 100%; height: auto; overflow: visible; }
-  svg text { font: 400 12px 'Libre Franklin', system-ui, sans-serif; fill: var(--ink-soft); font-variant-numeric: tabular-nums; }
-  svg .label { fill: var(--ink); font-weight: 500; }
-  .tip { position: absolute; pointer-events: none; background: var(--ink); color: #fff; font-size: 0.8rem; line-height: 1.35; padding: 0.35rem 0.55rem; border-radius: 3px; white-space: nowrap; opacity: 0; transition: opacity 80ms ease; transform: translate(-50%, calc(-100% - 8px)); z-index: 2; }
-  .tip.on { opacity: 1; }
-  details { margin-top: 0.6rem; font-size: 0.85rem; }
-  summary { cursor: pointer; color: var(--ink-soft); }
-  table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
-  th { text-align: left; font-weight: 600; border-bottom: 1px solid var(--ink); padding: 0.4rem 0.75rem 0.4rem 0; }
-  td { border-bottom: 1px solid var(--rule-soft); padding: 0.45rem 0.75rem 0.45rem 0; vertical-align: top; }
+  html { background: var(--bg); }
+  body { font: 400 14px/1.45 Lato, system-ui, sans-serif; color: var(--ink); font-variant-numeric: tabular-nums; }
+  a { color: var(--brand); }
+  a:focus-visible, select:focus-visible, summary:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+  main { max-width: 1320px; margin: 0 auto; padding: 16px; }
+  .filters { position: sticky; top: 0; z-index: 3; display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: flex-end; padding: 8px 0 12px; background: var(--bg); }
+  label { display: grid; gap: 2px; font-size: 12px; font-weight: 700; color: var(--soft); }
+  select { min-width: 160px; min-height: 36px; padding: 0 8px; background: var(--field); color: var(--strong); border: 1px solid var(--line); border-radius: 6px; font: 700 13px Lato, system-ui, sans-serif; }
+  .badge { margin-left: auto; align-self: center; padding: 3px 10px; border: 1px solid var(--line); border-radius: 999px; font-size: 12px; font-weight: 700; color: var(--soft); }
+  .grid { display: grid; grid-template-columns: repeat(24, minmax(0, 1fr)); grid-auto-rows: 48px; gap: 12px; }
+  .card { position: relative; display: flex; flex-direction: column; min-width: 0; padding: 12px 14px; background: var(--card); border: 1px solid var(--line); border-radius: 8px; box-shadow: var(--shadow); overflow: hidden; }
+  .title { flex: none; font-size: 13px; font-weight: 700; color: var(--strong); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 4px; }
+  .body { flex: 1; min-height: 0; position: relative; }
+  .scalar { display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%; text-align: center; }
+  .big { font-size: clamp(22px, 2.6vw, 32px); font-weight: 900; color: var(--strong); line-height: 1.1; }
+  .delta { margin-top: 4px; font-size: 12px; font-weight: 700; color: var(--soft); }
+  .delta .up { color: var(--up); } .delta .down { color: var(--down); }
+  .track { width: 100%; height: 14px; border-radius: 7px; background: var(--line); overflow: hidden; margin-top: 8px; }
+  .fill { height: 100%; border-radius: 7px; background: var(--progress); }
+  .section { display: flex; align-items: flex-end; padding: 0 2px 4px; background: none; }
+  .section h2 { font-size: 18px; font-weight: 900; color: var(--strong); }
+  .text { padding: 2px; }
+  .text h1 { font-size: 26px; font-weight: 900; color: var(--strong); line-height: 1.2; }
+  .text p { margin-top: 2px; }
+  .note { font-size: 13px; }
+  svg { display: block; width: 100%; height: 100%; }
+  svg text { font: 400 11px Lato, system-ui, sans-serif; fill: var(--soft); }
+  svg .value { fill: var(--strong); font-weight: 700; }
+  .legend { display: flex; flex-wrap: wrap; gap: 2px 12px; flex: none; margin-bottom: 4px; font-size: 12px; }
+  .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 5px; }
+  .scroll { position: absolute; inset: 0; overflow: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { position: sticky; top: 0; background: var(--card); text-align: left; font-weight: 700; color: var(--brand); padding: 6px 12px 6px 0; border-bottom: 1px solid var(--line); white-space: nowrap; }
+  td { padding: 6px 12px 6px 0; border-bottom: 1px solid var(--line); color: var(--strong); }
   th.n, td.n { text-align: right; }
-  .wide { margin-top: 3rem; }
-  .scroll { overflow-x: auto; }
-  .pass { color: var(--pass); font-weight: 600; }
-  .fail { color: var(--fail); font-weight: 600; }
-  .note { margin-top: 0.75rem; max-width: 62rem; font-size: 0.9rem; color: var(--ink-soft); }
-  footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--rule); font-size: 0.875rem; color: var(--ink-soft); }
-  .error { margin-top: 2rem; color: var(--fail); }
-  @media (max-width: 639px) { :root { --gutter: 1rem; } h1 { font-size: 1.75rem; } .tile dd { font-size: 1.6rem; } }
+  .pass { color: var(--up); font-weight: 700; } .fail { color: var(--down); font-weight: 700; }
+  .rough { color: var(--soft); }
+  .empty { display: flex; align-items: center; justify-content: center; height: 100%; color: var(--soft); }
+  .tip { position: fixed; z-index: 5; pointer-events: none; padding: 5px 9px; background: #2e353b; color: #fff; border-radius: 4px; font-size: 12px; white-space: nowrap; opacity: 0; transition: opacity 80ms ease; }
+  .tip.on { opacity: 1; }
+  footer { margin: 20px 2px 8px; font-size: 13px; color: var(--soft); }
+  .error { padding: 32px 0; color: var(--down); }
+  @media (max-width: 800px) {
+    .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: auto; }
+    .card, .section { grid-column: 1 / -1 !important; grid-row: auto !important; }
+    .card.half { grid-column: span 1 !important; min-height: 96px; }
+    .card.tall { height: 300px; }
+    .card.taller { height: 420px; }
+    select { flex: 1; min-width: 0; width: 100%; } label { flex: 1 1 30%; }
+    .badge { margin-left: 0; }
+  }
   @media (prefers-reduced-motion: reduce) { .tip { transition: none; } }
 </style>
 </head>
 <body>
 <main>
-  <header>
-    <h1>Medrano Mercantile</h1>
-    <span class="updated" id="updated"></span>
-  </header>
-  <p class="caption" id="caption">Loading figures.</p>
-  <div id="content" hidden>
-    <dl class="tiles" id="tiles"></dl>
-    <div class="grid">
-      <section>
-        <h2>Revenue by month</h2>
-        <p class="sub">Dollars from items sold in each month.</p>
-        <figure id="monthly"></figure>
-      </section>
-      <section>
-        <h2>Revenue by category</h2>
-        <p class="sub">Categories with fewer than 4 items are grouped as Other.</p>
-        <figure id="categories"></figure>
-      </section>
-      <section>
-        <h2>How fast items sell</h2>
-        <p class="sub">Share sold by days since listing. Unsold items count too, as Kaplan-Meier censored data.</p>
-        <figure id="curve"></figure>
-      </section>
-      <section>
-        <h2>Median days to sell, by category</h2>
-        <p class="sub">Categories where under half have sold have no median yet.</p>
-        <figure id="speed"></figure>
-      </section>
-    </div>
-    <section class="wide">
-      <h2>Can the models beat a simple baseline?</h2>
-      <p class="sub">A model only counts if it clearly beats the baseline in cross-validation. Results tracked in MLflow.</p>
-      <div class="scroll"><table id="scorecard"></table></div>
-      <p class="note" id="scorenote"></p>
-    </section>
+  <div class="filters">
+    <label>Sold date
+      <select id="f-date">
+        <option value="all">All time</option><option value="this">This month</option><option value="last">Last month</option>
+        <option value="90">Past 90 days</option><option value="year">This year</option>
+      </select>
+    </label>
+    <label>Category<select id="f-category"><option value="">All categories</option></select></label>
+    <label>Platform<select id="f-platform"><option value="">All platforms</option></select></label>
+    <span class="badge">Read-only mirror</span>
   </div>
+  <div class="grid" id="grid"><p class="error" style="grid-column:1/-1" id="status">Loading dashboard.</p></div>
   <footer>
-    Aggregate figures from a live Postgres warehouse, refreshed by Airflow. No item, customer or consignor details are published.
-    <a href="https://github.com/manofmanana/medrano-mercantile">Project repo</a> ·
-    <a href="https://github.com/manofmanana/medrano-mercantile-dbt">dbt repo</a>
+    Read-only copy of the private Metabase dashboard, refreshed daily by Airflow. Consignor details and editing tools are left out.
+    <a href="https://github.com/manofmanana/medrano-mercantile">Project repo</a> · <a href="https://github.com/manofmanana/medrano-mercantile-dbt">dbt repo</a>
   </footer>
 </main>
+<div class="tip" id="tip"></div>
 <script>
 (function () {
   "use strict";
   const SVG = "http://www.w3.org/2000/svg";
+  const SERIES = ["--brand", "--green", "--purple", "--red", "--yellow", "--orange", "--teal", "--indigo"];
   const money = (v) => "$" + Math.round(v).toLocaleString("en-US");
   const pct = (v) => Math.round(v * 100) + "%";
+  const color = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  const sum = (list, key) => list.reduce((total, row) => total + (row[key] || 0), 0);
+  const tip = document.getElementById("tip");
+  let data, charts = [];
+
+  function node(tag, className, text) {
+    const n = document.createElement(tag);
+    if (className) n.className = className;
+    if (text !== undefined) n.textContent = text;
+    return n;
+  }
 
   function el(tag, attrs, text) {
-    const node = document.createElementNS(SVG, tag);
-    Object.entries(attrs || {}).forEach(([k, v]) => node.setAttribute(k, v));
-    if (text !== undefined) node.textContent = text;
-    return node;
+    const n = document.createElementNS(SVG, tag);
+    Object.entries(attrs).forEach(([k, v]) => n.setAttribute(k, v));
+    if (text !== undefined) n.textContent = text;
+    return n;
   }
 
-  function tooltip(figure) {
-    const tip = document.createElement("div");
-    tip.className = "tip";
-    figure.appendChild(tip);
-    return {
-      show(html, x, y) {
-        const svg = figure.querySelector("svg");
-        const scale = svg.getBoundingClientRect().width / svg.viewBox.baseVal.width;
-        tip.textContent = html;
-        const half = tip.offsetWidth / 2;
-        const px = Math.min(Math.max(x * scale, half), figure.clientWidth - half);
-        tip.style.left = px + "px";
-        tip.style.top = y * scale + "px";
-        tip.classList.add("on");
-      },
-      hide() { tip.classList.remove("on"); },
-    };
+  function hover(target, text) {
+    target.addEventListener("pointermove", (e) => {
+      tip.textContent = text;
+      tip.classList.add("on");
+      tip.style.left = Math.min(e.clientX + 12, innerWidth - tip.offsetWidth - 8) + "px";
+      tip.style.top = e.clientY - 34 + "px";
+    });
+    target.addEventListener("pointerleave", () => tip.classList.remove("on"));
   }
 
-  function tableView(figure, headers, rows) {
-    const details = document.createElement("details");
-    details.innerHTML = "<summary>View as table</summary>";
-    const table = document.createElement("table");
-    const head = table.createTHead().insertRow();
-    headers.forEach((h, i) => { const th = document.createElement("th"); th.textContent = h; if (i) th.className = "n"; head.appendChild(th); });
-    const body = table.createTBody();
-    rows.forEach((row) => { const tr = body.insertRow(); row.forEach((c, i) => { const td = tr.insertCell(); td.textContent = c; if (i) td.className = "n"; }); });
-    details.appendChild(table);
-    figure.after(details);
+  function card(col, row, w, h, title, size) {
+    const c = node("section", "card" + (size ? " " + size : ""));
+    c.style.gridColumn = `${col + 1} / span ${w}`;
+    c.style.gridRow = `${row + 1} / span ${h}`;
+    if (title) c.appendChild(node("div", "title", title));
+    const body = node("div", "body");
+    c.appendChild(body);
+    document.getElementById("grid").appendChild(c);
+    return body;
+  }
+
+  function section(row, title) {
+    const s = node("div", "section");
+    s.style.gridColumn = "1 / -1";
+    s.style.gridRow = `${row + 1} / span 1`;
+    s.appendChild(node("h2", "", title));
+    document.getElementById("grid").appendChild(s);
+  }
+
+  function scalar(body, text, delta) {
+    const box = node("div", "scalar");
+    box.appendChild(node("div", "big", text));
+    if (delta) box.appendChild(delta);
+    body.appendChild(box);
+    return box;
+  }
+
+  function empty(body) { body.appendChild(node("div", "empty", "No results")); }
+
+  function surface(body) {
+    const w = Math.max(body.clientWidth, 240), h = Math.max(body.clientHeight, 180);
+    const svg = el("svg", { viewBox: `0 0 ${w} ${h}`, role: "img" });
+    body.appendChild(svg);
+    return { svg, w, h };
   }
 
   function niceMax(v) {
@@ -150,146 +173,288 @@
     return 10 * p;
   }
 
-  function columns(id, rows) {
-    const figure = document.getElementById(id);
-    const w = 560, h = 260, left = 44, bottom = 24, top = 10;
-    const plotH = h - bottom - top, plotW = w - left;
-    const max = niceMax(Math.max(...rows.map((r) => r.value)));
-    const svg = el("svg", { viewBox: `0 0 ${w} ${h}`, role: "img", "aria-label": "Revenue by month column chart" });
+  function monthLabel(m) {
+    return new Date(m + "T00:00:00Z").toLocaleString("en-US", { month: "short", year: "2-digit", timeZone: "UTC" });
+  }
+
+  function legend(body, names) {
+    const box = node("div", "legend");
+    names.forEach((name, i) => {
+      const item = node("span");
+      const dot = node("i");
+      dot.style.background = `var(${SERIES[i % SERIES.length]})`;
+      item.append(dot, document.createTextNode(name));
+      box.appendChild(item);
+    });
+    body.parentElement.insertBefore(box, body);
+  }
+
+  function axes(svg, plot, max, format) {
     for (let i = 0; i <= 4; i += 1) {
-      const y = top + plotH - (plotH * i) / 4;
-      svg.appendChild(el("line", { x1: left, x2: w, y1: y, y2: y, stroke: i ? "var(--rule-soft)" : "var(--ink)" }));
-      svg.appendChild(el("text", { x: left - 6, y: y + 4, "text-anchor": "end" }, money((max * i) / 4)));
+      const y = plot.top + plot.h - (plot.h * i) / 4;
+      svg.appendChild(el("line", { x1: plot.left, x2: plot.left + plot.w, y1: y, y2: y, stroke: "var(--line)" }));
+      svg.appendChild(el("text", { x: plot.left - 6, y: y + 4, "text-anchor": "end" }, format((max * i) / 4)));
     }
-    const slot = plotW / rows.length;
-    const barW = Math.min(slot - 2, 28);
-    const tip = tooltip(figure);
-    rows.forEach((r, i) => {
-      const cx = left + slot * i + slot / 2;
-      const barH = Math.max((r.value / max) * plotH, r.value ? 2 : 0);
-      const y = top + plotH - barH;
-      const radius = Math.min(4, barW / 2, barH);
-      svg.appendChild(el("path", { d: `M${cx - barW / 2} ${y + barH}V${y + radius}Q${cx - barW / 2} ${y} ${cx - barW / 2 + radius} ${y}H${cx + barW / 2 - radius}Q${cx + barW / 2} ${y} ${cx + barW / 2} ${y + radius}V${y + barH}Z`, fill: "var(--orange)" }));
-      if (rows.length <= 8 || i % 2 === 0) svg.appendChild(el("text", { x: cx, y: h - 6, "text-anchor": "middle" }, r.short));
-      const hit = el("rect", { x: left + slot * i, y: top, width: slot, height: plotH, fill: "transparent" });
-      hit.addEventListener("pointerenter", () => tip.show(`${r.label}: ${money(r.value)}, ${r.items} sold`, cx, y));
-      hit.addEventListener("pointerleave", tip.hide);
-      svg.appendChild(hit);
-    });
-    figure.appendChild(svg);
   }
 
-  function bars(id, rows, format, ariaLabel) {
-    const figure = document.getElementById(id);
-    const rowH = 26, labelW = 170, valueW = 64, w = 560;
-    const h = rows.length * rowH;
-    const max = Math.max(...rows.map((r) => r.value || 0)) || 1;
-    const svg = el("svg", { viewBox: `0 0 ${w} ${h}`, role: "img", "aria-label": ariaLabel });
-    const tip = tooltip(figure);
-    rows.forEach((r, i) => {
-      const y = i * rowH;
-      svg.appendChild(el("text", { x: labelW - 8, y: y + 17, "text-anchor": "end", class: "label" }, r.label));
-      const has = r.value !== null;
-      const barW = has ? Math.max((r.value / max) * (w - labelW - valueW), 2) : 0;
-      if (has) svg.appendChild(el("rect", { x: labelW, y: y + 6, width: barW, height: 14, rx: 4, fill: "var(--orange)" }));
-      svg.appendChild(el("text", { x: labelW + barW + 6, y: y + 17 }, format(r.value)));
+  function roundedBar(x, y, w, h, fill) {
+    const r = Math.min(4, w / 2, h);
+    return el("path", { d: `M${x} ${y + h}V${y + r}Q${x} ${y} ${x + r} ${y}H${x + w - r}Q${x + w} ${y} ${x + w} ${y + r}V${y + h}Z`, fill });
+  }
+
+  function columns(body, labels, series, format, showValues, axisTitle) {
+    if (!labels.length) return empty(body);
+    if (series.length > 1) legend(body, series.map((s) => s.name));
+    const { svg, w, h } = surface(body);
+    const plot = { left: 46, top: 12, w: w - 50, h: h - (axisTitle ? 48 : 32) };
+    const max = niceMax(Math.max(...series.flatMap((s) => s.values)));
+    axes(svg, plot, max, format);
+    const slot = plot.w / labels.length;
+    const gap = 2;
+    const barW = Math.min((slot * 0.72 - gap * (series.length - 1)) / series.length, 42);
+    labels.forEach((label, i) => {
+      const groupW = barW * series.length + gap * (series.length - 1);
+      const start = plot.left + slot * i + (slot - groupW) / 2;
+      series.forEach((s, j) => {
+        const barH = s.values[i] ? Math.max((s.values[i] / max) * plot.h, 2) : 0;
+        const x = start + j * (barW + gap), y = plot.top + plot.h - barH;
+        if (barH) svg.appendChild(roundedBar(x, y, barW, barH, `var(${SERIES[j]})`));
+        if (showValues) svg.appendChild(el("text", { x: x + barW / 2, y: y - 4, "text-anchor": "middle", class: "value" }, format(s.values[i])));
+      });
+      if (labels.length <= 12 || i % 2 === 0) svg.appendChild(el("text", { x: plot.left + slot * i + slot / 2, y: plot.top + plot.h + 16, "text-anchor": "middle" }, label));
+      const hit = el("rect", { x: plot.left + slot * i, y: plot.top, width: slot, height: plot.h, fill: "transparent" });
+      hover(hit, `${label}: ${series.map((s) => `${s.name} ${format(s.values[i])}`).join(", ")}`);
+      svg.appendChild(hit);
+    });
+    if (axisTitle) svg.appendChild(el("text", { x: plot.left + plot.w / 2, y: h - 2, "text-anchor": "middle" }, axisTitle));
+  }
+
+  function area(body, labels, values, format, name) {
+    if (!labels.length) return empty(body);
+    const { svg, w, h } = surface(body);
+    const plot = { left: 46, top: 12, w: w - 56, h: h - 32 };
+    const max = niceMax(Math.max(...values));
+    axes(svg, plot, max, format);
+    const x = (i) => plot.left + (labels.length > 1 ? (plot.w * i) / (labels.length - 1) : plot.w / 2);
+    const y = (v) => plot.top + plot.h - (v / max) * plot.h;
+    const line = values.map((v, i) => `${i ? "L" : "M"}${x(i)} ${y(v)}`).join("");
+    svg.appendChild(el("path", { d: `${line}L${x(values.length - 1)} ${plot.top + plot.h}L${x(0)} ${plot.top + plot.h}Z`, fill: "var(--brand)", opacity: 0.2 }));
+    svg.appendChild(el("path", { d: line, fill: "none", stroke: "var(--brand)", "stroke-width": 2 }));
+    const step = Math.ceil(labels.length / 6);
+    labels.forEach((label, i) => {
+      if (i % step === 0) svg.appendChild(el("text", { x: x(i), y: plot.top + plot.h + 16, "text-anchor": "middle" }, label));
+      const dot = el("circle", { cx: x(i), cy: y(values[i]), r: 4, fill: "var(--brand)", stroke: "var(--card)", "stroke-width": 2 });
+      svg.appendChild(dot);
+      const hit = el("rect", { x: x(i) - plot.w / labels.length / 2, y: plot.top, width: plot.w / labels.length, height: plot.h, fill: "transparent" });
+      hover(hit, `${label}: ${name} ${format(values[i])}`);
+      svg.appendChild(hit);
+    });
+  }
+
+  function rows(body, list, format, fill) {
+    if (!list.length) return empty(body);
+    const scroll = node("div", "scroll");
+    body.appendChild(scroll);
+    const rowH = 25, w = Math.max(body.clientWidth - 8, 240), labelW = Math.min(170, w * 0.42), valueW = 60;
+    const h = list.length * rowH;
+    const svg = el("svg", { viewBox: `0 0 ${w} ${h}`, role: "img", style: `height:${h}px` });
+    const max = Math.max(...list.map((r) => r.value)) || 1;
+    list.forEach((r, i) => {
+      const y = i * rowH, barW = Math.max((r.value / max) * (w - labelW - valueW), 2);
+      svg.appendChild(el("text", { x: labelW - 8, y: y + 16, "text-anchor": "end" }, r.label));
+      svg.appendChild(el("rect", { x: labelW, y: y + 5, width: barW, height: 15, rx: 4, fill: fill || "var(--brand)" }));
+      svg.appendChild(el("text", { x: labelW + barW + 6, y: y + 16, class: "value" }, format(r.value)));
       const hit = el("rect", { x: 0, y, width: w, height: rowH, fill: "transparent" });
-      hit.addEventListener("pointerenter", () => tip.show(r.tip, labelW + barW / 2, y + 4));
-      hit.addEventListener("pointerleave", tip.hide);
+      hover(hit, r.tip || `${r.label}: ${format(r.value)}`);
       svg.appendChild(hit);
     });
-    figure.appendChild(svg);
+    scroll.appendChild(svg);
   }
 
-  function curve(id, points) {
-    const figure = document.getElementById(id);
-    const w = 560, h = 260, left = 44, bottom = 28, top = 10, right = 8;
-    const plotH = h - bottom - top, plotW = w - left - right;
-    const maxDay = Math.max(...points.map((p) => p[0]));
-    const x = (d) => left + (d / maxDay) * plotW;
-    const y = (s) => top + plotH - s * plotH;
-    const svg = el("svg", { viewBox: `0 0 ${w} ${h}`, role: "img", "aria-label": "Share of items sold by days since listing" });
-    [0, 0.25, 0.5, 0.75, 1].forEach((s) => {
-      svg.appendChild(el("line", { x1: left, x2: w - right, y1: y(s), y2: y(s), stroke: s ? "var(--rule-soft)" : "var(--ink)" }));
-      svg.appendChild(el("text", { x: left - 6, y: y(s) + 4, "text-anchor": "end" }, pct(s)));
+  function donut(body, list) {
+    if (!list.length) return empty(body);
+    legend(body, list.map((r) => r.label));
+    const { svg, w, h } = surface(body);
+    const total = sum(list, "value"), cx = w / 2, cy = h / 2, r = Math.min(w, h) / 2 - 6, inner = r * 0.62;
+    let angle = -Math.PI / 2;
+    list.forEach((row, i) => {
+      const sweep = (row.value / total) * Math.PI * 2 - (list.length > 1 ? 0.012 : 0.0001);
+      const end = angle + sweep, large = sweep > Math.PI ? 1 : 0;
+      const p = (rad, a) => `${cx + rad * Math.cos(a)} ${cy + rad * Math.sin(a)}`;
+      const slice = el("path", { d: `M${p(r, angle)}A${r} ${r} 0 ${large} 1 ${p(r, end)}L${p(inner, end)}A${inner} ${inner} 0 ${large} 0 ${p(inner, angle)}Z`, fill: `var(${SERIES[i % SERIES.length]})` });
+      hover(slice, `${row.label}: ${money(row.value)}, ${pct(row.value / total)}`);
+      svg.appendChild(slice);
+      angle = end + 0.012;
     });
-    for (let d = 0; d <= maxDay; d += 30) svg.appendChild(el("text", { x: x(d), y: h - 8, "text-anchor": "middle" }, d));
-    let path = `M${x(points[0][0])} ${y(points[0][1])}`;
-    points.slice(1).forEach((p) => { path += `H${x(p[0])}V${y(p[1])}`; });
-    svg.appendChild(el("path", { d: path, fill: "none", stroke: "var(--orange)", "stroke-width": 2 }));
-    const guide = el("line", { y1: top, y2: top + plotH, stroke: "var(--ink)", opacity: 0 });
-    const marker = el("circle", { r: 5, fill: "var(--orange)", stroke: "var(--page)", "stroke-width": 2, opacity: 0 });
-    svg.appendChild(guide);
-    svg.appendChild(marker);
-    const tip = tooltip(figure);
-    const hit = el("rect", { x: left, y: top, width: plotW, height: plotH, fill: "transparent" });
-    hit.addEventListener("pointermove", (event) => {
-      const box = svg.getBoundingClientRect();
-      const day = ((event.clientX - box.left) * (w / box.width) - left) / plotW * maxDay;
-      let current = points[0];
-      points.forEach((p) => { if (p[0] <= day) current = p; });
-      const cx = x(Math.max(day, 0));
-      guide.setAttribute("x1", cx); guide.setAttribute("x2", cx); guide.setAttribute("opacity", 0.35);
-      marker.setAttribute("cx", cx); marker.setAttribute("cy", y(current[1])); marker.setAttribute("opacity", 1);
-      tip.show(`${Math.round(day)} days: ${pct(current[1])} sold`, cx, y(current[1]));
-    });
-    hit.addEventListener("pointerleave", () => { guide.setAttribute("opacity", 0); marker.setAttribute("opacity", 0); tip.hide(); });
-    svg.appendChild(hit);
-    figure.appendChild(svg);
+    svg.appendChild(el("text", { x: cx, y: cy + 2, "text-anchor": "middle", class: "value", style: "font-size:20px" }, money(total)));
+    svg.appendChild(el("text", { x: cx, y: cy + 18, "text-anchor": "middle" }, "Total"));
   }
 
-  function render(data) {
-    const t = data.totals;
-    document.getElementById("updated").textContent = "Updated " + data.updated.replace("T", " ").replace("Z", " UTC");
-    const speedRow = data.scorecard[data.scorecard.length - 1];
-    document.getElementById("caption").innerHTML = "";
-    const lead = document.createElement("b");
-    lead.textContent = `Fig. 1 | ${t.items_sold} of ${t.items_listed} items sold.`;
-    const rest = document.createTextNode(` Half of items sell within ${Math.round(t.median_days_to_sell)} days. Live, read-only view of a one-person reselling business, built with Postgres, dbt, Airflow and MLflow.`);
-    document.getElementById("caption").append(lead, rest);
-
-    const tiles = [["Revenue", money(t.revenue)], ["Items sold", t.items_sold], ["Average sale", money(t.average_sale)], ["Sell-through", pct(t.sell_through)], ["Median days to sell", Math.round(t.median_days_to_sell)]];
-    document.getElementById("tiles").innerHTML = tiles.map(([k, v]) => `<div class="tile"><dt>${k}</dt><dd>${v}</dd></div>`).join("");
-
-    const months = data.monthly.map((m) => {
-      const date = new Date(m.month + "-15T00:00:00Z");
-      return { value: m.revenue, items: m.items, short: date.toLocaleString("en-US", { month: "short", timeZone: "UTC" }), label: date.toLocaleString("en-US", { month: "long", year: "numeric", timeZone: "UTC" }) };
+  function table(body, headers, list) {
+    if (!list.length) return empty(body);
+    const scroll = node("div", "scroll");
+    const t = node("table");
+    const head = t.createTHead().insertRow();
+    headers.forEach((h) => head.appendChild(node("th", h.n ? "n" : "", h.label)));
+    const tb = t.createTBody();
+    list.forEach((row) => {
+      const tr = tb.insertRow();
+      headers.forEach((h) => {
+        const td = tr.insertCell();
+        const v = h.get(row);
+        td.textContent = v === null || v === undefined ? "" : v;
+        const cls = [h.n ? "n" : "", h.cls ? h.cls(row) : ""].join(" ").trim();
+        if (cls) td.className = cls;
+      });
     });
-    columns("monthly", months);
-    tableView(document.getElementById("monthly"), ["Month", "Revenue", "Items sold"], months.map((m) => [m.label, money(m.value), m.items]));
+    scroll.appendChild(t);
+    body.appendChild(scroll);
+  }
 
-    bars("categories", data.categories.map((c) => ({ label: c.category, value: c.revenue, tip: `${c.category}: ${money(c.revenue)}, ${c.sold} of ${c.items} sold` })), money, "Revenue by category bar chart");
-    tableView(document.getElementById("categories"), ["Category", "Revenue", "Sold", "Items"], data.categories.map((c) => [c.category, money(c.revenue), c.sold, c.items]));
-
-    curve("curve", data.time_to_sell.curve);
-    tableView(document.getElementById("curve"), ["Days listed", "Share sold"], [[30, pct(data.time_to_sell.sold_by_30d)], [90, pct(data.time_to_sell.sold_by_90d)]]);
-
-    const speed = data.time_to_sell.by_category;
-    bars("speed", speed.map((c) => ({ label: c.category, value: c.median_days === null ? null : Math.round(c.median_days), tip: c.median_days === null ? `${c.category}: ${c.sold} of ${c.items} sold, no median yet` : `${c.category}: ${Math.round(c.median_days)} days, ${c.sold} of ${c.items} sold` })), (v) => (v === null ? "not yet" : v + " d"), "Median days to sell by category bar chart");
-    tableView(document.getElementById("speed"), ["Category", "Median days", "Sold", "Items"], speed.map((c) => [c.category, c.median_days === null ? "not yet" : Math.round(c.median_days), c.sold, c.items]));
-
-    const table = document.getElementById("scorecard");
-    table.innerHTML = "<thead><tr><th>Question</th><th>Baseline</th><th class='n'>Score</th><th>Best model</th><th class='n'>Score</th><th>Measure</th><th>Verdict</th></tr></thead>";
-    const body = table.createTBody();
-    data.scorecard.forEach((r) => {
-      const row = body.insertRow();
-      [r.question, r.baseline, r.baseline_score, r.model, r.model_score, r.metric].forEach((v, i) => { const c = row.insertCell(); c.textContent = v; if (i === 2 || i === 4) c.className = "n"; });
-      const verdict = row.insertCell();
-      verdict.textContent = r.passes ? "Passed" : "Failed";
-      verdict.className = r.passes ? "pass" : "fail";
+  function byMonth(list) {
+    const months = {};
+    list.forEach((s) => {
+      const m = s.sold.slice(0, 7) + "-01";
+      const e = (months[m] = months[m] || { revenue: 0, profit: 0, items: 0 });
+      e.revenue += s.price; e.profit += s.net_profit || 0; e.items += 1;
     });
-    document.getElementById("scorenote").textContent = `Sample is small, so read these as early results. The time-to-sell model ranks items only moderately well, with a C-index of ${speedRow.model_score} where 0.5 is chance.`;
-    document.getElementById("content").hidden = false;
+    return Object.keys(months).sort().map((m) => ({ month: m, ...months[m] }));
+  }
+
+  function grouped(list, key, measure) {
+    const totals = {};
+    list.forEach((s) => { totals[s[key]] = (totals[s[key]] || 0) + s[measure]; });
+    return Object.entries(totals).map(([label, value]) => ({ label, value })).sort((a, b) => b.value - a.value);
+  }
+
+  function dateMatches(sold, mode) {
+    if (mode === "all") return true;
+    const now = new Date(), d = new Date(sold + "T00:00:00");
+    if (mode === "this") return d.getFullYear() === now.getFullYear() && d.getMonth() === now.getMonth();
+    if (mode === "last") { const l = new Date(now.getFullYear(), now.getMonth() - 1, 1); return d.getFullYear() === l.getFullYear() && d.getMonth() === l.getMonth(); }
+    if (mode === "90") return now - d <= 90 * 86400000;
+    return d.getFullYear() === now.getFullYear();
+  }
+
+  function compare(body, series, format) {
+    if (!series.length) return empty(body);
+    const last = series[series.length - 1], prev = series[series.length - 2];
+    const delta = node("div", "delta");
+    if (prev && prev.value) {
+      const change = (last.value - prev.value) / prev.value;
+      const sign = node("span", change >= 0 ? "up" : "down", `${change >= 0 ? "▲" : "▼"} ${Math.abs(Math.round(change * 100))}%`);
+      delta.append(sign, document.createTextNode(` vs. previous month: ${format(prev.value)}`));
+    } else delta.textContent = "No previous month";
+    scalar(body, format(last.value), delta);
+  }
+
+  function render() {
+    const grid = document.getElementById("grid");
+    grid.textContent = "";
+    tip.classList.remove("on");
+    const mode = document.getElementById("f-date").value;
+    const category = document.getElementById("f-category").value;
+    const platform = document.getElementById("f-platform").value;
+    const sales = data.sales.filter((s) => dateMatches(s.sold, mode) && (!category || s.category === category) && (!platform || s.platform === platform));
+    const inventory = data.inventory.filter((i) => !category || i.category === category);
+    const items = data.category_items.filter((c) => !category || c.category === category);
+    const months = byMonth(sales);
+    const revenue = sum(sales, "price"), profit = sum(sales, "net_profit");
+    const timed = sales.filter((s) => s.days !== null);
+
+    const intro = node("section", "text");
+    intro.style.gridColumn = "1 / span 18"; intro.style.gridRow = "1 / span 2";
+    intro.appendChild(node("h1", "", "Medrano Mercantile"));
+    const line = node("p");
+    const strong = node("b", "", "Business overview");
+    line.append(strong, document.createTextNode(" · sales, inventory & sales models"));
+    intro.appendChild(line);
+    intro.appendChild(node("p", "note", "Built on dbt marts tables, with models tracked in MLflow."));
+    grid.appendChild(intro);
+    const stamp = new Date(data.refreshed).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" });
+    scalarSmall(card(18, 0, 6, 2, "Last data refresh", "half"), stamp);
+
+    section(2, "Sales performance");
+    scalar(card(0, 3, 4, 3, "Revenue", "half"), money(revenue));
+    scalar(card(4, 3, 4, 3, "Net Profit", "half"), money(profit));
+    scalar(card(8, 3, 4, 3, "Items Sold", "half"), String(sales.length));
+    scalar(card(12, 3, 4, 3, "Avg Sale Price", "half"), sales.length ? money(revenue / sales.length) : "–");
+    scalar(card(16, 3, 4, 3, "Avg Days to Sell", "half"), timed.length ? (sum(timed, "days") / timed.length).toFixed(1) : "–");
+    scalar(card(20, 3, 4, 3, "Profit Margin", "half"), revenue ? pct(profit / revenue) : "–");
+
+    compare(card(0, 6, 8, 3, "Revenue, this month vs last"), months.map((m) => ({ value: m.revenue })), money);
+    compare(card(8, 6, 8, 3, "Items sold, this month vs last"), months.map((m) => ({ value: m.items })), String);
+    const allItems = sum(items, "items"), soldItems = sum(items, "sold");
+    const through = card(16, 6, 8, 3, "Sell-through rate");
+    const box = scalar(through, allItems ? pct(soldItems / allItems) : "–");
+    const track = node("div", "track"), fill = node("div", "fill");
+    fill.style.width = allItems ? pct(soldItems / allItems) : "0";
+    track.appendChild(fill); box.appendChild(track);
+
+    charts = [
+      () => columns(card(0, 9, 16, 7, "Revenue & profit by month", "tall"), months.map((m) => monthLabel(m.month)), [{ name: "Revenue", values: months.map((m) => m.revenue) }, { name: "Net profit", values: months.map((m) => m.profit) }], money),
+      () => { let run = 0; const c = months.map((m) => (run += m.revenue)); area(card(16, 9, 8, 7, "Cumulative revenue", "tall"), months.map((m) => monthLabel(m.month)), c, money, "Revenue"); },
+      () => rows(card(0, 16, 14, 7, "Revenue by category", "taller"), grouped(sales, "category", "price"), money),
+      () => donut(card(14, 16, 10, 7, "Revenue by platform", "tall"), grouped(sales, "platform", "price")),
+    ];
+    charts.forEach((draw) => draw());
+
+    section(23, "Inventory");
+    scalar(card(0, 24, 6, 3, "Open items", "half"), String(inventory.length));
+    scalar(card(6, 24, 6, 3, "Inventory value (at ask)", "half"), money(sum(inventory, "asking")));
+    scalar(card(12, 24, 6, 3, "Potential profit", "half"), money(sum(inventory, "potential_profit")));
+    scalar(card(18, 24, 6, 3, "Stale items (60+ days)", "half"), String(inventory.filter((i) => i.is_stale).length));
+
+    const aging = {};
+    inventory.forEach((i) => { const a = (aging[i.aging] = aging[i.aging] || { order: i.aging_order, items: 0 }); a.items += 1; });
+    const buckets = Object.keys(aging).sort((a, b) => aging[a].order - aging[b].order);
+    columns(card(0, 27, 10, 7, "Inventory aging", "tall"), buckets, [{ name: "Items", values: buckets.map((b) => aging[b].items) }], (v) => String(Math.round(v)), true, "Days on hand");
+    rows(card(10, 27, 14, 7, "Sell-through by category", "taller"), items.map((c) => ({ label: c.category, value: c.items ? c.sold / c.items : 0, tip: `${c.category}: ${c.sold} of ${c.items} sold` })).sort((a, b) => b.value - a.value), pct);
+    table(card(0, 34, 24, 8, "Oldest unsold items", "taller"), [
+      { label: "Item", get: (r) => r.item }, { label: "Category", get: (r) => r.category }, { label: "Status", get: (r) => r.status },
+      { label: "Asking", n: 1, get: (r) => money(r.asking) }, { label: "Days on hand", n: 1, get: (r) => r.days }, { label: "Aging", get: (r) => r.aging },
+    ], inventory);
+
+    section(42, "Top sales");
+    table(card(0, 43, 24, 6, "Top 10 sales", "taller"), [
+      { label: "Item", get: (r) => r.item }, { label: "Category", get: (r) => r.category }, { label: "Platform", get: (r) => r.platform }, { label: "Sold", get: (r) => r.sold },
+      { label: "Sale price", n: 1, get: (r) => money(r.price) }, { label: "Net profit", n: 1, get: (r) => money(r.net_profit) }, { label: "Days to sell", n: 1, get: (r) => r.days },
+    ], sales.slice().sort((a, b) => b.price - a.price).slice(0, 10));
+
+    section(49, "Sales models");
+    const trained = new Date(data.trained).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" });
+    scalarSmall(card(0, 50, 6, 4, "Last trained", "half"), trained);
+    table(card(6, 50, 18, 4, "Model scorecard", "tall"), [
+      { label: "Question", get: (r) => r.question }, { label: "Baseline", get: (r) => r.baseline }, { label: "Baseline score", n: 1, get: (r) => r.baseline_score },
+      { label: "Best model", get: (r) => r.model }, { label: "Model score", n: 1, get: (r) => r.model_score }, { label: "Measure", get: (r) => r.metric },
+      { label: "Verdict", get: (r) => (r.passes ? "Passed" : "Failed"), cls: (r) => (r.passes ? "pass" : "fail") },
+    ], data.scorecard);
+    rows(card(0, 54, 10, 9, "Median days to sell by category", "taller"), data.median_days.map((c) => ({ label: c.category, value: Math.round(c.median_days) })), (v) => v + " d", "var(--models)");
+    table(card(10, 54, 14, 9, "Chance listed items sell in the next 30 days", "taller"), [
+      { label: "Item", get: (r) => r.item }, { label: "Category", get: (r) => r.category }, { label: "Asking", n: 1, get: (r) => money(r.asking) }, { label: "Days listed", n: 1, get: (r) => r.days },
+      { label: "Chance", n: 1, get: (r) => (r.chance === null ? "" : pct(r.chance)) },
+      { label: "Basis", get: (r) => (r.basis === "extrapolated" ? "Rough, past any sale so far" : "Past sales"), cls: (r) => (r.basis === "extrapolated" ? "rough" : "") },
+    ], data.predictions.filter((p) => !category || p.category === category));
+  }
+
+  function scalarSmall(body, text) {
+    const box = scalar(body, text);
+    box.firstChild.style.fontSize = "20px";
   }
 
   fetch("data.json", { cache: "no-store" })
     .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
-    .then(render)
-    .catch(() => {
-      const caption = document.getElementById("caption");
-      caption.className = "error";
-      caption.textContent = "The figures couldn't load. Refresh the page to try again.";
-    });
+    .then((json) => {
+      data = json;
+      const fill = (id, values) => values.forEach((v) => { const o = node("option", "", v); o.value = v; document.getElementById(id).appendChild(o); });
+      fill("f-category", [...new Set(data.category_items.map((c) => c.category))].sort());
+      fill("f-platform", [...new Set(data.sales.map((s) => s.platform))].sort());
+      ["f-date", "f-category", "f-platform"].forEach((id) => document.getElementById(id).addEventListener("change", render));
+      let waiting;
+      addEventListener("resize", () => { clearTimeout(waiting); waiting = setTimeout(render, 150); });
+      render();
+    })
+    .catch(() => { document.getElementById("status").textContent = "The dashboard couldn't load. Refresh the page to try again."; });
 })();
 </script>
 </body>

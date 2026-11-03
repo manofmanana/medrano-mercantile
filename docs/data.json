@@ -1,430 +1,1081 @@
 {
- "updated": "2026-11-03T19:19Z",
- "last_sale_month": "2026-11",
- "totals": {
-  "items_listed": 103,
-  "items_sold": 73,
-  "revenue": 5367.0,
-  "average_sale": 73.52,
-  "sell_through": 0.709,
-  "median_days_to_sell": 53.5
- },
- "monthly": [
+ "published": "2026-11-03T19:35+00:00",
+ "refreshed": "2026-11-03T19:34:23.147999+00:00",
+ "trained": "2026-11-03T19:35:17.001237+00:00",
+ "sales": [
   {
-   "month": "2026-04",
-   "items": 20,
-   "revenue": 1660.0
+   "item": "Retro IPod Speaker",
+   "category": "Audio & Wearables",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-04-01",
+   "price": 150.0,
+   "net_profit": 150.0,
+   "days": 11
   },
   {
-   "month": "2026-05",
-   "items": 11,
-   "revenue": 1755.0
+   "item": "2018 MacMini",
+   "category": "Computers & Accessories",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-04-03",
+   "price": 380.0,
+   "net_profit": 380.0,
+   "days": 2
   },
   {
-   "month": "2026-06",
-   "items": 11,
-   "revenue": 665.0
+   "item": "1050TI",
+   "category": "Computer Parts",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-04-04",
+   "price": 55.0,
+   "net_profit": 55.0,
+   "days": 15
   },
   {
-   "month": "2026-07",
-   "items": 9,
-   "revenue": 360.0
+   "item": "GT 730",
+   "category": "Computer Parts",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-04-05",
+   "price": 20.0,
+   "net_profit": 20.0,
+   "days": 16
   },
   {
-   "month": "2026-08",
-   "items": 10,
-   "revenue": 515.0
+   "item": "Amp and Stand",
+   "category": "Musical Instruments",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-04-06",
+   "price": 30.0,
+   "net_profit": 30.0,
+   "days": 7
   },
   {
-   "month": "2026-09",
-   "items": 8,
-   "revenue": 277.0
+   "item": "IPhone 15 Plus",
+   "category": "Phones & Accessories",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-04-07",
+   "price": 400.0,
+   "net_profit": 400.0,
+   "days": 29
   },
   {
-   "month": "2026-10",
-   "items": 3,
-   "revenue": 125.0
+   "item": "Old PC Case",
+   "category": "Computer Parts",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-04-07",
+   "price": 80.0,
+   "net_profit": 80.0,
+   "days": 6
   },
   {
-   "month": "2026-11",
-   "items": 1,
-   "revenue": 10.0
+   "item": "Electric Guitar",
+   "category": "Musical Instruments",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-04-08",
+   "price": 100.0,
+   "net_profit": 100.0,
+   "days": 41
+  },
+  {
+   "item": "Anycubic Kobra Plus",
+   "category": "Tools & Equipment",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-04-09",
+   "price": 40.0,
+   "net_profit": 40.0,
+   "days": 90
+  },
+  {
+   "item": "Fender Backpack",
+   "category": "Bags & Luggage",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-04-10",
+   "price": 20.0,
+   "net_profit": 20.0,
+   "days": 9
+  },
+  {
+   "item": "Doc Martens Boots",
+   "category": "Clothing & Shoes",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-04-10",
+   "price": 100.0,
+   "net_profit": 100.0,
+   "days": 65
+  },
+  {
+   "item": "Beats Powerbeats Pro Gen 1",
+   "category": "Audio & Wearables",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-04-11",
+   "price": 100.0,
+   "net_profit": 100.0,
+   "days": 65
+  },
+  {
+   "item": "HyperX DDR4 RAM 8 GB",
+   "category": "Computer Parts",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-04-12",
+   "price": 20.0,
+   "net_profit": 20.0,
+   "days": 11
+  },
+  {
+   "item": "DDR4 Ram 4 GB",
+   "category": "Computer Parts",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-04-15",
+   "price": 10.0,
+   "net_profit": 10.0,
+   "days": 14
+  },
+  {
+   "item": "Intel I5 CPU",
+   "category": "Computer Parts",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-04-15",
+   "price": 40.0,
+   "net_profit": 40.0,
+   "days": 14
+  },
+  {
+   "item": "128 GB SSD",
+   "category": "Computer Parts",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-04-17",
+   "price": 15.0,
+   "net_profit": 15.0,
+   "days": 16
+  },
+  {
+   "item": "256 GB NVME",
+   "category": "Computer Parts",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-04-20",
+   "price": 50.0,
+   "net_profit": 50.0,
+   "days": 19
+  },
+  {
+   "item": "DDR4 Ram 16 GB",
+   "category": "Computer Parts",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-04-22",
+   "price": 40.0,
+   "net_profit": 40.0,
+   "days": 21
+  },
+  {
+   "item": "Lilo Kids Luggage",
+   "category": "Bags & Luggage",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-04-30",
+   "price": 5.0,
+   "net_profit": 5.0,
+   "days": 28
+  },
+  {
+   "item": "Spider-Man Kids Luggage",
+   "category": "Bags & Luggage",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-04-30",
+   "price": 5.0,
+   "net_profit": 5.0,
+   "days": 27
+  },
+  {
+   "item": "500 GB SSD",
+   "category": "Computer Parts",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-05-03",
+   "price": 40.0,
+   "net_profit": 40.0,
+   "days": 32
+  },
+  {
+   "item": "256 GB SSD",
+   "category": "Computer Parts",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-05-03",
+   "price": 20.0,
+   "net_profit": 20.0,
+   "days": 32
+  },
+  {
+   "item": "Chronos 120 GB SSD",
+   "category": "Computer Parts",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-05-09",
+   "price": 15.0,
+   "net_profit": 15.0,
+   "days": 23
+  },
+  {
+   "item": "LEGO AT AT",
+   "category": "Toys & Collectibles",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-05-17",
+   "price": 600.0,
+   "net_profit": 600.0,
+   "days": 16
+  },
+  {
+   "item": "Crucial 500 GB SSD",
+   "category": "Computer Parts",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-05-22",
+   "price": 35.0,
+   "net_profit": 35.0,
+   "days": 36
+  },
+  {
+   "item": "Honda Accord",
+   "category": "Vehicles",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-05-23",
+   "price": 600.0,
+   "net_profit": 600.0,
+   "days": 8
+  },
+  {
+   "item": "Apple Mouse",
+   "category": "Computers & Accessories",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-05-23",
+   "price": 30.0,
+   "net_profit": 30.0,
+   "days": 52
+  },
+  {
+   "item": "Wall Mirror",
+   "category": "Furniture",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-05-25",
+   "price": 60.0,
+   "net_profit": 60.0,
+   "days": 1
+  },
+  {
+   "item": "Nintendo Switch OLED",
+   "category": "Video Games & Consoles",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-05-26",
+   "price": 235.0,
+   "net_profit": 235.0,
+   "days": 16
+  },
+  {
+   "item": "Luggage",
+   "category": "Bags & Luggage",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-05-30",
+   "price": 40.0,
+   "net_profit": 40.0,
+   "days": 15
+  },
+  {
+   "item": "AMD 5500 GPU",
+   "category": "Computer Parts",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-05-30",
+   "price": 80.0,
+   "net_profit": 80.0,
+   "days": 59
+  },
+  {
+   "item": "Kryptonite Bike Lock",
+   "category": "Bikes & Cycling",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-06-03",
+   "price": 50.0,
+   "net_profit": 50.0,
+   "days": 4
+  },
+  {
+   "item": "Lenovo Laptop",
+   "category": "Computers & Accessories",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-06-03",
+   "price": 280.0,
+   "net_profit": 140.0,
+   "days": 24
+  },
+  {
+   "item": "Treadmill",
+   "category": "Sports & Fitness",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-06-08",
+   "price": 120.0,
+   "net_profit": 48.0,
+   "days": 9
+  },
+  {
+   "item": "Hammock Stand",
+   "category": "Furniture",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-06-08",
+   "price": 40.0,
+   "net_profit": 40.0,
+   "days": 127
+  },
+  {
+   "item": "Adjustable Tripod with Phone Mount",
+   "category": "Cameras & Photo",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-06-17",
+   "price": 20.0,
+   "net_profit": 20.0,
+   "days": 23
+  },
+  {
+   "item": "Xbox Games Lot",
+   "category": "Video Games & Consoles",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-06-17",
+   "price": 10.0,
+   "net_profit": 10.0,
+   "days": 0
+  },
+  {
+   "item": "Vintage Levis 505 Jeans Lot Mens Denim Bundle 38x32",
+   "category": "Clothing & Shoes",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-06-17",
+   "price": 60.0,
+   "net_profit": 60.0,
+   "days": 23
+  },
+  {
+   "item": "belt",
+   "category": "Accessories",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-06-20",
+   "price": 10.0,
+   "net_profit": 10.0,
+   "days": 0
+  },
+  {
+   "item": "Small Hydroponics Tower",
+   "category": "Home & Garden",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-06-22",
+   "price": 20.0,
+   "net_profit": 20.0,
+   "days": 28
+  },
+  {
+   "item": "The North Face Borealis Mini Backpack Green",
+   "category": "Bags & Luggage",
+   "platform": "Depop",
+   "sold": "2026-06-28",
+   "price": 35.0,
+   "net_profit": 35.0,
+   "days": 34
+  },
+  {
+   "item": "Home Depot Water cooler",
+   "category": "Appliances",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-06-30",
+   "price": 20.0,
+   "net_profit": 20.0,
+   "days": 36
+  },
+  {
+   "item": "Switch controller",
+   "category": "Video Games & Consoles",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-07-02",
+   "price": 35.0,
+   "net_profit": 35.0,
+   "days": 0
+  },
+  {
+   "item": "ASUS Chromebook CR1104CGA Laptop",
+   "category": "Computers & Accessories",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-07-04",
+   "price": 80.0,
+   "net_profit": 80.0,
+   "days": 40
+  },
+  {
+   "item": "Meta Quest 2 VR Headset + Controllers",
+   "category": "Video Games & Consoles",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-07-07",
+   "price": 105.0,
+   "net_profit": 105.0,
+   "days": 43
+  },
+  {
+   "item": "Retrospec Stock Bike Parts Bundle - Saddle Pedals Grips",
+   "category": "Bikes & Cycling",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-07-16",
+   "price": 20.0,
+   "net_profit": 20.0,
+   "days": 52
+  },
+  {
+   "item": "500 gb HDD",
+   "category": "Computer Parts",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-07-17",
+   "price": 10.0,
+   "net_profit": 10.0,
+   "days": 53
+  },
+  {
+   "item": "250 gb HDD",
+   "category": "Computer Parts",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-07-17",
+   "price": 10.0,
+   "net_profit": 10.0,
+   "days": 53
+  },
+  {
+   "item": "1 TB HDD",
+   "category": "Computer Parts",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-07-17",
+   "price": 20.0,
+   "net_profit": 20.0,
+   "days": 53
+  },
+  {
+   "item": "Genuine Apple MagSafe Battery Pack White",
+   "category": "Phones & Accessories",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-07-31",
+   "price": 40.0,
+   "net_profit": 40.0,
+   "days": 67
+  },
+  {
+   "item": "Nintendo Switch Pro Controller",
+   "category": "Video Games & Consoles",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-07-31",
+   "price": 40.0,
+   "net_profit": 40.0,
+   "days": 67
+  },
+  {
+   "item": "Adidas Adizero Prime running shoes",
+   "category": "Clothing & Shoes",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-08-01",
+   "price": 75.0,
+   "net_profit": 75.0,
+   "days": 68
+  },
+  {
+   "item": "Standing desk",
+   "category": "Furniture",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-08-07",
+   "price": 80.0,
+   "net_profit": 80.0,
+   "days": 25
+  },
+  {
+   "item": "VIVO Single Monitor Desk Mount Monitor Arm",
+   "category": "Computers & Accessories",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-08-07",
+   "price": 30.0,
+   "net_profit": 30.0,
+   "days": 74
+  },
+  {
+   "item": "Sony Speaker",
+   "category": "Audio & Wearables",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-08-17",
+   "price": 25.0,
+   "net_profit": 25.0,
+   "days": 84
+  },
+  {
+   "item": "Sony Custom Mount Lens",
+   "category": "Cameras & Photo",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-08-17",
+   "price": 10.0,
+   "net_profit": 10.0,
+   "days": 84
+  },
+  {
+   "item": "I Love Lucy Collector Edition Barbie Episode 114",
+   "category": "Toys & Collectibles",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-08-17",
+   "price": 15.0,
+   "net_profit": 15.0,
+   "days": 84
+  },
+  {
+   "item": "Apple iPod Nano 8GB Blue",
+   "category": "Audio & Wearables",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-08-19",
+   "price": 50.0,
+   "net_profit": 50.0,
+   "days": 86
+  },
+  {
+   "item": "Casio Watch (broken latch)",
+   "category": "Accessories",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-08-19",
+   "price": 20.0,
+   "net_profit": 20.0,
+   "days": 86
+  },
+  {
+   "item": "Rayban Sunglasses",
+   "category": "Accessories",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-08-26",
+   "price": 90.0,
+   "net_profit": 90.0,
+   "days": 1
+  },
+  {
+   "item": "Toshiba Portable Air Conditioner Dehumidifier Unit",
+   "category": "Appliances",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-08-28",
+   "price": 120.0,
+   "net_profit": 120.0,
+   "days": 95
+  },
+  {
+   "item": "Lifting Belt",
+   "category": "Sports & Fitness",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-09-14",
+   "price": 50.0,
+   "net_profit": 50.0,
+   "days": 0
+  },
+  {
+   "item": "New mouse and keyboard",
+   "category": "Computers & Accessories",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-09-16",
+   "price": 5.0,
+   "net_profit": 5.0,
+   "days": 114
+  },
+  {
+   "item": "Bike Wheelset",
+   "category": "Bikes & Cycling",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-09-16",
+   "price": 40.0,
+   "net_profit": 40.0,
+   "days": 0
+  },
+  {
+   "item": "Depop Lot Various",
+   "category": "Clothing & Shoes",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-09-16",
+   "price": 110.0,
+   "net_profit": 110.0,
+   "days": null
+  },
+  {
+   "item": "Retrospec Bicycle Parts Bundle - Crankset Bottom Bracket Handlebars",
+   "category": "Bikes & Cycling",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-09-19",
+   "price": 25.0,
+   "net_profit": 25.0,
+   "days": 38
+  },
+  {
+   "item": "Amazon Kindle Keyboard E-Reader with Case \u2013 Older Model",
+   "category": "Computers & Accessories",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-09-19",
+   "price": 2.0,
+   "net_profit": 2.0,
+   "days": 24
+  },
+  {
+   "item": "Shimano drivetrain and brakes bundle",
+   "category": "Bikes & Cycling",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-09-19",
+   "price": 25.0,
+   "net_profit": 25.0,
+   "days": 69
+  },
+  {
+   "item": "New Keurig K-Express Essentials Plus Coffee Maker",
+   "category": "Appliances",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-09-23",
+   "price": 20.0,
+   "net_profit": 20.0,
+   "days": 121
+  },
+  {
+   "item": "Bluetooth Home Speaker",
+   "category": "Audio & Wearables",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-10-05",
+   "price": 20.0,
+   "net_profit": 20.0,
+   "days": 133
+  },
+  {
+   "item": "Authentic Ray-Ban Clubmaster Eyeglass Frames Black Gold",
+   "category": "Accessories",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-10-15",
+   "price": 70.0,
+   "net_profit": 70.0,
+   "days": 64
+  },
+  {
+   "item": "DDR4 RAM Sticks",
+   "category": "Computer Parts",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-10-29",
+   "price": 35.0,
+   "net_profit": 35.0,
+   "days": 7
+  },
+  {
+   "item": "36V E-Bike LCD Display Odometer 998S",
+   "category": "Bikes & Cycling",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-11-01",
+   "price": 10.0,
+   "net_profit": 10.0,
+   "days": 81
   }
  ],
- "categories": [
+ "inventory": [
   {
-   "category": "Other",
-   "items": 20,
-   "sold": 11,
-   "revenue": 1605.0
+   "item": "Kids Toys Games & Book Bundle UNO Sonic Hedgehog Plush",
+   "category": "Toys & Collectibles",
+   "status": "Listed",
+   "asking": 35.0,
+   "potential_profit": 35.0,
+   "days": 162,
+   "aging": "90+ days",
+   "aging_order": 4,
+   "is_stale": true
   },
   {
-   "category": "Computers & Accessories",
-   "items": 7,
-   "sold": 7,
-   "revenue": 807.0
-  },
-  {
-   "category": "Computer Parts",
-   "items": 18,
-   "sold": 18,
-   "revenue": 595.0
-  },
-  {
+   "item": "Unlocked iPhone 7 Plus",
    "category": "Phones & Accessories",
-   "items": 6,
-   "sold": 2,
-   "revenue": 440.0
+   "status": "Listed",
+   "asking": 150.0,
+   "potential_profit": 150.0,
+   "days": 162,
+   "aging": "90+ days",
+   "aging_order": 4,
+   "is_stale": true
   },
   {
-   "category": "Video Games & Consoles",
-   "items": 6,
-   "sold": 5,
-   "revenue": 425.0
+   "item": "3 in 1 magnetic charger",
+   "category": "Phones & Accessories",
+   "status": "Listed",
+   "asking": 50.0,
+   "potential_profit": 50.0,
+   "days": 162,
+   "aging": "90+ days",
+   "aging_order": 4,
+   "is_stale": true
   },
   {
+   "item": "A1 Smart Glasses / Bluetooth Audio Glasses",
+   "category": "Audio & Wearables",
+   "status": "Listed",
+   "asking": 120.0,
+   "potential_profit": 120.0,
+   "days": 162,
+   "aging": "90+ days",
+   "aging_order": 4,
+   "is_stale": true
+  },
+  {
+   "item": "Appliance Testing Module",
+   "category": "Tools & Equipment",
+   "status": "Listed",
+   "asking": 10.0,
+   "potential_profit": 10.0,
+   "days": 162,
+   "aging": "90+ days",
+   "aging_order": 4,
+   "is_stale": true
+  },
+  {
+   "item": "ASICS Gel Nimbus Mens Running Shoes Navy Size 7.5",
    "category": "Clothing & Shoes",
-   "items": 10,
-   "sold": 4,
-   "revenue": 345.0
+   "status": "Listed",
+   "asking": 45.0,
+   "potential_profit": 45.0,
+   "days": 162,
+   "aging": "90+ days",
+   "aging_order": 4,
+   "is_stale": true
+  },
+  {
+   "item": "ASICS Womens Running Shoes Gray Pink",
+   "category": "Clothing & Shoes",
+   "status": "Listed",
+   "asking": 40.0,
+   "potential_profit": 40.0,
+   "days": 162,
+   "aging": "90+ days",
+   "aging_order": 4,
+   "is_stale": true
+  },
+  {
+   "item": "Fjallraven Kanken Mini Backpack Olive Green",
+   "category": "Bags & Luggage",
+   "status": "Listed",
+   "asking": 40.0,
+   "potential_profit": 40.0,
+   "days": 162,
+   "aging": "90+ days",
+   "aging_order": 4,
+   "is_stale": true
+  },
+  {
+   "item": "Arcteryx shoulder bag",
+   "category": "Bags & Luggage",
+   "status": "Listed",
+   "asking": 60.0,
+   "potential_profit": 60.0,
+   "days": 128,
+   "aging": "90+ days",
+   "aging_order": 4,
+   "is_stale": true
+  },
+  {
+   "item": "Carhartt fanny pack",
+   "category": "Bags & Luggage",
+   "status": "Listed",
+   "asking": 40.0,
+   "potential_profit": 40.0,
+   "days": 128,
+   "aging": "90+ days",
+   "aging_order": 4,
+   "is_stale": true
+  },
+  {
+   "item": "Ray-Ban Silver Metal Prescription Glasses",
+   "category": "Accessories",
+   "status": "Listed",
+   "asking": 100.0,
+   "potential_profit": 100.0,
+   "days": 83,
+   "aging": "61\u201390 days",
+   "aging_order": 3,
+   "is_stale": true
+  },
+  {
+   "item": "Samsung S21 Ultra Phone",
+   "category": "Phones & Accessories",
+   "status": "Listed",
+   "asking": 250.0,
+   "potential_profit": 250.0,
+   "days": 76,
+   "aging": "61\u201390 days",
+   "aging_order": 3,
+   "is_stale": true
+  },
+  {
+   "item": "K18 Leave In",
+   "category": "Beauty & Fragrance",
+   "status": "Listed",
+   "asking": 50.0,
+   "potential_profit": 50.0,
+   "days": 76,
+   "aging": "61\u201390 days",
+   "aging_order": 3,
+   "is_stale": true
+  },
+  {
+   "item": "Marc Jacobs Perfume",
+   "category": "Beauty & Fragrance",
+   "status": "Listed",
+   "asking": 100.0,
+   "potential_profit": 100.0,
+   "days": 76,
+   "aging": "61\u201390 days",
+   "aging_order": 3,
+   "is_stale": true
+  },
+  {
+   "item": "La Sportiva Mythos Climbing Shoes \u2013 Orange/Grey",
+   "category": "Sports & Fitness",
+   "status": "Listed",
+   "asking": 30.0,
+   "potential_profit": 30.0,
+   "days": 69,
+   "aging": "61\u201390 days",
+   "aging_order": 3,
+   "is_stale": true
+  },
+  {
+   "item": "Goomba Hat",
+   "category": "Clothing & Shoes",
+   "status": "Listed",
+   "asking": 40.0,
+   "potential_profit": 40.0,
+   "days": 50,
+   "aging": "31\u201360 days",
+   "aging_order": 2,
+   "is_stale": false
+  },
+  {
+   "item": "NES Switch Joycons",
+   "category": "Video Games & Consoles",
+   "status": "Listed",
+   "asking": 80.0,
+   "potential_profit": 80.0,
+   "days": 50,
+   "aging": "31\u201360 days",
+   "aging_order": 2,
+   "is_stale": false
+  },
+  {
+   "item": "Happy Face Jar",
+   "category": "Home & Garden",
+   "status": "Listed",
+   "asking": 30.0,
+   "potential_profit": 30.0,
+   "days": 50,
+   "aging": "31\u201360 days",
+   "aging_order": 2,
+   "is_stale": false
+  },
+  {
+   "item": "Small Table",
+   "category": "Furniture",
+   "status": "Listed",
+   "asking": 40.0,
+   "potential_profit": 40.0,
+   "days": 50,
+   "aging": "31\u201360 days",
+   "aging_order": 2,
+   "is_stale": false
+  },
+  {
+   "item": "Clarks Men's Shoes",
+   "category": "Clothing & Shoes",
+   "status": "Listed",
+   "asking": 25.0,
+   "potential_profit": 25.0,
+   "days": 50,
+   "aging": "31\u201360 days",
+   "aging_order": 2,
+   "is_stale": false
+  },
+  {
+   "item": "Clothes Lot",
+   "category": "Clothing & Shoes",
+   "status": "Listed",
+   "asking": 100.0,
+   "potential_profit": 100.0,
+   "days": 50,
+   "aging": "31\u201360 days",
+   "aging_order": 2,
+   "is_stale": false
+  },
+  {
+   "item": "Bicycle Tires",
+   "category": "Bikes & Cycling",
+   "status": "Listed",
+   "asking": 50.0,
+   "potential_profit": 50.0,
+   "days": 45,
+   "aging": "31\u201360 days",
+   "aging_order": 2,
+   "is_stale": false
+  },
+  {
+   "item": "Rayban Meta Gen 2 Glasses",
+   "category": "Audio & Wearables",
+   "status": "Listed",
+   "asking": 280.0,
+   "potential_profit": 280.0,
+   "days": 20,
+   "aging": "0\u201330 days",
+   "aging_order": 1,
+   "is_stale": false
+  },
+  {
+   "item": "New Android Phone",
+   "category": "Phones & Accessories",
+   "status": "Listed",
+   "asking": 50.0,
+   "potential_profit": 50.0,
+   "days": 20,
+   "aging": "0\u201330 days",
+   "aging_order": 1,
+   "is_stale": false
+  },
+  {
+   "item": "Govee Outdoor Lights",
+   "category": "Home & Garden",
+   "status": "Listed",
+   "asking": 300.0,
+   "potential_profit": 300.0,
+   "days": 0,
+   "aging": "0\u201330 days",
+   "aging_order": 1,
+   "is_stale": false
+  },
+  {
+   "item": "Halloween Costumes",
+   "category": "Clothing & Shoes",
+   "status": "Listed",
+   "asking": 50.0,
+   "potential_profit": 50.0,
+   "days": 0,
+   "aging": "0\u201330 days",
+   "aging_order": 1,
+   "is_stale": false
+  },
+  {
+   "item": "Mini Bike Pump",
+   "category": "Bikes & Cycling",
+   "status": "Listed",
+   "asking": 50.0,
+   "potential_profit": 50.0,
+   "days": 0,
+   "aging": "0\u201330 days",
+   "aging_order": 1,
+   "is_stale": false
+  },
+  {
+   "item": "Honda Car Radio",
+   "category": "Vehicles",
+   "status": "Listed",
+   "asking": 40.0,
+   "potential_profit": 40.0,
+   "days": 0,
+   "aging": "0\u201330 days",
+   "aging_order": 1,
+   "is_stale": false
+  }
+ ],
+ "category_items": [
+  {
+   "category": "Vehicles",
+   "items": 2,
+   "sold": 1
   },
   {
    "category": "Audio & Wearables",
    "items": 7,
-   "sold": 5,
-   "revenue": 345.0
+   "sold": 5
   },
   {
-   "category": "Accessories",
-   "items": 5,
-   "sold": 4,
-   "revenue": 190.0
+   "category": "Computers & Accessories",
+   "items": 7,
+   "sold": 7
+  },
+  {
+   "category": "Clothing & Shoes",
+   "items": 10,
+   "sold": 4
   },
   {
    "category": "Furniture",
    "items": 4,
-   "sold": 3,
-   "revenue": 180.0
+   "sold": 3
   },
   {
    "category": "Bikes & Cycling",
    "items": 8,
-   "sold": 6,
-   "revenue": 170.0
+   "sold": 6
+  },
+  {
+   "category": "Musical Instruments",
+   "items": 2,
+   "sold": 2
+  },
+  {
+   "category": "Home & Garden",
+   "items": 3,
+   "sold": 1
+  },
+  {
+   "category": "Toys & Collectibles",
+   "items": 3,
+   "sold": 2
   },
   {
    "category": "Appliances",
-   "items": 4,
-   "sold": 3,
-   "revenue": 160.0
+   "items": 3,
+   "sold": 3
+  },
+  {
+   "category": "Beauty & Fragrance",
+   "items": 2,
+   "sold": 0
+  },
+  {
+   "category": "Accessories",
+   "items": 5,
+   "sold": 4
+  },
+  {
+   "category": "Cameras & Photo",
+   "items": 2,
+   "sold": 2
+  },
+  {
+   "category": "Tools & Equipment",
+   "items": 2,
+   "sold": 1
+  },
+  {
+   "category": "Phones & Accessories",
+   "items": 6,
+   "sold": 2
   },
   {
    "category": "Bags & Luggage",
    "items": 8,
-   "sold": 5,
-   "revenue": 105.0
+   "sold": 5
+  },
+  {
+   "category": "Computer Parts",
+   "items": 18,
+   "sold": 18
+  },
+  {
+   "category": "Sports & Fitness",
+   "items": 3,
+   "sold": 2
+  },
+  {
+   "category": "Video Games & Consoles",
+   "items": 6,
+   "sold": 5
   }
  ],
- "time_to_sell": {
-  "curve": [
-   [
-    0.0,
-    0.0
-   ],
-   [
-    0.5,
-    0.049
-   ],
-   [
-    1.5,
-    0.069
-   ],
-   [
-    2.5,
-    0.08
-   ],
-   [
-    4.5,
-    0.09
-   ],
-   [
-    6.5,
-    0.1
-   ],
-   [
-    7.5,
-    0.121
-   ],
-   [
-    8.5,
-    0.131
-   ],
-   [
-    9.5,
-    0.151
-   ],
-   [
-    11.5,
-    0.172
-   ],
-   [
-    14.5,
-    0.192
-   ],
-   [
-    15.5,
-    0.213
-   ],
-   [
-    16.5,
-    0.254
-   ],
-   [
-    19.5,
-    0.264
-   ],
-   [
-    20.5,
-    0.264
-   ],
-   [
-    21.5,
-    0.274
-   ],
-   [
-    23.5,
-    0.306
-   ],
-   [
-    24.5,
-    0.327
-   ],
-   [
-    25.5,
-    0.337
-   ],
-   [
-    27.5,
-    0.348
-   ],
-   [
-    28.5,
-    0.369
-   ],
-   [
-    29.5,
-    0.379
-   ],
-   [
-    32.5,
-    0.4
-   ],
-   [
-    34.5,
-    0.411
-   ],
-   [
-    36.5,
-    0.432
-   ],
-   [
-    38.5,
-    0.443
-   ],
-   [
-    40.5,
-    0.453
-   ],
-   [
-    41.5,
-    0.464
-   ],
-   [
-    43.5,
-    0.474
-   ],
-   [
-    45.5,
-    0.474
-   ],
-   [
-    50.5,
-    0.474
-   ],
-   [
-    52.5,
-    0.499
-   ],
-   [
-    53.5,
-    0.535
-   ],
-   [
-    59.5,
-    0.547
-   ],
-   [
-    64.5,
-    0.56
-   ],
-   [
-    65.5,
-    0.584
-   ],
-   [
-    67.5,
-    0.609
-   ],
-   [
-    68.5,
-    0.621
-   ],
-   [
-    69.5,
-    0.633
-   ],
-   [
-    74.5,
-    0.646
-   ],
-   [
-    76.5,
-    0.646
-   ],
-   [
-    81.5,
-    0.66
-   ],
-   [
-    83.5,
-    0.66
-   ],
-   [
-    84.5,
-    0.704
-   ],
-   [
-    86.5,
-    0.734
-   ],
-   [
-    90.5,
-    0.749
-   ],
-   [
-    95.5,
-    0.763
-   ],
-   [
-    114.5,
-    0.778
-   ],
-   [
-    121.5,
-    0.793
-   ],
-   [
-    127.5,
-    0.808
-   ],
-   [
-    128.5,
-    0.808
-   ],
-   [
-    133.5,
-    0.825
-   ],
-   [
-    162.5,
-    0.825
-   ]
-  ],
-  "sold_by_30d": 0.379,
-  "sold_by_90d": 0.734,
-  "by_category": [
-   {
-    "category": "Computer Parts",
-    "items": 18,
-    "sold": 18,
-    "median_days": 21.5
-   },
-   {
-    "category": "Furniture",
-    "items": 4,
-    "sold": 3,
-    "median_days": 25.5
-   },
-   {
-    "category": "Bags & Luggage",
-    "items": 8,
-    "sold": 5,
-    "median_days": 34.5
-   },
-   {
-    "category": "Computers & Accessories",
-    "items": 7,
-    "sold": 7,
-    "median_days": 40.5
-   },
-   {
-    "category": "Video Games & Consoles",
-    "items": 6,
-    "sold": 5,
-    "median_days": 43.5
-   },
-   {
-    "category": "Bikes & Cycling",
-    "items": 8,
-    "sold": 6,
-    "median_days": 52.5
-   },
-   {
-    "category": "Accessories",
-    "items": 5,
-    "sold": 4,
-    "median_days": 64.5
-   },
-   {
-    "category": "Clothing & Shoes",
-    "items": 9,
-    "sold": 3,
-    "median_days": 68.5
-   },
-   {
-    "category": "Other",
-    "items": 20,
-    "sold": 11,
-    "median_days": 84.5
-   },
-   {
-    "category": "Audio & Wearables",
-    "items": 7,
-    "sold": 5,
-    "median_days": 86.5
-   },
-   {
-    "category": "Appliances",
-    "items": 4,
-    "sold": 3,
-    "median_days": 95.5
-   },
-   {
-    "category": "Phones & Accessories",
-    "items": 6,
-    "sold": 2,
-    "median_days": null
-   }
-  ]
- },
  "scorecard": [
   {
    "question": "Sale price from category and name",
    "baseline": "global median",
    "baseline_score": 54.72,
    "model": "ridge: category",
-   "model_score": 54.96,
-   "metric": "average error, $",
+   "model_score": 55.03,
+   "metric": "average error, dollars",
    "passes": false
   },
   {
@@ -433,17 +1084,285 @@
    "baseline_score": 16.29,
    "model": "ridge: asking",
    "model_score": 20.97,
-   "metric": "average error, $",
+   "metric": "average error, dollars",
    "passes": false
   },
   {
    "question": "Time to sell",
    "baseline": "shuffled labels",
-   "baseline_score": 0.49,
-   "model": "Cox: category + asking price",
-   "model_score": 0.62,
+   "baseline_score": 0.51,
+   "model": "Cox model",
+   "model_score": 0.61,
    "metric": "C-index, higher is better",
    "passes": true
+  }
+ ],
+ "median_days": [
+  {
+   "category": "Computer Parts",
+   "median_days": 21.5
+  },
+  {
+   "category": "Furniture",
+   "median_days": 25.5
+  },
+  {
+   "category": "Bags & Luggage",
+   "median_days": 34.5
+  },
+  {
+   "category": "Computers & Accessories",
+   "median_days": 40.5
+  },
+  {
+   "category": "Video Games & Consoles",
+   "median_days": 43.5
+  },
+  {
+   "category": "Bikes & Cycling",
+   "median_days": 52.5
+  },
+  {
+   "category": "Accessories",
+   "median_days": 64.5
+  },
+  {
+   "category": "Clothing & Shoes",
+   "median_days": 68.5
+  },
+  {
+   "category": "Other",
+   "median_days": 84.5
+  },
+  {
+   "category": "Audio & Wearables",
+   "median_days": 86.5
+  }
+ ],
+ "predictions": [
+  {
+   "item": "NES Switch Joycons",
+   "category": "Video Games & Consoles",
+   "asking": 80.0,
+   "days": 50,
+   "chance": 0.61,
+   "basis": "history"
+  },
+  {
+   "item": "Ray-Ban Silver Metal Prescription Glasses",
+   "category": "Accessories",
+   "asking": 100.0,
+   "days": 83,
+   "chance": 0.51,
+   "basis": "history"
+  },
+  {
+   "item": "Bicycle Tires",
+   "category": "Bikes & Cycling",
+   "asking": 50.0,
+   "days": 45,
+   "chance": 0.48,
+   "basis": "history"
+  },
+  {
+   "item": "Marc Jacobs Perfume",
+   "category": "Beauty & Fragrance",
+   "asking": 100.0,
+   "days": 76,
+   "chance": 0.44,
+   "basis": "history"
+  },
+  {
+   "item": "Mini Bike Pump",
+   "category": "Bikes & Cycling",
+   "asking": 50.0,
+   "days": 0,
+   "chance": 0.42,
+   "basis": "history"
+  },
+  {
+   "item": "K18 Leave In",
+   "category": "Beauty & Fragrance",
+   "asking": 50.0,
+   "days": 76,
+   "chance": 0.41,
+   "basis": "history"
+  },
+  {
+   "item": "Small Table",
+   "category": "Furniture",
+   "asking": 40.0,
+   "days": 50,
+   "chance": 0.4,
+   "basis": "history"
+  },
+  {
+   "item": "La Sportiva Mythos Climbing Shoes \u2013 Orange/Grey",
+   "category": "Sports & Fitness",
+   "asking": 30.0,
+   "days": 69,
+   "chance": 0.39,
+   "basis": "history"
+  },
+  {
+   "item": "Happy Face Jar",
+   "category": "Home & Garden",
+   "asking": 30.0,
+   "days": 50,
+   "chance": 0.33,
+   "basis": "history"
+  },
+  {
+   "item": "Govee Outdoor Lights",
+   "category": "Home & Garden",
+   "asking": 300.0,
+   "days": 0,
+   "chance": 0.33,
+   "basis": "history"
+  },
+  {
+   "item": "Kids Toys Games & Book Bundle UNO Sonic Hedgehog Plush",
+   "category": "Toys & Collectibles",
+   "asking": 35.0,
+   "days": 162,
+   "chance": 0.3,
+   "basis": "extrapolated"
+  },
+  {
+   "item": "Arcteryx shoulder bag",
+   "category": "Bags & Luggage",
+   "asking": 60.0,
+   "days": 128,
+   "chance": 0.28,
+   "basis": "extrapolated"
+  },
+  {
+   "item": "A1 Smart Glasses / Bluetooth Audio Glasses",
+   "category": "Audio & Wearables",
+   "asking": 120.0,
+   "days": 162,
+   "chance": 0.27,
+   "basis": "extrapolated"
+  },
+  {
+   "item": "Fjallraven Kanken Mini Backpack Olive Green",
+   "category": "Bags & Luggage",
+   "asking": 40.0,
+   "days": 162,
+   "chance": 0.27,
+   "basis": "extrapolated"
+  },
+  {
+   "item": "Carhartt fanny pack",
+   "category": "Bags & Luggage",
+   "asking": 40.0,
+   "days": 128,
+   "chance": 0.27,
+   "basis": "extrapolated"
+  },
+  {
+   "item": "Samsung S21 Ultra Phone",
+   "category": "Phones & Accessories",
+   "asking": 250.0,
+   "days": 76,
+   "chance": 0.27,
+   "basis": "history"
+  },
+  {
+   "item": "Honda Car Radio",
+   "category": "Vehicles",
+   "asking": 40.0,
+   "days": 0,
+   "chance": 0.27,
+   "basis": "history"
+  },
+  {
+   "item": "Appliance Testing Module",
+   "category": "Tools & Equipment",
+   "asking": 10.0,
+   "days": 162,
+   "chance": 0.26,
+   "basis": "extrapolated"
+  },
+  {
+   "item": "Clothes Lot",
+   "category": "Clothing & Shoes",
+   "asking": 100.0,
+   "days": 50,
+   "chance": 0.25,
+   "basis": "history"
+  },
+  {
+   "item": "Rayban Meta Gen 2 Glasses",
+   "category": "Audio & Wearables",
+   "asking": 280.0,
+   "days": 20,
+   "chance": 0.23,
+   "basis": "history"
+  },
+  {
+   "item": "Goomba Hat",
+   "category": "Clothing & Shoes",
+   "asking": 40.0,
+   "days": 50,
+   "chance": 0.22,
+   "basis": "history"
+  },
+  {
+   "item": "Clarks Men's Shoes",
+   "category": "Clothing & Shoes",
+   "asking": 25.0,
+   "days": 50,
+   "chance": 0.21,
+   "basis": "history"
+  },
+  {
+   "item": "ASICS Gel Nimbus Mens Running Shoes Navy Size 7.5",
+   "category": "Clothing & Shoes",
+   "asking": 45.0,
+   "days": 162,
+   "chance": 0.18,
+   "basis": "extrapolated"
+  },
+  {
+   "item": "ASICS Womens Running Shoes Gray Pink",
+   "category": "Clothing & Shoes",
+   "asking": 40.0,
+   "days": 162,
+   "chance": 0.18,
+   "basis": "extrapolated"
+  },
+  {
+   "item": "Halloween Costumes",
+   "category": "Clothing & Shoes",
+   "asking": 50.0,
+   "days": 0,
+   "chance": 0.18,
+   "basis": "history"
+  },
+  {
+   "item": "Unlocked iPhone 7 Plus",
+   "category": "Phones & Accessories",
+   "asking": 150.0,
+   "days": 162,
+   "chance": 0.17,
+   "basis": "extrapolated"
+  },
+  {
+   "item": "3 in 1 magnetic charger",
+   "category": "Phones & Accessories",
+   "asking": 50.0,
+   "days": 162,
+   "chance": 0.15,
+   "basis": "extrapolated"
+  },
+  {
+   "item": "New Android Phone",
+   "category": "Phones & Accessories",
+   "asking": 50.0,
+   "days": 20,
+   "chance": 0.12,
+   "basis": "history"
   }
  ]
 }
