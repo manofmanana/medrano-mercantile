@@ -39,6 +39,9 @@ BOOTSTRAPS = 4000
 PERMUTATIONS = 100
 HOLDOUT_SHARE = 0.25
 SELL_WINDOW_DAYS = 30
+FORECAST_MAX_DAYS = 1825  # a forecast further out than 5 years is shown as unknown
+FORECAST_LIKELY_SHARE = 0.5  # the date an item has an even chance of being sold by
+FORECAST_LATE_SHARE = 0.2  # the date an item has an 80% chance of being sold by
 PENALIZER = 0.2
 TIME_ZERO_OFFSET = 0.5  # same-day sales still need a positive duration
 OUTPUT_DIR = os.environ.get("ML_OUTPUT_DIR", "/opt/mercantile-ml/output")
@@ -308,6 +311,50 @@ def sell_probability(items, final, frame, passes, overall):
     return chance, basis, float(weibull.rho_) if hasattr(weibull, "rho_") else float(np.exp(weibull.params_.loc["rho_", "Intercept"]))
 
 
+def backtest_sell_dates(frame, repeats=5, seed=SEED):
+    """How far off the predicted days to sell are, on sold items the model didn't see, against always guessing the overall median."""
+    model_errors, baseline_errors, covered = [], [], []
+    for repeat in range(repeats):
+        for train, test in KFold(FOLDS, shuffle=True, random_state=seed + repeat).split(frame):
+            part = frame.iloc[train]
+            part = part.loc[:, part.nunique() > 1]
+            fitted = WeibullAFTFitter(penalizer=PENALIZER).fit(part, "duration", "event")
+            baseline = KaplanMeierFitter().fit(part["duration"], part["event"]).median_survival_time_
+            sold = frame.iloc[test]
+            sold = sold[sold["event"] == 1]
+            if sold.empty:
+                continue
+            actual = sold["duration"].to_numpy()
+            model_errors += list(np.abs(np.asarray(fitted.predict_median(sold)).ravel() - actual))
+            baseline_errors += list(np.abs(baseline - actual))
+            late = np.asarray(fitted.predict_percentile(sold, p=FORECAST_LATE_SHARE)).ravel()
+            covered += list(actual <= late)
+    return {"model_error_days": float(np.mean(model_errors)), "baseline_error_days": float(np.mean(baseline_errors)), "sold_by_late_date": float(np.mean(covered))}
+
+
+def forecast_sell_dates(unsold, frame):
+    """Likely and late sale dates for each unsold item, given how long it has already waited."""
+    weibull = WeibullAFTFitter(penalizer=PENALIZER).fit(frame, "duration", "event")
+    rows = frame.loc[unsold.index]
+    grid = np.arange(1, FORECAST_MAX_DAYS + 1, dtype=float)
+    survival = weibull.predict_survival_function(rows, times=grid).to_numpy()
+    today = pd.Timestamp(date.today())
+    likely, late = {}, {}
+
+    def days_until(curve, start, share):
+        hits = np.nonzero((grid > start) & (curve <= share))[0]
+        return None if len(hits) == 0 else grid[hits[0]] - start
+
+    for position, i in enumerate(unsold.index):
+        start = unsold.loc[i, "duration"]
+        at_start = weibull.predict_survival_function(rows.loc[[i]], times=[start]).iloc[0, 0]
+        curve = survival[:, position] / max(at_start, 1e-6)
+        for target, share in ((likely, FORECAST_LIKELY_SHARE), (late, FORECAST_LATE_SHARE)):
+            days = days_until(curve, start, share)
+            target[i] = None if days is None else today + pd.Timedelta(days=np.ceil(days))
+    return pd.Series(likely, dtype="datetime64[ns]"), pd.Series(late, dtype="datetime64[ns]")
+
+
 def scorecard_row(question, result):
     best = result["results"][result["best_model"]]
     base = result["results"][result["best_baseline"]]
@@ -317,10 +364,12 @@ def scorecard_row(question, result):
 def publish_to_warehouse(report, predictions):
     """Replace the dashboard tables in one transaction, using a role that can only write to the ml schema."""
     speed = report["time_to_sell"]
+    dates = report["sell_dates"]
     scorecard = [
         scorecard_row("Sale price from category and name", report["list_price"]),
         scorecard_row("Sale price given asking price", report["sale_given_asking"]),
         ("Time to sell", "shuffled labels", speed["null_c_index"], "Cox model", speed["cv_c_index"], "C-index, higher is better", speed["passes_gate"]),
+        ("Days until it sells", "overall median", dates["baseline_error_days"], "Weibull model", dates["model_error_days"], "average error, days", dates["model_error_days"] < dates["baseline_error_days"]),
     ]
     chance = f"chance_sells_next_{SELL_WINDOW_DAYS}d"
     with psycopg.connect(
@@ -333,12 +382,15 @@ def publish_to_warehouse(report, predictions):
             create table if not exists ml.time_to_sell_by_category (category text, items int, sold int, median_days numeric, sold_by_30d numeric, trained_at timestamptz default now());
             create table if not exists ml.time_to_sell_summary (items int, sold int, median_days numeric, sold_by_14d numeric, sold_by_30d numeric, sold_by_60d numeric, sold_by_90d numeric, c_index numeric, permutation_p numeric, trained_at timestamptz default now());
             alter table ml.listed_item_predictions add column if not exists estimate_basis text;
+            alter table ml.listed_item_predictions add column if not exists likely_sell_date date;
+            alter table ml.listed_item_predictions add column if not exists late_sell_date date;
             truncate ml.model_scorecard, ml.listed_item_predictions, ml.time_to_sell_by_category, ml.time_to_sell_summary;
         """)
         cur.executemany("insert into ml.model_scorecard (question,best_baseline,baseline_score,best_model,model_score,metric,passes_gate) values (%s,%s,%s,%s,%s,%s,%s)", scorecard)
         cur.executemany(
-            "insert into ml.listed_item_predictions (sku,item_name,category,asking_price,days_listed,chance_sells_next_30d,estimate_basis) values (%s,%s,%s,%s,%s,%s,%s)",
-            [(r.sku, r.item_name, r.category, float(r.asking_price), int(r.days_listed), None if pd.isna(getattr(r, chance)) else float(getattr(r, chance)), r.estimate_basis) for r in predictions.itertuples()],
+            "insert into ml.listed_item_predictions (sku,item_name,category,asking_price,days_listed,chance_sells_next_30d,estimate_basis,likely_sell_date,late_sell_date) values (%s,%s,%s,%s,%s,%s,%s,%s,%s)",
+            [(r.sku, r.item_name, r.category, float(r.asking_price), int(r.days_listed), None if pd.isna(getattr(r, chance)) else float(getattr(r, chance)), r.estimate_basis,
+              None if pd.isna(r.likely_sell_date) else r.likely_sell_date.date(), None if pd.isna(r.late_sell_date) else r.late_sell_date.date()) for r in predictions.itertuples()],
         )
         cur.executemany(
             "insert into ml.time_to_sell_by_category (category,items,sold,median_days,sold_by_30d) values (%s,%s,%s,%s,%s)",
@@ -386,15 +438,19 @@ def main():
     unsold[f"chance_sells_next_{SELL_WINDOW_DAYS}d"] = chance.round(2)
     unsold["estimate_basis"] = basis
     speed["weibull_shape"] = weibull_shape
-    columns += [f"chance_sells_next_{SELL_WINDOW_DAYS}d", "estimate_basis"]
+    unsold["likely_sell_date"], unsold["late_sell_date"] = forecast_sell_dates(unsold, frame)
+    dates = backtest_sell_dates(frame)
+    columns += [f"chance_sells_next_{SELL_WINDOW_DAYS}d", "estimate_basis", "likely_sell_date", "late_sell_date"]
     unsold = unsold[columns].sort_values("days_listed", ascending=False)
     path = os.path.join(OUTPUT_DIR, "listed_item_predictions.csv")
     unsold.to_csv(path, index=False)
-    report = {"run_date": str(date.today()), "items": len(items), "list_price": pricing, "sale_given_asking": realized, "time_to_sell": speed}
+    report = {"run_date": str(date.today()), "items": len(items), "list_price": pricing, "sale_given_asking": realized, "time_to_sell": speed, "sell_dates": dates}
     with open(os.path.join(OUTPUT_DIR, "report.json"), "w", encoding="utf-8") as handle:
         json.dump(report, handle, indent=1)
     mlflow.set_experiment("mercantile-time-to-sell")
     with mlflow.start_run(run_name="listed item predictions"):
+        mlflow.log_params({"sell_date_model": "weibull aft", "likely_share": FORECAST_LIKELY_SHARE, "late_share": FORECAST_LATE_SHARE})
+        mlflow.log_metrics(dates)
         mlflow.log_artifact(path)
     publish_to_warehouse(report, unsold)
     print(json.dumps(report, indent=1))
