@@ -1,7 +1,7 @@
 {
- "published": "2026-11-05T22:04+00:00",
- "refreshed": "2026-11-05T22:00:09.521353+00:00",
- "trained": "2026-11-05T22:04:21.332091+00:00",
+ "published": "2026-11-05T22:06+00:00",
+ "refreshed": "2026-11-05T22:05:35.494654+00:00",
+ "trained": "2026-11-05T22:06:49.898294+00:00",
  "sales": [
   {
    "item": "Retro IPod Speaker",
@@ -49,15 +49,6 @@
    "days": 7
   },
   {
-   "item": "IPhone 15 Plus",
-   "category": "Phones & Accessories",
-   "platform": "Facebook Marketplace",
-   "sold": "2026-04-07",
-   "price": 400.0,
-   "net_profit": 400.0,
-   "days": 29
-  },
-  {
    "item": "Old PC Case",
    "category": "Computer Parts",
    "platform": "Facebook Marketplace",
@@ -65,6 +56,15 @@
    "price": 80.0,
    "net_profit": 80.0,
    "days": 6
+  },
+  {
+   "item": "IPhone 15 Plus",
+   "category": "Phones & Accessories",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-04-07",
+   "price": 400.0,
+   "net_profit": 400.0,
+   "days": 29
   },
   {
    "item": "Electric Guitar",
@@ -166,15 +166,6 @@
    "days": 21
   },
   {
-   "item": "Spider-Man Kids Luggage",
-   "category": "Bags & Luggage",
-   "platform": "Facebook Marketplace",
-   "sold": "2026-04-30",
-   "price": 5.0,
-   "net_profit": 5.0,
-   "days": 27
-  },
-  {
    "item": "Lilo Kids Luggage",
    "category": "Bags & Luggage",
    "platform": "Facebook Marketplace",
@@ -182,6 +173,15 @@
    "price": 5.0,
    "net_profit": 5.0,
    "days": 28
+  },
+  {
+   "item": "Spider-Man Kids Luggage",
+   "category": "Bags & Luggage",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-04-30",
+   "price": 5.0,
+   "net_profit": 5.0,
+   "days": 27
   },
   {
    "item": "256 GB SSD",
@@ -229,15 +229,6 @@
    "days": 36
   },
   {
-   "item": "Honda Accord",
-   "category": "Vehicles",
-   "platform": "Facebook Marketplace",
-   "sold": "2026-05-23",
-   "price": 600.0,
-   "net_profit": 600.0,
-   "days": 8
-  },
-  {
    "item": "Apple Mouse",
    "category": "Computers & Accessories",
    "platform": "Facebook Marketplace",
@@ -245,6 +236,15 @@
    "price": 30.0,
    "net_profit": 30.0,
    "days": 52
+  },
+  {
+   "item": "Honda Accord",
+   "category": "Vehicles",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-05-23",
+   "price": 600.0,
+   "net_profit": 600.0,
+   "days": 8
   },
   {
    "item": "Wall Mirror",
@@ -283,15 +283,6 @@
    "days": 59
   },
   {
-   "item": "Kryptonite Bike Lock",
-   "category": "Bikes & Cycling",
-   "platform": "Facebook Marketplace",
-   "sold": "2026-06-03",
-   "price": 50.0,
-   "net_profit": 50.0,
-   "days": 4
-  },
-  {
    "item": "Lenovo Laptop",
    "category": "Computers & Accessories",
    "platform": "Facebook Marketplace",
@@ -301,13 +292,13 @@
    "days": 24
   },
   {
-   "item": "Treadmill",
-   "category": "Sports & Fitness",
+   "item": "Kryptonite Bike Lock",
+   "category": "Bikes & Cycling",
    "platform": "Facebook Marketplace",
-   "sold": "2026-06-08",
-   "price": 120.0,
-   "net_profit": 48.0,
-   "days": 9
+   "sold": "2026-06-03",
+   "price": 50.0,
+   "net_profit": 50.0,
+   "days": 4
   },
   {
    "item": "Hammock Stand",
@@ -319,13 +310,22 @@
    "days": 127
   },
   {
-   "item": "Vintage Levis 505 Jeans Lot Mens Denim Bundle 38x32",
-   "category": "Clothing & Shoes",
+   "item": "Treadmill",
+   "category": "Sports & Fitness",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-06-08",
+   "price": 120.0,
+   "net_profit": 48.0,
+   "days": 9
+  },
+  {
+   "item": "Xbox Games Lot",
+   "category": "Video Games & Consoles",
    "platform": "Facebook Marketplace",
    "sold": "2026-06-17",
-   "price": 60.0,
-   "net_profit": 60.0,
-   "days": 23
+   "price": 10.0,
+   "net_profit": 10.0,
+   "days": 0
   },
   {
    "item": "Adjustable Tripod with Phone Mount",
@@ -337,13 +337,13 @@
    "days": 23
   },
   {
-   "item": "Xbox Games Lot",
-   "category": "Video Games & Consoles",
+   "item": "Vintage Levis 505 Jeans Lot Mens Denim Bundle 38x32",
+   "category": "Clothing & Shoes",
    "platform": "Facebook Marketplace",
    "sold": "2026-06-17",
-   "price": 10.0,
-   "net_profit": 10.0,
-   "days": 0
+   "price": 60.0,
+   "net_profit": 60.0,
+   "days": 23
   },
   {
    "item": "belt",
@@ -571,15 +571,6 @@
    "days": 114
   },
   {
-   "item": "Depop Lot Various",
-   "category": "Clothing & Shoes",
-   "platform": "Facebook Marketplace",
-   "sold": "2026-09-16",
-   "price": 110.0,
-   "net_profit": 110.0,
-   "days": null
-  },
-  {
    "item": "Bike Wheelset",
    "category": "Bikes & Cycling",
    "platform": "Facebook Marketplace",
@@ -589,13 +580,13 @@
    "days": 0
   },
   {
-   "item": "Retrospec Bicycle Parts Bundle - Crankset Bottom Bracket Handlebars",
-   "category": "Bikes & Cycling",
+   "item": "Depop Lot Various",
+   "category": "Clothing & Shoes",
    "platform": "Facebook Marketplace",
-   "sold": "2026-09-19",
-   "price": 25.0,
-   "net_profit": 25.0,
-   "days": 38
+   "sold": "2026-09-16",
+   "price": 110.0,
+   "net_profit": 110.0,
+   "days": null
   },
   {
    "item": "Amazon Kindle Keyboard E-Reader with Case \u2013 Older Model",
@@ -605,6 +596,15 @@
    "price": 2.0,
    "net_profit": 2.0,
    "days": 24
+  },
+  {
+   "item": "Retrospec Bicycle Parts Bundle - Crankset Bottom Bracket Handlebars",
+   "category": "Bikes & Cycling",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-09-19",
+   "price": 25.0,
+   "net_profit": 25.0,
+   "days": 38
   },
   {
    "item": "Shimano drivetrain and brakes bundle",
@@ -668,6 +668,15 @@
    "price": 80.0,
    "net_profit": 80.0,
    "days": 0
+  },
+  {
+   "item": "Arcteryx shoulder bag",
+   "category": "Bags & Luggage",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-11-05",
+   "price": 35.0,
+   "net_profit": 35.0,
+   "days": 130
   }
  ],
  "inventory": [
@@ -782,17 +791,6 @@
    "is_stale": true
   },
   {
-   "item": "Arcteryx shoulder bag",
-   "category": "Bags & Luggage",
-   "status": "Listed",
-   "asking": 60.0,
-   "potential_profit": 60.0,
-   "days": 130,
-   "aging": "90+ days",
-   "aging_order": 4,
-   "is_stale": true
-  },
-  {
    "item": "Ray-Ban Silver Metal Prescription Glasses",
    "category": "Accessories",
    "status": "Listed",
@@ -804,22 +802,22 @@
    "is_stale": true
   },
   {
-   "item": "Marc Jacobs Perfume",
+   "item": "K18 Leave In",
    "category": "Beauty & Fragrance",
    "status": "Listed",
-   "asking": 100.0,
-   "potential_profit": 100.0,
+   "asking": 50.0,
+   "potential_profit": 50.0,
    "days": 78,
    "aging": "61\u201390 days",
    "aging_order": 3,
    "is_stale": true
   },
   {
-   "item": "K18 Leave In",
+   "item": "Marc Jacobs Perfume",
    "category": "Beauty & Fragrance",
    "status": "Listed",
-   "asking": 50.0,
-   "potential_profit": 50.0,
+   "asking": 100.0,
+   "potential_profit": 100.0,
    "days": 78,
    "aging": "61\u201390 days",
    "aging_order": 3,
@@ -942,6 +940,17 @@
    "asking": 280.0,
    "potential_profit": 280.0,
    "days": 22,
+   "aging": "0\u201330 days",
+   "aging_order": 1,
+   "is_stale": false
+  },
+  {
+   "item": "Dell OptiPlex 7000 i7 Desktop",
+   "category": "Computers & Accessories",
+   "status": "Listed",
+   "asking": 75.0,
+   "potential_profit": 75.0,
+   "days": 2,
    "aging": "0\u201330 days",
    "aging_order": 1,
    "is_stale": false
@@ -1275,17 +1284,6 @@
    "aging": "0\u201330 days",
    "aging_order": 1,
    "is_stale": false
-  },
-  {
-   "item": "Dell OptiPlex 7000 i7 Desktop",
-   "category": "Computers & Accessories",
-   "status": "Listed",
-   "asking": 75.0,
-   "potential_profit": 75.0,
-   "days": 2,
-   "aging": "0\u201330 days",
-   "aging_order": 1,
-   "is_stale": false
   }
  ],
  "category_items": [
@@ -1367,7 +1365,7 @@
   {
    "category": "Bags & Luggage",
    "items": 8,
-   "sold": 5
+   "sold": 6
   },
   {
    "category": "Computer Parts",
@@ -1398,27 +1396,27 @@
   {
    "question": "Days until it sells",
    "baseline": "overall median",
-   "baseline_score": 32.21,
+   "baseline_score": 32.6,
    "model": "Weibull model",
-   "model_score": 38.17,
+   "model_score": 38.8,
    "metric": "average error, days",
    "passes": false
   },
   {
    "question": "Sale price from category and name",
    "baseline": "global median",
-   "baseline_score": 54.47,
+   "baseline_score": 53.93,
    "model": "ridge: category",
-   "model_score": 54.86,
+   "model_score": 54.2,
    "metric": "average error, dollars",
    "passes": false
   },
   {
    "question": "Sale price given asking price",
    "baseline": "asking price",
-   "baseline_score": 16.07,
+   "baseline_score": 16.19,
    "model": "ridge: asking",
-   "model_score": 20.91,
+   "model_score": 20.93,
    "metric": "average error, dollars",
    "passes": false
   },
@@ -1429,7 +1427,7 @@
    "model": "Cox model",
    "model_score": 0.6,
    "metric": "C-index, higher is better",
-   "passes": false
+   "passes": true
   }
  ],
  "median_days": [
@@ -1476,11 +1474,19 @@
  ],
  "predictions": [
   {
-   "item": "La Sportiva Mythos Climbing Shoes \u2013 Orange/Grey",
-   "category": "Sports & Fitness",
-   "asking": 30.0,
-   "days": 71,
-   "chance": 0.38,
+   "item": "NES Switch Joycons",
+   "category": "Video Games & Consoles",
+   "asking": 80.0,
+   "days": 52,
+   "chance": 0.63,
+   "basis": "history"
+  },
+  {
+   "item": "Bicycle Tires",
+   "category": "Bikes & Cycling",
+   "asking": 50.0,
+   "days": 47,
+   "chance": 0.48,
    "basis": "history"
   },
   {
@@ -1488,143 +1494,15 @@
    "category": "Beauty & Fragrance",
    "asking": 100.0,
    "days": 78,
-   "chance": 0.36,
+   "chance": 0.43,
    "basis": "history"
   },
   {
-   "item": "Samsung S21 Ultra Phone",
-   "category": "Phones & Accessories",
-   "asking": 250.0,
-   "days": 78,
-   "chance": 0.36,
-   "basis": "history"
-  },
-  {
-   "item": "K18 Leave In",
-   "category": "Beauty & Fragrance",
-   "asking": 50.0,
-   "days": 78,
-   "chance": 0.36,
-   "basis": "history"
-  },
-  {
-   "item": "Dell Inspiron 16 5630 i7 Laptop (Unit 1 of 5)",
-   "category": "Computers & Accessories",
-   "asking": 350.0,
-   "days": 2,
-   "chance": 0.36,
-   "basis": "history"
-  },
-  {
-   "item": "Apple iPad Pro 12.9 inch 1st Gen",
-   "category": "Computers & Accessories",
-   "asking": 150.0,
-   "days": 2,
-   "chance": 0.36,
-   "basis": "history"
-  },
-  {
-   "item": "NETGEAR ProSAFE GS105 Gigabit Switch",
-   "category": "Computers & Accessories",
-   "asking": 15.0,
-   "days": 2,
-   "chance": 0.36,
-   "basis": "history"
-  },
-  {
-   "item": "Dell Inspiron 16 5630 i7 Laptop (Unit 4 of 5)",
-   "category": "Computers & Accessories",
-   "asking": 350.0,
-   "days": 2,
-   "chance": 0.36,
-   "basis": "history"
-  },
-  {
-   "item": "AOC Monitor with Cables",
-   "category": "Computers & Accessories",
-   "asking": 50.0,
-   "days": 2,
-   "chance": 0.36,
-   "basis": "history"
-  },
-  {
-   "item": "HP LaserJet M209dw Printer",
-   "category": "Computers & Accessories",
-   "asking": 50.0,
-   "days": 2,
-   "chance": 0.36,
-   "basis": "history"
-  },
-  {
-   "item": "Apple iPad mini (Unit 1 of 3)",
-   "category": "Computers & Accessories",
-   "asking": 80.0,
-   "days": 2,
-   "chance": 0.36,
-   "basis": "history"
-  },
-  {
-   "item": "Apple iPad mini (Unit 2 of 3)",
-   "category": "Computers & Accessories",
-   "asking": 80.0,
-   "days": 2,
-   "chance": 0.36,
-   "basis": "history"
-  },
-  {
-   "item": "Apple iPad mini (Unit 3 of 3)",
-   "category": "Computers & Accessories",
-   "asking": 80.0,
-   "days": 2,
-   "chance": 0.36,
-   "basis": "history"
-  },
-  {
-   "item": "Dell Inspiron 16 5630 i7 Laptop (Unit 2 of 5)",
-   "category": "Computers & Accessories",
-   "asking": 350.0,
-   "days": 2,
-   "chance": 0.36,
-   "basis": "history"
-  },
-  {
-   "item": "Dell Inspiron 16 5630 i7 Laptop (Unit 3 of 5)",
-   "category": "Computers & Accessories",
-   "asking": 350.0,
-   "days": 2,
-   "chance": 0.36,
-   "basis": "history"
-  },
-  {
-   "item": "Dell Inspiron 16 5630 i7 Laptop (Unit 5 of 5)",
-   "category": "Computers & Accessories",
-   "asking": 350.0,
-   "days": 2,
-   "chance": 0.36,
-   "basis": "history"
-  },
-  {
-   "item": "Dell Inspiron 16 5630 i5 Laptop (Unit 1 of 5)",
-   "category": "Computers & Accessories",
-   "asking": 275.0,
-   "days": 2,
-   "chance": 0.36,
-   "basis": "history"
-  },
-  {
-   "item": "Dell Inspiron 16 5630 i5 Laptop (Unit 3 of 5)",
-   "category": "Computers & Accessories",
-   "asking": 275.0,
-   "days": 2,
-   "chance": 0.36,
-   "basis": "history"
-  },
-  {
-   "item": "Dell Inspiron 16 5630 i5 Laptop (Unit 4 of 5)",
-   "category": "Computers & Accessories",
-   "asking": 275.0,
-   "days": 2,
-   "chance": 0.36,
+   "item": "Small Table",
+   "category": "Furniture",
+   "asking": 40.0,
+   "days": 52,
+   "chance": 0.42,
    "basis": "history"
   },
   {
@@ -1632,31 +1510,39 @@
    "category": "Computers & Accessories",
    "asking": 275.0,
    "days": 2,
-   "chance": 0.36,
+   "chance": 0.42,
    "basis": "history"
   },
   {
-   "item": "Samsung Galaxy Tablet (Unit 1 of 2)",
+   "item": "Dell Inspiron 16 5630 i7 Laptop (Unit 3 of 5)",
    "category": "Computers & Accessories",
-   "asking": 75.0,
+   "asking": 350.0,
    "days": 2,
-   "chance": 0.36,
+   "chance": 0.42,
    "basis": "history"
   },
   {
-   "item": "Halloween Costumes",
-   "category": "Clothing & Shoes",
-   "asking": 50.0,
+   "item": "Dell Inspiron 16 5630 i7 Laptop (Unit 2 of 5)",
+   "category": "Computers & Accessories",
+   "asking": 350.0,
    "days": 2,
-   "chance": 0.36,
+   "chance": 0.42,
    "basis": "history"
   },
   {
-   "item": "Govee Outdoor Lights",
-   "category": "Home & Garden",
-   "asking": 300.0,
+   "item": "Dell Inspiron 16 5630 i7 Laptop (Unit 1 of 5)",
+   "category": "Computers & Accessories",
+   "asking": 350.0,
    "days": 2,
-   "chance": 0.36,
+   "chance": 0.42,
+   "basis": "history"
+  },
+  {
+   "item": "Dell Inspiron 16 5630 i7 Laptop (Unit 4 of 5)",
+   "category": "Computers & Accessories",
+   "asking": 350.0,
+   "days": 2,
+   "chance": 0.42,
    "basis": "history"
   },
   {
@@ -1664,71 +1550,39 @@
    "category": "Bikes & Cycling",
    "asking": 50.0,
    "days": 2,
-   "chance": 0.36,
+   "chance": 0.42,
    "basis": "history"
   },
   {
-   "item": "Honda Car Radio",
-   "category": "Vehicles",
-   "asking": 40.0,
-   "days": 2,
-   "chance": 0.36,
-   "basis": "history"
-  },
-  {
-   "item": "Amazon Fire Tablet",
+   "item": "Dell Inspiron 16 5630 i5 Laptop (Unit 4 of 5)",
    "category": "Computers & Accessories",
-   "asking": 50.0,
+   "asking": 275.0,
    "days": 2,
-   "chance": 0.36,
+   "chance": 0.42,
    "basis": "history"
   },
   {
-   "item": "Samsung Galaxy Tablet (Unit 2 of 2)",
+   "item": "Dell Inspiron 16 5630 i5 Laptop (Unit 3 of 5)",
    "category": "Computers & Accessories",
-   "asking": 75.0,
+   "asking": 275.0,
    "days": 2,
-   "chance": 0.36,
+   "chance": 0.42,
    "basis": "history"
   },
   {
-   "item": "Apple iPad Air 2 (Unit 1 of 4)",
+   "item": "Dell Inspiron 16 5630 i5 Laptop (Unit 1 of 5)",
    "category": "Computers & Accessories",
-   "asking": 80.0,
+   "asking": 275.0,
    "days": 2,
-   "chance": 0.36,
+   "chance": 0.42,
    "basis": "history"
   },
   {
-   "item": "Apple iPad Air 2 (Unit 2 of 4)",
+   "item": "Dell Inspiron 16 5630 i7 Laptop (Unit 5 of 5)",
    "category": "Computers & Accessories",
-   "asking": 80.0,
+   "asking": 350.0,
    "days": 2,
-   "chance": 0.36,
-   "basis": "history"
-  },
-  {
-   "item": "Apple iPad Air 2 (Unit 3 of 4)",
-   "category": "Computers & Accessories",
-   "asking": 80.0,
-   "days": 2,
-   "chance": 0.36,
-   "basis": "history"
-  },
-  {
-   "item": "Dell OptiPlex 5070 i7 Desktop",
-   "category": "Computers & Accessories",
-   "asking": 75.0,
-   "days": 2,
-   "chance": 0.36,
-   "basis": "history"
-  },
-  {
-   "item": "Apple iPad Air 2 (Unit 4 of 4)",
-   "category": "Computers & Accessories",
-   "asking": 80.0,
-   "days": 2,
-   "chance": 0.36,
+   "chance": 0.42,
    "basis": "history"
   },
   {
@@ -1736,15 +1590,39 @@
    "category": "Computers & Accessories",
    "asking": 275.0,
    "days": 2,
-   "chance": 0.36,
+   "chance": 0.42,
    "basis": "history"
   },
   {
-   "item": "Dell OptiPlex 7000 i7 Desktop",
+   "item": "K18 Leave In",
+   "category": "Beauty & Fragrance",
+   "asking": 50.0,
+   "days": 78,
+   "chance": 0.41,
+   "basis": "history"
+  },
+  {
+   "item": "Ray-Ban Silver Metal Prescription Glasses",
+   "category": "Accessories",
+   "asking": 100.0,
+   "days": 85,
+   "chance": 0.4,
+   "basis": "history"
+  },
+  {
+   "item": "La Sportiva Mythos Climbing Shoes \u2013 Orange/Grey",
+   "category": "Sports & Fitness",
+   "asking": 30.0,
+   "days": 71,
+   "chance": 0.4,
+   "basis": "history"
+  },
+  {
+   "item": "Apple iPad Pro 12.9 inch 1st Gen",
    "category": "Computers & Accessories",
-   "asking": 75.0,
+   "asking": 150.0,
    "days": 2,
-   "chance": 0.36,
+   "chance": 0.4,
    "basis": "history"
   },
   {
@@ -1752,6 +1630,126 @@
    "category": "Computers & Accessories",
    "asking": 100.0,
    "days": 2,
+   "chance": 0.39,
+   "basis": "history"
+  },
+  {
+   "item": "Apple iPad Air 2 (Unit 3 of 4)",
+   "category": "Computers & Accessories",
+   "asking": 80.0,
+   "days": 2,
+   "chance": 0.38,
+   "basis": "history"
+  },
+  {
+   "item": "Samsung Galaxy Tablet (Unit 1 of 2)",
+   "category": "Computers & Accessories",
+   "asking": 75.0,
+   "days": 2,
+   "chance": 0.38,
+   "basis": "history"
+  },
+  {
+   "item": "Apple iPad mini (Unit 1 of 3)",
+   "category": "Computers & Accessories",
+   "asking": 80.0,
+   "days": 2,
+   "chance": 0.38,
+   "basis": "history"
+  },
+  {
+   "item": "Apple iPad mini (Unit 3 of 3)",
+   "category": "Computers & Accessories",
+   "asking": 80.0,
+   "days": 2,
+   "chance": 0.38,
+   "basis": "history"
+  },
+  {
+   "item": "Apple iPad mini (Unit 2 of 3)",
+   "category": "Computers & Accessories",
+   "asking": 80.0,
+   "days": 2,
+   "chance": 0.38,
+   "basis": "history"
+  },
+  {
+   "item": "Samsung Galaxy Tablet (Unit 2 of 2)",
+   "category": "Computers & Accessories",
+   "asking": 75.0,
+   "days": 2,
+   "chance": 0.38,
+   "basis": "history"
+  },
+  {
+   "item": "Dell OptiPlex 7000 i7 Desktop",
+   "category": "Computers & Accessories",
+   "asking": 75.0,
+   "days": 2,
+   "chance": 0.38,
+   "basis": "history"
+  },
+  {
+   "item": "Dell OptiPlex 5070 i7 Desktop",
+   "category": "Computers & Accessories",
+   "asking": 75.0,
+   "days": 2,
+   "chance": 0.38,
+   "basis": "history"
+  },
+  {
+   "item": "Apple iPad Air 2 (Unit 1 of 4)",
+   "category": "Computers & Accessories",
+   "asking": 80.0,
+   "days": 2,
+   "chance": 0.38,
+   "basis": "history"
+  },
+  {
+   "item": "Apple iPad Air 2 (Unit 2 of 4)",
+   "category": "Computers & Accessories",
+   "asking": 80.0,
+   "days": 2,
+   "chance": 0.38,
+   "basis": "history"
+  },
+  {
+   "item": "Apple iPad Air 2 (Unit 4 of 4)",
+   "category": "Computers & Accessories",
+   "asking": 80.0,
+   "days": 2,
+   "chance": 0.38,
+   "basis": "history"
+  },
+  {
+   "item": "HP LaserJet M209dw Printer",
+   "category": "Computers & Accessories",
+   "asking": 50.0,
+   "days": 2,
+   "chance": 0.37,
+   "basis": "history"
+  },
+  {
+   "item": "Amazon Fire Tablet",
+   "category": "Computers & Accessories",
+   "asking": 50.0,
+   "days": 2,
+   "chance": 0.37,
+   "basis": "history"
+  },
+  {
+   "item": "AOC Monitor with Cables",
+   "category": "Computers & Accessories",
+   "asking": 50.0,
+   "days": 2,
+   "chance": 0.37,
+   "basis": "history"
+  },
+  {
+   "item": "Apple Magic Keyboard",
+   "category": "Computers & Accessories",
+   "asking": 35.0,
+   "days": 1,
    "chance": 0.36,
    "basis": "history"
   },
@@ -1760,78 +1758,30 @@
    "category": "Home & Garden",
    "asking": 30.0,
    "days": 52,
-   "chance": 0.34,
+   "chance": 0.35,
    "basis": "history"
   },
   {
-   "item": "Clarks Men's Shoes",
-   "category": "Clothing & Shoes",
-   "asking": 25.0,
-   "days": 52,
-   "chance": 0.34,
-   "basis": "history"
-  },
-  {
-   "item": "NES Switch Joycons",
-   "category": "Video Games & Consoles",
-   "asking": 80.0,
-   "days": 52,
-   "chance": 0.34,
-   "basis": "history"
-  },
-  {
-   "item": "Goomba Hat",
-   "category": "Clothing & Shoes",
-   "asking": 40.0,
-   "days": 52,
-   "chance": 0.34,
-   "basis": "history"
-  },
-  {
-   "item": "Clothes Lot",
-   "category": "Clothing & Shoes",
-   "asking": 100.0,
-   "days": 52,
-   "chance": 0.34,
-   "basis": "history"
-  },
-  {
-   "item": "Small Table",
-   "category": "Furniture",
-   "asking": 40.0,
-   "days": 52,
-   "chance": 0.34,
-   "basis": "history"
-  },
-  {
-   "item": "Bicycle Tires",
-   "category": "Bikes & Cycling",
-   "asking": 50.0,
-   "days": 47,
-   "chance": 0.34,
-   "basis": "history"
-  },
-  {
-   "item": "Apple Magic Keyboard",
+   "item": "NETGEAR ProSAFE GS105 Gigabit Switch",
    "category": "Computers & Accessories",
-   "asking": 35.0,
-   "days": 1,
+   "asking": 15.0,
+   "days": 2,
    "chance": 0.34,
    "basis": "history"
   },
   {
-   "item": "New Android Phone",
-   "category": "Phones & Accessories",
-   "asking": 50.0,
-   "days": 22,
+   "item": "Fjallraven Kanken Mini Backpack Olive Green",
+   "category": "Bags & Luggage",
+   "asking": 40.0,
+   "days": 164,
    "chance": 0.31,
-   "basis": "history"
+   "basis": "extrapolated"
   },
   {
-   "item": "Rayban Meta Gen 2 Glasses",
-   "category": "Audio & Wearables",
-   "asking": 280.0,
-   "days": 22,
+   "item": "Govee Outdoor Lights",
+   "category": "Home & Garden",
+   "asking": 300.0,
+   "days": 2,
    "chance": 0.31,
    "basis": "history"
   },
@@ -1844,27 +1794,11 @@
    "basis": "extrapolated"
   },
   {
-   "item": "Arcteryx shoulder bag",
-   "category": "Bags & Luggage",
-   "asking": 60.0,
-   "days": 130,
-   "chance": 0.28,
-   "basis": "extrapolated"
-  },
-  {
-   "item": "Ray-Ban Silver Metal Prescription Glasses",
-   "category": "Accessories",
-   "asking": 100.0,
-   "days": 85,
-   "chance": 0.28,
-   "basis": "history"
-  },
-  {
-   "item": "Fjallraven Kanken Mini Backpack Olive Green",
+   "item": "Carhartt fanny pack",
    "category": "Bags & Luggage",
    "asking": 40.0,
-   "days": 164,
-   "chance": 0.27,
+   "days": 130,
+   "chance": 0.3,
    "basis": "extrapolated"
   },
   {
@@ -1884,25 +1818,65 @@
    "basis": "extrapolated"
   },
   {
-   "item": "Carhartt fanny pack",
-   "category": "Bags & Luggage",
+   "item": "Honda Car Radio",
+   "category": "Vehicles",
    "asking": 40.0,
-   "days": 130,
+   "days": 2,
    "chance": 0.27,
+   "basis": "history"
+  },
+  {
+   "item": "Samsung S21 Ultra Phone",
+   "category": "Phones & Accessories",
+   "asking": 250.0,
+   "days": 78,
+   "chance": 0.26,
+   "basis": "history"
+  },
+  {
+   "item": "Clothes Lot",
+   "category": "Clothing & Shoes",
+   "asking": 100.0,
+   "days": 52,
+   "chance": 0.25,
+   "basis": "history"
+  },
+  {
+   "item": "Rayban Meta Gen 2 Glasses",
+   "category": "Audio & Wearables",
+   "asking": 280.0,
+   "days": 22,
+   "chance": 0.24,
+   "basis": "history"
+  },
+  {
+   "item": "Goomba Hat",
+   "category": "Clothing & Shoes",
+   "asking": 40.0,
+   "days": 52,
+   "chance": 0.23,
+   "basis": "history"
+  },
+  {
+   "item": "Clarks Men's Shoes",
+   "category": "Clothing & Shoes",
+   "asking": 25.0,
+   "days": 52,
+   "chance": 0.22,
+   "basis": "history"
+  },
+  {
+   "item": "ASICS Womens Running Shoes Gray Pink",
+   "category": "Clothing & Shoes",
+   "asking": 40.0,
+   "days": 164,
+   "chance": 0.18,
    "basis": "extrapolated"
   },
   {
    "item": "ASICS Gel Nimbus Mens Running Shoes Navy Size 7.5",
    "category": "Clothing & Shoes",
    "asking": 45.0,
-   "days": 164,
-   "chance": 0.18,
-   "basis": "extrapolated"
-  },
-  {
-   "item": "ASICS Womens Running Shoes Gray Pink",
-   "category": "Clothing & Shoes",
-   "asking": 40.0,
    "days": 164,
    "chance": 0.18,
    "basis": "extrapolated"
@@ -1916,12 +1890,28 @@
    "basis": "extrapolated"
   },
   {
+   "item": "Halloween Costumes",
+   "category": "Clothing & Shoes",
+   "asking": 50.0,
+   "days": 2,
+   "chance": 0.17,
+   "basis": "history"
+  },
+  {
    "item": "3 in 1 magnetic charger",
    "category": "Phones & Accessories",
    "asking": 50.0,
    "days": 164,
-   "chance": 0.15,
+   "chance": 0.16,
    "basis": "extrapolated"
+  },
+  {
+   "item": "New Android Phone",
+   "category": "Phones & Accessories",
+   "asking": 50.0,
+   "days": 22,
+   "chance": 0.13,
+   "basis": "history"
   }
  ]
 }
