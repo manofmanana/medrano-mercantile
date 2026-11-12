@@ -20,12 +20,13 @@ import pandas as pd
 import psycopg
 from lifelines import CoxPHFitter, KaplanMeierFitter, WeibullAFTFitter
 from lifelines.utils import concordance_index
+from scipy.stats import chisquare
 from sklearn.base import BaseEstimator, RegressorMixin
 from sklearn.compose import ColumnTransformer, TransformedTargetRegressor
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import RidgeCV
-from sklearn.model_selection import KFold
+from sklearn.model_selection import GroupKFold, KFold
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import FunctionTransformer, OneHotEncoder, StandardScaler
 
@@ -42,6 +43,11 @@ SELL_WINDOW_DAYS = 30
 FORECAST_MAX_DAYS = 1825  # a forecast further out than 5 years is shown as unknown
 FORECAST_LIKELY_SHARE = 0.5  # the date an item has an even chance of being sold by
 FORECAST_LATE_SHARE = 0.2  # the date an item has an 80% chance of being sold by
+WEEKDAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+WEEKDAY_PRIOR = 10  # sales added to every weekday, so a small sample can't claim a strong pattern
+WEEKDAY_ALPHA = 0.05
+BEST_DAYS = 3
+BEST_DAY_HORIZON = 365
 PENALIZER = 0.2
 TIME_ZERO_OFFSET = 0.5  # same-day sales still need a positive duration
 OUTPUT_DIR = os.environ.get("ML_OUTPUT_DIR", "/opt/mercantile-ml/output")
@@ -149,12 +155,19 @@ TEXT = ("text", text_features(), "item_name")
 ASKING = ("asking", asking_features(), ["asking_price"])
 
 
+def product_groups(X):
+    """Units of one product ("... (Unit 2 of 5)") share a group so they never straddle train and test."""
+    names = X["item_name"].astype(str).str.replace(r"\s*\(Unit \d+ of \d+\)\s*$", "", regex=True)
+    return names.str.strip().str.lower().to_numpy()
+
+
 def out_of_fold(model, X, y):
-    """Average out-of-fold prediction for each row across repeated K-fold splits."""
+    """Average out-of-fold prediction for each row across repeated grouped K-fold splits."""
     totals = np.zeros(len(X))
+    groups = product_groups(X)
     for repeat in range(REPEATS):
-        folds = KFold(FOLDS, shuffle=True, random_state=SEED + repeat)
-        for train, test in folds.split(X):
+        folds = GroupKFold(FOLDS, shuffle=True, random_state=SEED + repeat)
+        for train, test in folds.split(X, groups=groups):
             fitted = _clone(model).fit(X.iloc[train], y[train])
             totals[test] += fitted.predict(X.iloc[test])
     return totals / REPEATS
@@ -218,7 +231,8 @@ def evaluate_regression(experiment, baselines, candidates, X, y, order, register
         plt.close(figure)
         final = _clone(candidates[best_model]).fit(X, y)
         if passes:
-            mlflow.sklearn.log_model(final, name="model", registered_model_name=register_name)
+            mlflow.sklearn.log_model(final, name="model", registered_model_name=register_name,
+                                     skops_trusted_types=["sklearn.tree._tree.Tree"])
     fallback = _clone(baselines[best_base]).fit(X, y)
     return {
         "rows": len(X), "sold_rows": sold, "results": results, "best_baseline": best_base, "best_model": best_model,
@@ -355,6 +369,53 @@ def forecast_sell_dates(unsold, frame):
     return pd.Series(likely, dtype="datetime64[ns]"), pd.Series(late, dtype="datetime64[ns]")
 
 
+def weekday_weights(counts):
+    """Share of sales per weekday, pulled toward an even split."""
+    return (counts + WEEKDAY_PRIOR) / (counts.sum() + WEEKDAY_PRIOR * len(WEEKDAYS))
+
+
+def evaluate_weekdays(sold_dates, repeats=REPEATS, seed=SEED):
+    """Whether the weekday pattern predicts held-out sales better than treating every day alike."""
+    days = sold_dates.dt.dayofweek.to_numpy()
+    counts = np.bincount(days, minlength=len(WEEKDAYS)).astype(float)
+    losses, hits = [], []
+    for repeat in range(repeats):
+        for train, test in KFold(FOLDS, shuffle=True, random_state=seed + repeat).split(days):
+            weights = weekday_weights(np.bincount(days[train], minlength=len(WEEKDAYS)).astype(float))
+            losses += list(-np.log(weights[days[test]]))
+            hits += list(np.isin(days[test], np.argsort(weights)[-BEST_DAYS:]))
+    baseline = float(np.log(len(WEEKDAYS)))
+    model = float(np.mean(losses))
+    p_value = float(chisquare(counts).pvalue)
+    return {
+        "counts": counts.astype(int).tolist(), "weights": weekday_weights(counts).tolist(), "baseline_log_loss": baseline, "model_log_loss": model,
+        "top_days_hit_rate": float(np.mean(hits)), "top_days_baseline": BEST_DAYS / len(WEEKDAYS), "chi_square_p": p_value,
+        "passes_gate": model < baseline and p_value < WEEKDAY_ALPHA,
+    }
+
+
+def forecast_best_days(unsold, frame, weights):
+    """The dates each unsold item is most likely to sell on: its Weibull daily chance, adjusted for the weekday pattern."""
+    weibull = WeibullAFTFitter(penalizer=PENALIZER).fit(frame, "duration", "event")
+    rows = frame.loc[unsold.index]
+    starts = unsold["duration"].to_numpy()
+    grid = np.arange(TIME_ZERO_OFFSET, starts.max() + BEST_DAY_HORIZON + 1)
+    survival = weibull.predict_survival_function(rows, times=grid).to_numpy()
+    today = pd.Timestamp(date.today())
+    dates = pd.date_range(today + pd.Timedelta(days=1), periods=BEST_DAY_HORIZON)
+    factor = weights[dates.dayofweek] * len(WEEKDAYS)
+    best, chance, top = {}, {}, {}
+    for position, i in enumerate(unsold.index):
+        first = int(starts[position] - TIME_ZERO_OFFSET)
+        curve = survival[first:first + BEST_DAY_HORIZON + 1, position] / max(survival[first, position], 1e-6)
+        daily = (curve[:-1] - curve[1:]) * factor
+        order = np.argsort(daily)[::-1][:BEST_DAYS]
+        best[i] = dates[order[0]]
+        chance[i] = float(daily[order[0]])
+        top[i] = ", ".join(d.strftime("%a %b %-d") for d in sorted(dates[order]))
+    return pd.Series(best, dtype="datetime64[ns]"), pd.Series(chance, dtype=float), pd.Series(top, dtype=object)
+
+
 def scorecard_row(question, result):
     best = result["results"][result["best_model"]]
     base = result["results"][result["best_baseline"]]
@@ -365,11 +426,13 @@ def publish_to_warehouse(report, predictions):
     """Replace the dashboard tables in one transaction, using a role that can only write to the ml schema."""
     speed = report["time_to_sell"]
     dates = report["sell_dates"]
+    weekdays = report["sale_weekdays"]
     scorecard = [
         scorecard_row("Sale price from category and name", report["list_price"]),
         scorecard_row("Sale price given asking price", report["sale_given_asking"]),
         ("Time to sell", "shuffled labels", speed["null_c_index"], "Cox model", speed["cv_c_index"], "C-index, higher is better", speed["passes_gate"]),
         ("Days until it sells", "overall median", dates["baseline_error_days"], "Weibull model", dates["model_error_days"], "average error, days", dates["model_error_days"] < dates["baseline_error_days"]),
+        ("Day of the week it sells", "every day equal", weekdays["baseline_log_loss"], "weekday pattern", weekdays["model_log_loss"], "log loss, lower is better", weekdays["passes_gate"]),
     ]
     chance = f"chance_sells_next_{SELL_WINDOW_DAYS}d"
     with psycopg.connect(
@@ -384,17 +447,27 @@ def publish_to_warehouse(report, predictions):
             alter table ml.listed_item_predictions add column if not exists estimate_basis text;
             alter table ml.listed_item_predictions add column if not exists likely_sell_date date;
             alter table ml.listed_item_predictions add column if not exists late_sell_date date;
-            truncate ml.model_scorecard, ml.listed_item_predictions, ml.time_to_sell_by_category, ml.time_to_sell_summary;
+            alter table ml.listed_item_predictions add column if not exists best_sell_day date;
+            alter table ml.listed_item_predictions add column if not exists best_sell_day_chance numeric;
+            alter table ml.listed_item_predictions add column if not exists best_sell_days text;
+            create table if not exists ml.sale_weekdays (day_number int, day_name text, sold int, share numeric, weight numeric, passes_gate boolean, trained_at timestamptz default now());
+            truncate ml.model_scorecard, ml.listed_item_predictions, ml.time_to_sell_by_category, ml.time_to_sell_summary, ml.sale_weekdays;
         """)
         cur.executemany("insert into ml.model_scorecard (question,best_baseline,baseline_score,best_model,model_score,metric,passes_gate) values (%s,%s,%s,%s,%s,%s,%s)", scorecard)
         cur.executemany(
-            "insert into ml.listed_item_predictions (sku,item_name,category,asking_price,days_listed,chance_sells_next_30d,estimate_basis,likely_sell_date,late_sell_date) values (%s,%s,%s,%s,%s,%s,%s,%s,%s)",
+            "insert into ml.listed_item_predictions (sku,item_name,category,asking_price,days_listed,chance_sells_next_30d,estimate_basis,likely_sell_date,late_sell_date,best_sell_day,best_sell_day_chance,best_sell_days) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
             [(r.sku, r.item_name, r.category, float(r.asking_price), int(r.days_listed), None if pd.isna(getattr(r, chance)) else float(getattr(r, chance)), r.estimate_basis,
-              None if pd.isna(r.likely_sell_date) else r.likely_sell_date.date(), None if pd.isna(r.late_sell_date) else r.late_sell_date.date()) for r in predictions.itertuples()],
+              None if pd.isna(r.likely_sell_date) else r.likely_sell_date.date(), None if pd.isna(r.late_sell_date) else r.late_sell_date.date(),
+              r.best_sell_day.date(), float(r.best_sell_day_chance), r.best_sell_days) for r in predictions.itertuples()],
         )
         cur.executemany(
             "insert into ml.time_to_sell_by_category (category,items,sold,median_days,sold_by_30d) values (%s,%s,%s,%s,%s)",
             [(name, c["items"], c["sold"], c["median_days"], c["sold_by_30d"]) for name, c in speed["by_category"].items()],
+        )
+        total = sum(weekdays["counts"])
+        cur.executemany(
+            "insert into ml.sale_weekdays (day_number,day_name,sold,share,weight,passes_gate) values (%s,%s,%s,%s,%s,%s)",
+            [(i, name, weekdays["counts"][i], weekdays["counts"][i] / total, weekdays["weights"][i], weekdays["passes_gate"]) for i, name in enumerate(WEEKDAYS)],
         )
         cur.execute(
             "insert into ml.time_to_sell_summary (items,sold,median_days,sold_by_14d,sold_by_30d,sold_by_60d,sold_by_90d,c_index,permutation_p) values (%s,%s,%s,%s,%s,%s,%s,%s,%s)",
@@ -440,17 +513,22 @@ def main():
     speed["weibull_shape"] = weibull_shape
     unsold["likely_sell_date"], unsold["late_sell_date"] = forecast_sell_dates(unsold, frame)
     dates = backtest_sell_dates(frame)
-    columns += [f"chance_sells_next_{SELL_WINDOW_DAYS}d", "estimate_basis", "likely_sell_date", "late_sell_date"]
+    weekdays = evaluate_weekdays(sold["sold_date"])
+    unsold["best_sell_day"], unsold["best_sell_day_chance"], unsold["best_sell_days"] = forecast_best_days(unsold, frame, np.array(weekdays["weights"]))
+    columns += [f"chance_sells_next_{SELL_WINDOW_DAYS}d", "estimate_basis", "likely_sell_date", "late_sell_date", "best_sell_day", "best_sell_day_chance", "best_sell_days"]
     unsold = unsold[columns].sort_values("days_listed", ascending=False)
     path = os.path.join(OUTPUT_DIR, "listed_item_predictions.csv")
     unsold.to_csv(path, index=False)
-    report = {"run_date": str(date.today()), "items": len(items), "list_price": pricing, "sale_given_asking": realized, "time_to_sell": speed, "sell_dates": dates}
+    report = {"run_date": str(date.today()), "items": len(items), "list_price": pricing, "sale_given_asking": realized, "time_to_sell": speed, "sell_dates": dates, "sale_weekdays": weekdays}
     with open(os.path.join(OUTPUT_DIR, "report.json"), "w", encoding="utf-8") as handle:
         json.dump(report, handle, indent=1)
     mlflow.set_experiment("mercantile-time-to-sell")
     with mlflow.start_run(run_name="listed item predictions"):
         mlflow.log_params({"sell_date_model": "weibull aft", "likely_share": FORECAST_LIKELY_SHARE, "late_share": FORECAST_LATE_SHARE})
         mlflow.log_metrics(dates)
+        mlflow.log_params({"weekday_prior": WEEKDAY_PRIOR, "best_days": BEST_DAYS})
+        mlflow.log_metrics({k: float(weekdays[k]) for k in ("baseline_log_loss", "model_log_loss", "top_days_hit_rate", "top_days_baseline", "chi_square_p", "passes_gate")})
+        mlflow.log_metrics({f"sold_on_{name.lower()}": count for name, count in zip(WEEKDAYS, weekdays["counts"])})
         mlflow.log_artifact(path)
     publish_to_warehouse(report, unsold)
     print(json.dumps(report, indent=1))
