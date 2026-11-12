@@ -1,0 +1,11 @@
+# Pinned to what runs on Data-Lab (Python 3.12).
+mlflow==3.14.0
+scikit-learn==1.7.2
+pandas==2.3.3
+numpy==2.5.4
+scipy==1.18.1
+lifelines==0.30.3
+psycopg[binary]==3.3.7
+matplotlib==3.11.2
+boto3==1.43.123
+skops==0.16.0

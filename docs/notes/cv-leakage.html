@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leaky Cross-Validation</title>
+<meta name="description" content="How twelve near-identical laptops made a weak price model look good, and what caught it.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #f9fbfc; --card: #ffffff; --ink: #4c5773; --strong: #2e353b; --soft: #696e7b; --line: #eeecec;
+    --brand: #509ee3; --up: #2e8540; --down: #c0392b; --code: #f3f7fb;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #1b1c1f; --card: #26282c; --ink: #c9ced6; --strong: #eef0f3; --soft: #a2a8b3; --line: #393c42;
+      --up: #6fcf81; --down: #ff8f80; --code: #2f3238;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #1b1c1f; --card: #26282c; --ink: #c9ced6; --strong: #eef0f3; --soft: #a2a8b3; --line: #393c42;
+    --up: #6fcf81; --down: #ff8f80; --code: #2f3238;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { background: var(--bg); }
+  body { font: 400 17px/1.65 Lato, system-ui, sans-serif; color: var(--ink); }
+  main { max-width: 720px; margin: 0 auto; padding: 32px 16px 48px; }
+  a { color: var(--brand); }
+  .back { font-size: 14px; font-weight: 700; }
+  h1 { margin: 20px 0 6px; font-size: clamp(28px, 5vw, 38px); font-weight: 900; line-height: 1.15; color: var(--strong); }
+  .meta { font-size: 14px; color: var(--soft); }
+  h2 { margin: 36px 0 8px; font-size: 21px; font-weight: 900; color: var(--strong); }
+  p, ul, ol { margin-top: 14px; }
+  li { margin-top: 6px; }
+  ul, ol { padding-left: 22px; }
+  strong { color: var(--strong); }
+  code { font: 14px/1.4 ui-monospace, Menlo, Consolas, monospace; background: var(--code); padding: 1px 5px; border-radius: 4px; }
+  pre { margin-top: 14px; padding: 12px 14px; background: var(--code); border-radius: 8px; overflow-x: auto; }
+  pre code { padding: 0; background: none; }
+  .table { margin-top: 16px; overflow-x: auto; background: var(--card); border: 1px solid var(--line); border-radius: 8px; }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; font-variant-numeric: tabular-nums; }
+  th, td { padding: 8px 12px; text-align: right; border-bottom: 1px solid var(--line); white-space: nowrap; }
+  th:first-child, td:first-child { text-align: left; }
+  th { font-size: 13px; color: var(--soft); font-weight: 700; }
+  tr:last-child td { border-bottom: 0; }
+  .pass { color: var(--up); font-weight: 700; }
+  .fail { color: var(--down); font-weight: 700; }
+  .caption { margin-top: 6px; font-size: 14px; color: var(--soft); }
+</style>
+</head>
+<body>
+<main>
+  <a class="back" href="../">← Back to the dashboard</a>
+  <h1>Twelve laptops and a leaky cross-validation</h1>
+  <p class="meta">November 2026 · Medrano Mercantile sales models</p>
+
+  <p>My price model had failed its gate on every run since I built it. Then I recorded one bulk sale, and it passed. A pass after one sale should have been suspicious on its own. Here's what was going on.</p>
+
+  <h2>The setup</h2>
+  <p>The model predicts an item's sale price from its category and name. Before any model counts, it has to beat a simple baseline (the median sale price) on repeated 5-fold cross-validation, with a 95% bootstrap interval on the improvement that excludes zero. I also score a holdout of the most recent 25% of sales, as a second check that respects time.</p>
+  <p>On 76 sales, nothing passed. The best model was about as good as the median, which is an honest answer for a small, messy dataset.</p>
+
+  <h2>What changed</h2>
+  <p>I sold part of an office cleanout to a local IT shop: twelve items for one lump sum, split across the items in proportion to their list prices. Nine of them were laptops of the same model, recorded as "Dell Inspiron 16 5630 i5 Laptop (Unit 1 of 5)", "(Unit 2 of 5)" and so on, at identical prices.</p>
+  <p>The next training run crashed, and the crash turned out to be the useful part. The random forest had passed the gate, which sent the code down its "register the model" path for the first time, and MLflow refused to save the model. Code that has never run tends to break the first time it does.</p>
+
+  <h2>Why the pass wasn't real</h2>
+  <p>Plain K-fold splits rows at random. With five identical laptops in the data, unit 1 lands in training and unit 2 lands in testing, so the model is graded on items it has effectively already seen, at prices it has already memorized. The forest, which can memorize a name, gained the most from that.</p>
+
+  <div class="table">
+    <table>
+      <tr><th>Run</th><th>Sales</th><th>Forest CV error</th><th>Median CV error</th><th>Gain (95% CI)</th><th>Gate</th></tr>
+      <tr><td>Before the bulk sale</td><td>76</td><td>$55.94</td><td>$54.63</td><td>none</td><td class="fail">Fail</td></tr>
+      <tr><td>Random folds</td><td>88</td><td>$49.61</td><td>$63.56</td><td>$13.95 ($5.62 to $23.68)</td><td class="pass">Pass</td></tr>
+      <tr><td>Folds grouped by product</td><td>88</td><td>$55.00</td><td>$63.74</td><td>$8.75 ($2.93 to $15.14)</td><td class="pass">Pass</td></tr>
+    </table>
+  </div>
+  <p class="caption">Mean absolute error on the sale price, out of fold. The gain is the median's error minus the forest's.</p>
+
+  <p>The time-ordered holdout disagreed with the cross-validation the whole time. On the most recent sales the forest's error was $69.30, worse than a ridge model's $52.34. When two honest checks disagree that much, the more flattering one is usually the one that's wrong.</p>
+
+  <h2>The fix</h2>
+  <p>Units of the same product now share a cross-validation group, so they always land on the same side of a split:</p>
+  <pre><code>names = X["item_name"].str.replace(r"\s*\(Unit \d+ of \d+\)\s*$", "", regex=True)
+folds = GroupKFold(5, shuffle=True, random_state=seed)
+for train, test in folds.split(X, groups=names.str.lower()):
+    ...</code></pre>
+  <p>That cut the forest's apparent gain by more than a third, from $13.95 to $8.75. It still passes, and I don't think it should. The bootstrap still resamples individual sales, so nine near-identical laptops count as nine independent pieces of evidence. The model also still loses to ridge on the recent holdout.</p>
+
+  <h2>What I'm taking from it</h2>
+  <ul>
+    <li>Identical units are real sales, so they stay in the data. They have to stay on one side of every split.</li>
+    <li>A sudden pass deserves more suspicion than a steady fail. One business event shouldn't flip a model's verdict.</li>
+    <li>A second check that can disagree is worth keeping. The time-ordered holdout said no all along.</li>
+    <li>Code paths that have never run will break the first time they do. The registration branch crashing is what made me look.</li>
+  </ul>
+  <p>The next change is to resample by product in the bootstrap as well, and to require a model to beat the best alternative on the holdout too. Until then I treat the forest's price estimates as rough.</p>
+
+  <p class="meta" style="margin-top:36px">Code: <a href="https://github.com/manofmanana/medrano-mercantile/blob/main/ml/train.py"><code>ml/train.py</code></a> · <a href="https://github.com/manofmanana/medrano-mercantile">Project repo</a></p>
+</main>
+</body>
+</html>

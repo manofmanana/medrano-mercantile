@@ -1,0 +1,44 @@
+#!/bin/bash
+# Installed on Data-Lab as /usr/local/bin/mercantile-ml-remote: the only commands Airflow's SSH key can run.
+#
+# The ML code runs from the checkout of this repo in /opt/mercantile-ml/site, reset to origin/main before
+# every run, so the server always runs what's merged. That checkout only ever holds generated data commits,
+# so resetting it loses nothing. This wrapper is installed by hand on purpose: it is the security boundary
+# for the SSH key, so a push to main can change the ML code but not what the key is allowed to run.
+set -uo pipefail
+set -a; . /etc/mercantile-ml/env; set +a
+cd /opt/mercantile-ml
+PY=venv/bin/python
+
+record() { $PY site/ml/record_run.py "$@" || echo "warning: could not record the run" >&2; }
+sync() {
+  git -C site fetch -q origin && git -C site reset -q --hard origin/main \
+    || { record "$1" failed "git sync failed"; exit 1; }
+}
+
+case "${SSH_ORIGINAL_COMMAND:-}" in
+  train)
+    sync train
+    $PY site/ml/train.py
+    rc=$?
+    if [ "$rc" -eq 0 ]; then record train ok; else record train failed "train.py exit $rc"; fi
+    exit "$rc"
+    ;;
+  publish)
+    sync publish
+    $PY site/ml/publish.py output/data.json || { record publish failed "publish.py failed"; exit 1; }
+    cp output/data.json site/docs/data.json
+    git -C site add docs/data.json
+    if git -C site diff --cached --quiet; then
+      record publish ok "no data change"; echo "no data change"; exit 0
+    fi
+    if git -C site commit -q -m "Refresh public dashboard data" && git -C site push -q; then
+      record publish ok
+    else
+      record publish failed "git push failed"; exit 1
+    fi
+    ;;
+  *)
+    echo "rejected: ${SSH_ORIGINAL_COMMAND:-empty}" >&2; exit 2
+    ;;
+esac
