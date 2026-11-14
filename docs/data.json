@@ -1,7 +1,7 @@
 {
- "published": "2026-11-13T07:01+00:00",
- "refreshed": "2026-11-13T07:00:09.926184+00:00",
- "trained": "2026-11-13T07:01:06.684473+00:00",
+ "published": "2026-11-14T07:01+00:00",
+ "refreshed": "2026-11-14T07:00:07.831740+00:00",
+ "trained": "2026-11-14T07:01:04.619705+00:00",
  "sales": [
   {
    "item": "Retro IPod Speaker",
@@ -823,7 +823,7 @@
    "status": "Listed",
    "asking": 50.0,
    "potential_profit": 50.0,
-   "days": 172,
+   "days": 173,
    "aging": "90+ days",
    "aging_order": 4,
    "is_stale": true
@@ -834,7 +834,7 @@
    "status": "Listed",
    "asking": 120.0,
    "potential_profit": 120.0,
-   "days": 172,
+   "days": 173,
    "aging": "90+ days",
    "aging_order": 4,
    "is_stale": true
@@ -845,7 +845,7 @@
    "status": "Listed",
    "asking": 40.0,
    "potential_profit": 40.0,
-   "days": 172,
+   "days": 173,
    "aging": "90+ days",
    "aging_order": 4,
    "is_stale": true
@@ -856,7 +856,7 @@
    "status": "Listed",
    "asking": 150.0,
    "potential_profit": 150.0,
-   "days": 172,
+   "days": 173,
    "aging": "90+ days",
    "aging_order": 4,
    "is_stale": true
@@ -867,7 +867,7 @@
    "status": "Listed",
    "asking": 10.0,
    "potential_profit": 10.0,
-   "days": 172,
+   "days": 173,
    "aging": "90+ days",
    "aging_order": 4,
    "is_stale": true
@@ -878,7 +878,7 @@
    "status": "Listed",
    "asking": 40.0,
    "potential_profit": 40.0,
-   "days": 172,
+   "days": 173,
    "aging": "90+ days",
    "aging_order": 4,
    "is_stale": true
@@ -889,7 +889,7 @@
    "status": "Listed",
    "asking": 45.0,
    "potential_profit": 45.0,
-   "days": 172,
+   "days": 173,
    "aging": "90+ days",
    "aging_order": 4,
    "is_stale": true
@@ -900,7 +900,7 @@
    "status": "Listed",
    "asking": 35.0,
    "potential_profit": 35.0,
-   "days": 172,
+   "days": 173,
    "aging": "90+ days",
    "aging_order": 4,
    "is_stale": true
@@ -911,7 +911,7 @@
    "status": "Listed",
    "asking": 40.0,
    "potential_profit": 40.0,
-   "days": 138,
+   "days": 139,
    "aging": "90+ days",
    "aging_order": 4,
    "is_stale": true
@@ -922,7 +922,7 @@
    "status": "Listed",
    "asking": 100.0,
    "potential_profit": 100.0,
-   "days": 93,
+   "days": 94,
    "aging": "90+ days",
    "aging_order": 4,
    "is_stale": true
@@ -933,7 +933,7 @@
    "status": "Listed",
    "asking": 100.0,
    "potential_profit": 100.0,
-   "days": 86,
+   "days": 87,
    "aging": "61\u201390 days",
    "aging_order": 3,
    "is_stale": true
@@ -944,7 +944,7 @@
    "status": "Listed",
    "asking": 50.0,
    "potential_profit": 50.0,
-   "days": 86,
+   "days": 87,
    "aging": "61\u201390 days",
    "aging_order": 3,
    "is_stale": true
@@ -955,7 +955,7 @@
    "status": "Listed",
    "asking": 250.0,
    "potential_profit": 250.0,
-   "days": 86,
+   "days": 87,
    "aging": "61\u201390 days",
    "aging_order": 3,
    "is_stale": true
@@ -966,7 +966,7 @@
    "status": "Listed",
    "asking": 30.0,
    "potential_profit": 30.0,
-   "days": 79,
+   "days": 80,
    "aging": "61\u201390 days",
    "aging_order": 3,
    "is_stale": true
@@ -977,10 +977,10 @@
    "status": "Listed",
    "asking": 25.0,
    "potential_profit": 25.0,
-   "days": 60,
-   "aging": "31\u201360 days",
-   "aging_order": 2,
-   "is_stale": false
+   "days": 61,
+   "aging": "61\u201390 days",
+   "aging_order": 3,
+   "is_stale": true
   },
   {
    "item": "Goomba Hat",
@@ -988,10 +988,10 @@
    "status": "Listed",
    "asking": 40.0,
    "potential_profit": 40.0,
-   "days": 60,
-   "aging": "31\u201360 days",
-   "aging_order": 2,
-   "is_stale": false
+   "days": 61,
+   "aging": "61\u201390 days",
+   "aging_order": 3,
+   "is_stale": true
   },
   {
    "item": "NES Switch Joycons",
@@ -999,10 +999,10 @@
    "status": "Listed",
    "asking": 80.0,
    "potential_profit": 80.0,
-   "days": 60,
-   "aging": "31\u201360 days",
-   "aging_order": 2,
-   "is_stale": false
+   "days": 61,
+   "aging": "61\u201390 days",
+   "aging_order": 3,
+   "is_stale": true
   },
   {
    "item": "Happy Face Jar",
@@ -1010,10 +1010,10 @@
    "status": "Listed",
    "asking": 30.0,
    "potential_profit": 30.0,
-   "days": 60,
-   "aging": "31\u201360 days",
-   "aging_order": 2,
-   "is_stale": false
+   "days": 61,
+   "aging": "61\u201390 days",
+   "aging_order": 3,
+   "is_stale": true
   },
   {
    "item": "Small Table",
@@ -1021,10 +1021,10 @@
    "status": "Listed",
    "asking": 40.0,
    "potential_profit": 40.0,
-   "days": 60,
-   "aging": "31\u201360 days",
-   "aging_order": 2,
-   "is_stale": false
+   "days": 61,
+   "aging": "61\u201390 days",
+   "aging_order": 3,
+   "is_stale": true
   },
   {
    "item": "Clothes Lot",
@@ -1032,10 +1032,10 @@
    "status": "Listed",
    "asking": 100.0,
    "potential_profit": 100.0,
-   "days": 60,
-   "aging": "31\u201360 days",
-   "aging_order": 2,
-   "is_stale": false
+   "days": 61,
+   "aging": "61\u201390 days",
+   "aging_order": 3,
+   "is_stale": true
   },
   {
    "item": "Bicycle Tires",
@@ -1043,7 +1043,7 @@
    "status": "Listed",
    "asking": 50.0,
    "potential_profit": 50.0,
-   "days": 55,
+   "days": 56,
    "aging": "31\u201360 days",
    "aging_order": 2,
    "is_stale": false
@@ -1054,9 +1054,9 @@
    "status": "Listed",
    "asking": 280.0,
    "potential_profit": 280.0,
-   "days": 30,
-   "aging": "0\u201330 days",
-   "aging_order": 1,
+   "days": 31,
+   "aging": "31\u201360 days",
+   "aging_order": 2,
    "is_stale": false
   },
   {
@@ -1065,9 +1065,9 @@
    "status": "Listed",
    "asking": 50.0,
    "potential_profit": 50.0,
-   "days": 30,
-   "aging": "0\u201330 days",
-   "aging_order": 1,
+   "days": 31,
+   "aging": "31\u201360 days",
+   "aging_order": 2,
    "is_stale": false
   },
   {
@@ -1076,7 +1076,7 @@
    "status": "Listed",
    "asking": 50.0,
    "potential_profit": 50.0,
-   "days": 10,
+   "days": 11,
    "aging": "0\u201330 days",
    "aging_order": 1,
    "is_stale": false
@@ -1087,7 +1087,7 @@
    "status": "Listed",
    "asking": 50.0,
    "potential_profit": 50.0,
-   "days": 10,
+   "days": 11,
    "aging": "0\u201330 days",
    "aging_order": 1,
    "is_stale": false
@@ -1098,7 +1098,7 @@
    "status": "Listed",
    "asking": 80.0,
    "potential_profit": 80.0,
-   "days": 10,
+   "days": 11,
    "aging": "0\u201330 days",
    "aging_order": 1,
    "is_stale": false
@@ -1109,7 +1109,7 @@
    "status": "Listed",
    "asking": 80.0,
    "potential_profit": 80.0,
-   "days": 10,
+   "days": 11,
    "aging": "0\u201330 days",
    "aging_order": 1,
    "is_stale": false
@@ -1120,7 +1120,7 @@
    "status": "Listed",
    "asking": 80.0,
    "potential_profit": 80.0,
-   "days": 10,
+   "days": 11,
    "aging": "0\u201330 days",
    "aging_order": 1,
    "is_stale": false
@@ -1131,7 +1131,7 @@
    "status": "Listed",
    "asking": 75.0,
    "potential_profit": 75.0,
-   "days": 10,
+   "days": 11,
    "aging": "0\u201330 days",
    "aging_order": 1,
    "is_stale": false
@@ -1142,7 +1142,7 @@
    "status": "Listed",
    "asking": 50.0,
    "potential_profit": 50.0,
-   "days": 10,
+   "days": 11,
    "aging": "0\u201330 days",
    "aging_order": 1,
    "is_stale": false
@@ -1153,7 +1153,7 @@
    "status": "Listed",
    "asking": 300.0,
    "potential_profit": 300.0,
-   "days": 10,
+   "days": 11,
    "aging": "0\u201330 days",
    "aging_order": 1,
    "is_stale": false
@@ -1164,7 +1164,7 @@
    "status": "Listed",
    "asking": 50.0,
    "potential_profit": 50.0,
-   "days": 10,
+   "days": 11,
    "aging": "0\u201330 days",
    "aging_order": 1,
    "is_stale": false
@@ -1175,7 +1175,7 @@
    "status": "Listed",
    "asking": 40.0,
    "potential_profit": 40.0,
-   "days": 10,
+   "days": 11,
    "aging": "0\u201330 days",
    "aging_order": 1,
    "is_stale": false
@@ -1186,7 +1186,7 @@
    "status": "Listed",
    "asking": 75.0,
    "potential_profit": 75.0,
-   "days": 10,
+   "days": 11,
    "aging": "0\u201330 days",
    "aging_order": 1,
    "is_stale": false
@@ -1197,7 +1197,7 @@
    "status": "Listed",
    "asking": 80.0,
    "potential_profit": 80.0,
-   "days": 10,
+   "days": 11,
    "aging": "0\u201330 days",
    "aging_order": 1,
    "is_stale": false
@@ -1208,7 +1208,7 @@
    "status": "Listed",
    "asking": 80.0,
    "potential_profit": 80.0,
-   "days": 10,
+   "days": 11,
    "aging": "0\u201330 days",
    "aging_order": 1,
    "is_stale": false
@@ -1219,7 +1219,7 @@
    "status": "Listed",
    "asking": 80.0,
    "potential_profit": 80.0,
-   "days": 10,
+   "days": 11,
    "aging": "0\u201330 days",
    "aging_order": 1,
    "is_stale": false
@@ -1230,7 +1230,7 @@
    "status": "Listed",
    "asking": 80.0,
    "potential_profit": 80.0,
-   "days": 10,
+   "days": 11,
    "aging": "0\u201330 days",
    "aging_order": 1,
    "is_stale": false
@@ -1241,7 +1241,7 @@
    "status": "Listed",
    "asking": 15.0,
    "potential_profit": 15.0,
-   "days": 10,
+   "days": 11,
    "aging": "0\u201330 days",
    "aging_order": 1,
    "is_stale": false
@@ -1357,9 +1357,9 @@
   {
    "question": "Days until it sells",
    "baseline": "overall median",
-   "baseline_score": 30.99,
+   "baseline_score": 31.04,
    "model": "Weibull model",
-   "model_score": 30.28,
+   "model_score": 30.41,
    "metric": "average error, days",
    "passes": true
   },
@@ -1386,7 +1386,7 @@
    "baseline": "shuffled labels",
    "baseline_score": 0.5,
    "model": "Cox model",
-   "model_score": 0.66,
+   "model_score": 0.65,
    "metric": "C-index, higher is better",
    "passes": true
   }
@@ -1438,111 +1438,111 @@
    "item": "NES Switch Joycons",
    "category": "Video Games & Consoles",
    "asking": 80.0,
-   "days": 60,
-   "chance": 0.7,
-   "basis": "history"
-  },
-  {
-   "item": "Apple iPad mini (Unit 1 of 3)",
-   "category": "Computers & Accessories",
-   "asking": 80.0,
-   "days": 10,
-   "chance": 0.6,
-   "basis": "history"
-  },
-  {
-   "item": "Apple iPad mini (Unit 2 of 3)",
-   "category": "Computers & Accessories",
-   "asking": 80.0,
-   "days": 10,
-   "chance": 0.6,
-   "basis": "history"
-  },
-  {
-   "item": "Apple iPad mini (Unit 3 of 3)",
-   "category": "Computers & Accessories",
-   "asking": 80.0,
-   "days": 10,
-   "chance": 0.6,
-   "basis": "history"
-  },
-  {
-   "item": "Apple iPad Air 2 (Unit 1 of 4)",
-   "category": "Computers & Accessories",
-   "asking": 80.0,
-   "days": 10,
-   "chance": 0.6,
-   "basis": "history"
-  },
-  {
-   "item": "Apple iPad Air 2 (Unit 3 of 4)",
-   "category": "Computers & Accessories",
-   "asking": 80.0,
-   "days": 10,
-   "chance": 0.6,
-   "basis": "history"
-  },
-  {
-   "item": "Apple iPad Air 2 (Unit 2 of 4)",
-   "category": "Computers & Accessories",
-   "asking": 80.0,
-   "days": 10,
-   "chance": 0.6,
-   "basis": "history"
-  },
-  {
-   "item": "Apple iPad Air 2 (Unit 4 of 4)",
-   "category": "Computers & Accessories",
-   "asking": 80.0,
-   "days": 10,
-   "chance": 0.6,
-   "basis": "history"
-  },
-  {
-   "item": "Samsung Galaxy Tablet (Unit 1 of 2)",
-   "category": "Computers & Accessories",
-   "asking": 75.0,
-   "days": 10,
-   "chance": 0.59,
-   "basis": "history"
-  },
-  {
-   "item": "Samsung Galaxy Tablet (Unit 2 of 2)",
-   "category": "Computers & Accessories",
-   "asking": 75.0,
-   "days": 10,
-   "chance": 0.59,
+   "days": 61,
+   "chance": 0.71,
    "basis": "history"
   },
   {
    "item": "Bicycle Tires",
    "category": "Bikes & Cycling",
    "asking": 50.0,
-   "days": 55,
-   "chance": 0.56,
+   "days": 56,
+   "chance": 0.59,
+   "basis": "history"
+  },
+  {
+   "item": "Apple iPad mini (Unit 1 of 3)",
+   "category": "Computers & Accessories",
+   "asking": 80.0,
+   "days": 11,
+   "chance": 0.59,
+   "basis": "history"
+  },
+  {
+   "item": "Apple iPad mini (Unit 2 of 3)",
+   "category": "Computers & Accessories",
+   "asking": 80.0,
+   "days": 11,
+   "chance": 0.59,
+   "basis": "history"
+  },
+  {
+   "item": "Apple iPad mini (Unit 3 of 3)",
+   "category": "Computers & Accessories",
+   "asking": 80.0,
+   "days": 11,
+   "chance": 0.59,
+   "basis": "history"
+  },
+  {
+   "item": "Apple iPad Air 2 (Unit 4 of 4)",
+   "category": "Computers & Accessories",
+   "asking": 80.0,
+   "days": 11,
+   "chance": 0.59,
+   "basis": "history"
+  },
+  {
+   "item": "Apple iPad Air 2 (Unit 3 of 4)",
+   "category": "Computers & Accessories",
+   "asking": 80.0,
+   "days": 11,
+   "chance": 0.59,
+   "basis": "history"
+  },
+  {
+   "item": "Apple iPad Air 2 (Unit 2 of 4)",
+   "category": "Computers & Accessories",
+   "asking": 80.0,
+   "days": 11,
+   "chance": 0.59,
+   "basis": "history"
+  },
+  {
+   "item": "Apple iPad Air 2 (Unit 1 of 4)",
+   "category": "Computers & Accessories",
+   "asking": 80.0,
+   "days": 11,
+   "chance": 0.59,
+   "basis": "history"
+  },
+  {
+   "item": "Samsung Galaxy Tablet (Unit 1 of 2)",
+   "category": "Computers & Accessories",
+   "asking": 75.0,
+   "days": 11,
+   "chance": 0.58,
+   "basis": "history"
+  },
+  {
+   "item": "Samsung Galaxy Tablet (Unit 2 of 2)",
+   "category": "Computers & Accessories",
+   "asking": 75.0,
+   "days": 11,
+   "chance": 0.58,
    "basis": "history"
   },
   {
    "item": "AOC Monitor with Cables",
    "category": "Computers & Accessories",
    "asking": 50.0,
-   "days": 10,
-   "chance": 0.55,
+   "days": 11,
+   "chance": 0.54,
    "basis": "history"
   },
   {
    "item": "Amazon Fire Tablet",
    "category": "Computers & Accessories",
    "asking": 50.0,
-   "days": 10,
-   "chance": 0.55,
+   "days": 11,
+   "chance": 0.54,
    "basis": "history"
   },
   {
    "item": "Apple Magic Keyboard",
    "category": "Computers & Accessories",
    "asking": 35.0,
-   "days": 9,
+   "days": 10,
    "chance": 0.51,
    "basis": "history"
   },
@@ -1550,7 +1550,7 @@
    "item": "Small Table",
    "category": "Furniture",
    "asking": 40.0,
-   "days": 60,
+   "days": 61,
    "chance": 0.49,
    "basis": "history"
   },
@@ -1558,23 +1558,31 @@
    "item": "NETGEAR ProSAFE GS105 Gigabit Switch",
    "category": "Computers & Accessories",
    "asking": 15.0,
-   "days": 10,
-   "chance": 0.45,
+   "days": 11,
+   "chance": 0.44,
    "basis": "history"
   },
   {
    "item": "Mini Bike Pump",
    "category": "Bikes & Cycling",
    "asking": 50.0,
-   "days": 10,
+   "days": 11,
    "chance": 0.41,
+   "basis": "history"
+  },
+  {
+   "item": "Ray-Ban Silver Metal Prescription Glasses",
+   "category": "Accessories",
+   "asking": 100.0,
+   "days": 94,
+   "chance": 0.4,
    "basis": "history"
   },
   {
    "item": "Govee Outdoor Lights",
    "category": "Home & Garden",
    "asking": 300.0,
-   "days": 10,
+   "days": 11,
    "chance": 0.4,
    "basis": "history"
   },
@@ -1582,23 +1590,15 @@
    "item": "Happy Face Jar",
    "category": "Home & Garden",
    "asking": 30.0,
-   "days": 60,
+   "days": 61,
    "chance": 0.39,
-   "basis": "history"
-  },
-  {
-   "item": "Ray-Ban Silver Metal Prescription Glasses",
-   "category": "Accessories",
-   "asking": 100.0,
-   "days": 93,
-   "chance": 0.38,
    "basis": "history"
   },
   {
    "item": "La Sportiva Mythos Climbing Shoes \u2013 Orange/Grey",
    "category": "Sports & Fitness",
    "asking": 30.0,
-   "days": 79,
+   "days": 80,
    "chance": 0.33,
    "basis": "history"
   },
@@ -1606,7 +1606,7 @@
    "item": "Clothes Lot",
    "category": "Clothing & Shoes",
    "asking": 100.0,
-   "days": 60,
+   "days": 61,
    "chance": 0.33,
    "basis": "history"
   },
@@ -1614,15 +1614,7 @@
    "item": "Fjallraven Kanken Mini Backpack Olive Green",
    "category": "Bags & Luggage",
    "asking": 40.0,
-   "days": 172,
-   "chance": 0.32,
-   "basis": "extrapolated"
-  },
-  {
-   "item": "A1 Smart Glasses / Bluetooth Audio Glasses",
-   "category": "Audio & Wearables",
-   "asking": 120.0,
-   "days": 172,
+   "days": 173,
    "chance": 0.31,
    "basis": "extrapolated"
   },
@@ -1630,23 +1622,39 @@
    "item": "Carhartt fanny pack",
    "category": "Bags & Luggage",
    "asking": 40.0,
-   "days": 138,
+   "days": 139,
    "chance": 0.31,
+   "basis": "extrapolated"
+  },
+  {
+   "item": "A1 Smart Glasses / Bluetooth Audio Glasses",
+   "category": "Audio & Wearables",
+   "asking": 120.0,
+   "days": 173,
+   "chance": 0.3,
    "basis": "extrapolated"
   },
   {
    "item": "Kids Toys Games & Book Bundle UNO Sonic Hedgehog Plush",
    "category": "Toys & Collectibles",
    "asking": 35.0,
-   "days": 172,
-   "chance": 0.3,
+   "days": 173,
+   "chance": 0.29,
    "basis": "extrapolated"
+  },
+  {
+   "item": "Marc Jacobs Perfume",
+   "category": "Beauty & Fragrance",
+   "asking": 100.0,
+   "days": 87,
+   "chance": 0.27,
+   "basis": "history"
   },
   {
    "item": "Goomba Hat",
    "category": "Clothing & Shoes",
    "asking": 40.0,
-   "days": 60,
+   "days": 61,
    "chance": 0.27,
    "basis": "history"
   },
@@ -1654,23 +1662,15 @@
    "item": "Honda Car Radio",
    "category": "Vehicles",
    "asking": 40.0,
-   "days": 10,
+   "days": 11,
    "chance": 0.26,
-   "basis": "history"
-  },
-  {
-   "item": "Marc Jacobs Perfume",
-   "category": "Beauty & Fragrance",
-   "asking": 100.0,
-   "days": 86,
-   "chance": 0.25,
    "basis": "history"
   },
   {
    "item": "Clarks Men's Shoes",
    "category": "Clothing & Shoes",
    "asking": 25.0,
-   "days": 60,
+   "days": 61,
    "chance": 0.25,
    "basis": "history"
   },
@@ -1678,55 +1678,55 @@
    "item": "Rayban Meta Gen 2 Glasses",
    "category": "Audio & Wearables",
    "asking": 280.0,
-   "days": 30,
+   "days": 31,
    "chance": 0.24,
+   "basis": "history"
+  },
+  {
+   "item": "K18 Leave In",
+   "category": "Beauty & Fragrance",
+   "asking": 50.0,
+   "days": 87,
+   "chance": 0.23,
    "basis": "history"
   },
   {
    "item": "Appliance Testing Module",
    "category": "Tools & Equipment",
    "asking": 10.0,
-   "days": 172,
+   "days": 173,
    "chance": 0.22,
    "basis": "extrapolated"
-  },
-  {
-   "item": "K18 Leave In",
-   "category": "Beauty & Fragrance",
-   "asking": 50.0,
-   "days": 86,
-   "chance": 0.22,
-   "basis": "history"
   },
   {
    "item": "Unlocked iPhone 7 Plus",
    "category": "Phones & Accessories",
    "asking": 150.0,
-   "days": 172,
+   "days": 173,
    "chance": 0.19,
-   "basis": "extrapolated"
-  },
-  {
-   "item": "ASICS Womens Running Shoes Gray Pink",
-   "category": "Clothing & Shoes",
-   "asking": 40.0,
-   "days": 172,
-   "chance": 0.18,
    "basis": "extrapolated"
   },
   {
    "item": "ASICS Gel Nimbus Mens Running Shoes Navy Size 7.5",
    "category": "Clothing & Shoes",
    "asking": 45.0,
-   "days": 172,
+   "days": 173,
    "chance": 0.18,
+   "basis": "extrapolated"
+  },
+  {
+   "item": "ASICS Womens Running Shoes Gray Pink",
+   "category": "Clothing & Shoes",
+   "asking": 40.0,
+   "days": 173,
+   "chance": 0.17,
    "basis": "extrapolated"
   },
   {
    "item": "Halloween Costumes",
    "category": "Clothing & Shoes",
    "asking": 50.0,
-   "days": 10,
+   "days": 11,
    "chance": 0.17,
    "basis": "history"
   },
@@ -1734,15 +1734,15 @@
    "item": "Samsung S21 Ultra Phone",
    "category": "Phones & Accessories",
    "asking": 250.0,
-   "days": 86,
-   "chance": 0.15,
+   "days": 87,
+   "chance": 0.16,
    "basis": "history"
   },
   {
    "item": "3 in 1 magnetic charger",
    "category": "Phones & Accessories",
    "asking": 50.0,
-   "days": 172,
+   "days": 173,
    "chance": 0.14,
    "basis": "extrapolated"
   },
@@ -1750,7 +1750,7 @@
    "item": "New Android Phone",
    "category": "Phones & Accessories",
    "asking": 50.0,
-   "days": 30,
+   "days": 31,
    "chance": 0.1,
    "basis": "history"
   }
