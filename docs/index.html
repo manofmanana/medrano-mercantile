@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#14284b">
 <title>Medrano Mercantile</title>
 <meta name="description" content="Read-only mirror of the Medrano Mercantile business dashboard: sales, inventory and sales models.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -10,19 +11,21 @@
 <style>
   :root {
     color-scheme: light dark;
-    --bg: #f9fbfc; --card: #ffffff; --ink: #4c5773; --strong: #2e353b; --soft: #696e7b; --line: #eeecec; --field: #ffffff; --row: #f3f7fb;
-    --brand: #509ee3; --green: #88bf4d; --purple: #a989c5; --red: #ef8c8c; --yellow: #f9d45c; --orange: #f2a86f; --teal: #98d9d9; --indigo: #7172ad;
-    --up: #2e8540; --down: #c0392b; --progress: #16a34a; --models: #e8590c; --shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    --bg: #f3f5f9; --card: #ffffff; --ink: #3d4a63; --strong: #14223d; --soft: #5f6b80; --line: #e1e6ef; --field: #ffffff; --row: #eef2f8;
+    --brand: #1f3a68; --green: #5fa35a; --purple: #a989c5; --red: #ef8c8c; --yellow: #f2c94c; --orange: #f2a86f; --teal: #5bb8c4; --indigo: #6aa8e8;
+    --hero: #14284b; --hero-ink: #ffffff; --hero-soft: #b9c6de;
+    --up: #2e8540; --down: #c0392b; --progress: #2e8540; --models: #e8590c; --shadow: 0 1px 3px rgba(20, 40, 75, 0.1);
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #1b1c1f; --card: #26282c; --ink: #c9ced6; --strong: #eef0f3; --soft: #a2a8b3; --line: #393c42; --field: #26282c; --row: #2f3238;
-      --up: #6fcf81; --down: #ff8f80; --shadow: none;
+      --bg: #0a1426; --card: #11203a; --ink: #c3cde0; --strong: #eef2f9; --soft: #93a0b8; --line: #22334f; --field: #11203a; --row: #172a48;
+      --brand: #7fa8ec; --indigo: #9cc4f5; --hero: #1a3260; --hero-soft: #aebcd8;
+      --up: #6fcf81; --down: #ff8f80; --progress: #6fcf81; --shadow: none;
     }
   }
   * { box-sizing: border-box; margin: 0; }
-  html { background: var(--bg); }
-  body { font: 400 14px/1.45 Lato, system-ui, sans-serif; color: var(--ink); font-variant-numeric: tabular-nums; }
+  html { background: var(--bg); -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  body { font: 400 14px/1.45 Lato, system-ui, sans-serif; color: var(--ink); font-variant-numeric: tabular-nums; -webkit-tap-highlight-color: transparent; }
   a { color: var(--brand); }
   a:focus-visible, select:focus-visible, summary:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
   main { max-width: 1320px; margin: 0 auto; padding: 16px; }
@@ -42,9 +45,10 @@
   .fill { height: 100%; border-radius: 7px; background: var(--progress); }
   .section { display: flex; align-items: flex-end; padding: 0 2px 4px; background: none; }
   .section h2 { font-size: 18px; font-weight: 900; color: var(--strong); }
-  .text { padding: 2px; }
-  .text h1 { font-size: 26px; font-weight: 900; color: var(--strong); line-height: 1.2; }
+  .text { display: flex; flex-direction: column; justify-content: center; padding: 14px 18px; background: var(--hero); color: var(--hero-soft); border-radius: 8px; }
+  .text h1 { font-size: 26px; font-weight: 900; color: var(--hero-ink); line-height: 1.2; }
   .text p { margin-top: 2px; }
+  .text b { color: var(--hero-ink); }
   .note { font-size: 13px; }
   svg { display: block; width: 100%; height: 100%; }
   svg text { font: 400 11px Lato, system-ui, sans-serif; fill: var(--soft); }
@@ -59,10 +63,11 @@
   .pass { color: var(--up); font-weight: 700; } .fail { color: var(--down); font-weight: 700; }
   .rough { color: var(--soft); }
   .empty { display: flex; align-items: center; justify-content: center; height: 100%; color: var(--soft); }
-  .tip { position: fixed; z-index: 5; pointer-events: none; padding: 5px 9px; background: #2e353b; color: #fff; border-radius: 4px; font-size: 12px; white-space: nowrap; opacity: 0; transition: opacity 80ms ease; }
+  .tip { position: fixed; z-index: 5; pointer-events: none; max-width: calc(100vw - 16px); padding: 5px 9px; background: #14284b; color: #fff; border-radius: 4px; font-size: 12px; opacity: 0; transition: opacity 80ms ease; }
   .tip.on { opacity: 1; }
   footer { margin: 20px 2px 8px; font-size: 13px; color: var(--soft); }
   .error { padding: 32px 0; color: var(--down); }
+  .more { display: none; }
   @media (max-width: 800px) {
     .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: auto; }
     .card, .section, .text { grid-column: 1 / -1 !important; grid-row: auto !important; }
@@ -71,6 +76,34 @@
     .card.taller { height: 420px; }
     select { flex: 1; min-width: 0; width: 100%; } label { flex: 1 1 30%; }
     .badge { margin-left: 0; }
+  }
+  @media (max-width: 600px) {
+    main { padding: 0 12px 16px; }
+    .filters { gap: 8px; padding: 8px 0 10px; }
+    label { flex: 1 1 0; min-width: 0; }
+    select { min-height: 40px; font-size: 16px; padding: 0 4px; }
+    .badge { display: none; }
+    .grid { gap: 10px; }
+    .text { padding: 14px 16px; }
+    .text h1 { font-size: 24px; }
+    .card { padding: 10px 12px; }
+    .card.half { min-height: 84px; }
+    .card.stamp { grid-column: 1 / -1 !important; min-height: 72px; }
+    .big { font-size: 24px; }
+    .card.list { height: auto; }
+    .card.list .body { flex: none; }
+    .card.list .scroll { position: static; overflow: visible; }
+    .stack thead { display: none; }
+    .stack, .stack tbody { display: block; }
+    .stack tr { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 16px; padding: 8px 0; border-bottom: 1px solid var(--line); }
+    .stack td { display: flex; justify-content: space-between; gap: 8px; min-width: 0; padding: 0; border: 0; font-size: 12px; text-align: right; }
+    .stack td::before { content: attr(data-label); flex: none; color: var(--soft); font-weight: 700; text-align: left; }
+    .stack td:first-child { display: block; grid-column: 1 / -1; padding-bottom: 2px; font-size: 13px; font-weight: 700; text-align: left; }
+    .stack td:first-child::before { content: none; }
+    .stack td:empty { display: none; }
+    .stack.clip tr:nth-child(n + 11) { display: none; }
+    .more { display: block; width: 100%; min-height: 40px; margin-top: 8px; background: var(--row); color: var(--brand); border: 0; border-radius: 6px; font: 700 14px Lato, system-ui, sans-serif; }
+    footer { line-height: 1.7; }
   }
   @media (prefers-reduced-motion: reduce) { .tip { transition: none; } }
 </style>
@@ -121,15 +154,26 @@
     return n;
   }
 
-  function hover(target, text) {
-    target.addEventListener("pointermove", (e) => {
-      tip.textContent = text;
-      tip.classList.add("on");
-      tip.style.left = Math.min(e.clientX + 12, innerWidth - tip.offsetWidth - 8) + "px";
-      tip.style.top = e.clientY - 34 + "px";
-    });
-    target.addEventListener("pointerleave", () => tip.classList.remove("on"));
+  let tipTimer;
+  function showTip(e, text) {
+    tip.textContent = text;
+    tip.classList.add("on");
+    tip.style.left = Math.max(8, Math.min(e.clientX + 12, innerWidth - tip.offsetWidth - 8)) + "px";
+    tip.style.top = Math.max(8, e.clientY - tip.offsetHeight - 14) + "px";
   }
+
+  function hover(target, text) {
+    target.addEventListener("pointermove", (e) => { if (e.pointerType === "mouse") showTip(e, text); });
+    target.addEventListener("pointerleave", (e) => { if (e.pointerType === "mouse") tip.classList.remove("on"); });
+    // Touch has no hover: a tap shows the value for a moment instead.
+    target.addEventListener("pointerup", (e) => {
+      if (e.pointerType === "mouse") return;
+      showTip(e, text);
+      clearTimeout(tipTimer);
+      tipTimer = setTimeout(() => tip.classList.remove("on"), 2500);
+    });
+  }
+  addEventListener("scroll", () => tip.classList.remove("on"), { passive: true });
 
   function card(col, row, w, h, title, size) {
     const c = node("section", "card" + (size ? " " + size : ""));
@@ -221,7 +265,7 @@
         if (barH) svg.appendChild(roundedBar(x, y, barW, barH, `var(${SERIES[j]})`));
         if (showValues) svg.appendChild(el("text", { x: x + barW / 2, y: y - 4, "text-anchor": "middle", class: "value" }, format(s.values[i])));
       });
-      if (labels.length <= 12 || i % 2 === 0) svg.appendChild(el("text", { x: plot.left + slot * i + slot / 2, y: plot.top + plot.h + 16, "text-anchor": "middle" }, label));
+      if (i % Math.max(1, Math.ceil(46 / slot)) === 0) svg.appendChild(el("text", { x: plot.left + slot * i + slot / 2, y: plot.top + plot.h + 16, "text-anchor": "middle" }, label));
       const hit = el("rect", { x: plot.left + slot * i, y: plot.top, width: slot, height: plot.h, fill: "transparent" });
       hover(hit, `${label}: ${series.map((s) => `${s.name} ${format(s.values[i])}`).join(", ")}`);
       svg.appendChild(hit);
@@ -253,6 +297,7 @@
 
   function rows(body, list, format, fill) {
     if (!list.length) return empty(body);
+    body.parentElement.classList.add("list");
     const scroll = node("div", "scroll");
     body.appendChild(scroll);
     const rowH = 25, w = Math.max(body.clientWidth - 8, 240), labelW = Math.min(170, w * 0.42), valueW = 60;
@@ -292,8 +337,9 @@
 
   function table(body, headers, list) {
     if (!list.length) return empty(body);
+    body.parentElement.classList.add("list");
     const scroll = node("div", "scroll");
-    const t = node("table");
+    const t = node("table", "stack");
     const head = t.createTHead().insertRow();
     headers.forEach((h) => head.appendChild(node("th", h.n ? "n" : "", h.label)));
     const tb = t.createTBody();
@@ -303,11 +349,20 @@
         const td = tr.insertCell();
         const v = h.get(row);
         td.textContent = v === null || v === undefined ? "" : v;
+        td.dataset.label = h.label;
         const cls = [h.n ? "n" : "", h.cls ? h.cls(row) : ""].join(" ").trim();
         if (cls) td.className = cls;
       });
     });
     scroll.appendChild(t);
+    // On phones long tables show 10 rows until asked for the rest.
+    if (list.length > 10) {
+      t.classList.add("clip");
+      const more = node("button", "more", `Show all ${list.length}`);
+      more.type = "button";
+      more.addEventListener("click", () => { t.classList.remove("clip"); more.remove(); });
+      scroll.appendChild(more);
+    }
     body.appendChild(scroll);
   }
 
@@ -372,7 +427,7 @@
     intro.appendChild(node("p", "note", "Built on dbt marts tables, with models tracked in MLflow."));
     grid.appendChild(intro);
     const stamp = new Date(data.refreshed).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" });
-    scalarSmall(card(18, 0, 6, 2, "Last data refresh", "half"), stamp);
+    scalarSmall(card(18, 0, 6, 2, "Last data refresh", "half stamp"), stamp);
 
     section(2, "Sales performance");
     scalar(card(0, 3, 4, 3, "Revenue", "half"), money(revenue));
@@ -423,7 +478,7 @@
 
     section(49, "Sales models");
     const trained = new Date(data.trained).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" });
-    scalarSmall(card(0, 50, 6, 4, "Last trained", "half"), trained);
+    scalarSmall(card(0, 50, 6, 4, "Last trained", "half stamp"), trained);
     table(card(6, 50, 18, 4, "Model scorecard", "tall"), [
       { label: "Question", get: (r) => r.question }, { label: "Baseline", get: (r) => r.baseline }, { label: "Baseline score", n: 1, get: (r) => r.baseline_score },
       { label: "Best model", get: (r) => r.model }, { label: "Model score", n: 1, get: (r) => r.model_score }, { label: "Measure", get: (r) => r.metric },
@@ -450,8 +505,15 @@
       fill("f-category", [...new Set(data.category_items.map((c) => c.category))].sort());
       fill("f-platform", [...new Set(data.sales.map((s) => s.platform))].sort());
       ["f-date", "f-category", "f-platform"].forEach((id) => document.getElementById(id).addEventListener("change", render));
-      let waiting;
-      addEventListener("resize", () => { clearTimeout(waiting); waiting = setTimeout(render, 150); });
+      // Phones fire resize while scrolling (the address bar hides), so only
+      // redraw when the width changes.
+      let waiting, lastWidth = innerWidth;
+      addEventListener("resize", () => {
+        if (innerWidth === lastWidth) return;
+        lastWidth = innerWidth;
+        clearTimeout(waiting);
+        waiting = setTimeout(render, 150);
+      });
       render();
     })
     .catch(() => { document.getElementById("status").textContent = "The dashboard couldn't load. Refresh the page to try again."; });

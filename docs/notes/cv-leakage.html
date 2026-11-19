@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#14284b">
 <title>Leaky Cross-Validation</title>
 <meta name="description" content="How twelve near-identical laptops made a weak price model look good, and what caught it.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -10,20 +11,21 @@
 <style>
   :root {
     color-scheme: light dark;
-    --bg: #f9fbfc; --card: #ffffff; --ink: #4c5773; --strong: #2e353b; --soft: #696e7b; --line: #eeecec;
-    --brand: #509ee3; --up: #2e8540; --down: #c0392b; --code: #f3f7fb;
+    --bg: #f3f5f9; --card: #ffffff; --ink: #3d4a63; --strong: #14223d; --soft: #5f6b80; --line: #e1e6ef;
+    --brand: #1f3a68; --up: #2e8540; --down: #c0392b; --code: #e8edf5;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --bg: #1b1c1f; --card: #26282c; --ink: #c9ced6; --strong: #eef0f3; --soft: #a2a8b3; --line: #393c42;
-      --up: #6fcf81; --down: #ff8f80; --code: #2f3238;
+      --bg: #0a1426; --card: #11203a; --ink: #c3cde0; --strong: #eef2f9; --soft: #93a0b8; --line: #22334f;
+      --brand: #7fa8ec; --up: #6fcf81; --down: #ff8f80; --code: #172a48;
     }
   }
   :root[data-theme="dark"] {
-    --bg: #1b1c1f; --card: #26282c; --ink: #c9ced6; --strong: #eef0f3; --soft: #a2a8b3; --line: #393c42;
-    --up: #6fcf81; --down: #ff8f80; --code: #2f3238;
+    --bg: #0a1426; --card: #11203a; --ink: #c3cde0; --strong: #eef2f9; --soft: #93a0b8; --line: #22334f;
+    --brand: #7fa8ec; --up: #6fcf81; --down: #ff8f80; --code: #172a48;
   }
   * { box-sizing: border-box; margin: 0; }
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   html, body { background: var(--bg); }
   body { font: 400 17px/1.65 Lato, system-ui, sans-serif; color: var(--ink); }
   main { max-width: 720px; margin: 0 auto; padding: 32px 16px 48px; }
