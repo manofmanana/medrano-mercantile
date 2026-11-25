@@ -1,7 +1,7 @@
 {
- "published": "2026-11-24T07:01+00:00",
- "refreshed": "2026-11-24T07:00:07.607742+00:00",
- "trained": "2026-11-24T07:01:05.217835+00:00",
+ "published": "2026-11-25T07:01+00:00",
+ "refreshed": "2026-11-25T07:00:07.981431+00:00",
+ "trained": "2026-11-25T07:01:05.248915+00:00",
  "sales": [
   {
    "item": "Retro IPod Speaker",
@@ -418,15 +418,6 @@
    "days": 52
   },
   {
-   "item": "500 gb HDD",
-   "category": "Computer Parts",
-   "platform": "Facebook Marketplace",
-   "sold": "2026-07-17",
-   "price": 10.0,
-   "net_profit": 10.0,
-   "days": 53
-  },
-  {
    "item": "250 gb HDD",
    "category": "Computer Parts",
    "platform": "Facebook Marketplace",
@@ -445,8 +436,17 @@
    "days": 53
   },
   {
-   "item": "Nintendo Switch Pro Controller",
-   "category": "Video Games & Consoles",
+   "item": "500 gb HDD",
+   "category": "Computer Parts",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-07-17",
+   "price": 10.0,
+   "net_profit": 10.0,
+   "days": 53
+  },
+  {
+   "item": "Genuine Apple MagSafe Battery Pack White",
+   "category": "Phones & Accessories",
    "platform": "Facebook Marketplace",
    "sold": "2026-07-31",
    "price": 40.0,
@@ -454,8 +454,8 @@
    "days": 67
   },
   {
-   "item": "Genuine Apple MagSafe Battery Pack White",
-   "category": "Phones & Accessories",
+   "item": "Nintendo Switch Pro Controller",
+   "category": "Video Games & Consoles",
    "platform": "Facebook Marketplace",
    "sold": "2026-07-31",
    "price": 40.0,
@@ -499,21 +499,21 @@
    "days": 84
   },
   {
-   "item": "Sony Custom Mount Lens",
-   "category": "Cameras & Photo",
-   "platform": "Facebook Marketplace",
-   "sold": "2026-08-17",
-   "price": 10.0,
-   "net_profit": 10.0,
-   "days": 84
-  },
-  {
    "item": "I Love Lucy Collector Edition Barbie Episode 114",
    "category": "Toys & Collectibles",
    "platform": "Facebook Marketplace",
    "sold": "2026-08-17",
    "price": 15.0,
    "net_profit": 15.0,
+   "days": 84
+  },
+  {
+   "item": "Sony Custom Mount Lens",
+   "category": "Cameras & Photo",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-08-17",
+   "price": 10.0,
+   "net_profit": 10.0,
    "days": 84
   },
   {
@@ -571,15 +571,6 @@
    "days": null
   },
   {
-   "item": "Bike Wheelset",
-   "category": "Bikes & Cycling",
-   "platform": "Facebook Marketplace",
-   "sold": "2026-09-16",
-   "price": 40.0,
-   "net_profit": 40.0,
-   "days": 0
-  },
-  {
    "item": "New mouse and keyboard",
    "category": "Computers & Accessories",
    "platform": "Facebook Marketplace",
@@ -589,13 +580,13 @@
    "days": 114
   },
   {
-   "item": "Retrospec Bicycle Parts Bundle - Crankset Bottom Bracket Handlebars",
+   "item": "Bike Wheelset",
    "category": "Bikes & Cycling",
    "platform": "Facebook Marketplace",
-   "sold": "2026-09-19",
-   "price": 25.0,
-   "net_profit": 25.0,
-   "days": 38
+   "sold": "2026-09-16",
+   "price": 40.0,
+   "net_profit": 40.0,
+   "days": 0
   },
   {
    "item": "Shimano drivetrain and brakes bundle",
@@ -605,6 +596,15 @@
    "price": 25.0,
    "net_profit": 25.0,
    "days": 69
+  },
+  {
+   "item": "Retrospec Bicycle Parts Bundle - Crankset Bottom Bracket Handlebars",
+   "category": "Bikes & Cycling",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-09-19",
+   "price": 25.0,
+   "net_profit": 25.0,
+   "days": 38
   },
   {
    "item": "Amazon Kindle Keyboard E-Reader with Case \u2013 Older Model",
@@ -679,15 +679,6 @@
    "days": 130
   },
   {
-   "item": "Dell OptiPlex 7000 i7 Desktop",
-   "category": "Computers & Accessories",
-   "platform": "Facebook Marketplace",
-   "sold": "2026-11-10",
-   "price": 150.0,
-   "net_profit": 150.0,
-   "days": 7
-  },
-  {
    "item": "Dell OptiPlex 5070 i5 Desktop",
    "category": "Computers & Accessories",
    "platform": "Facebook Marketplace",
@@ -697,39 +688,21 @@
    "days": 7
   },
   {
-   "item": "Dell Inspiron 16 5630 i5 Laptop (Unit 5 of 5)",
+   "item": "Dell OptiPlex 7000 i7 Desktop",
    "category": "Computers & Accessories",
    "platform": "Facebook Marketplace",
-   "sold": "2026-11-12",
-   "price": 170.0,
-   "net_profit": 170.0,
-   "days": 9
+   "sold": "2026-11-10",
+   "price": 150.0,
+   "net_profit": 150.0,
+   "days": 7
   },
   {
-   "item": "Dell Inspiron 16 5630 i5 Laptop (Unit 2 of 5)",
+   "item": "HP LaserJet M209dw Printer",
    "category": "Computers & Accessories",
    "platform": "Facebook Marketplace",
    "sold": "2026-11-12",
-   "price": 170.0,
-   "net_profit": 170.0,
-   "days": 9
-  },
-  {
-   "item": "HP Pro c640 G2 Chromebook",
-   "category": "Computers & Accessories",
-   "platform": "Facebook Marketplace",
-   "sold": "2026-11-12",
-   "price": 62.0,
-   "net_profit": 62.0,
-   "days": 9
-  },
-  {
-   "item": "Dell Inspiron 16 5630 i7 Laptop (Unit 3 of 5)",
-   "category": "Computers & Accessories",
-   "platform": "Facebook Marketplace",
-   "sold": "2026-11-12",
-   "price": 216.0,
-   "net_profit": 216.0,
+   "price": 31.0,
+   "net_profit": 31.0,
    "days": 9
   },
   {
@@ -739,15 +712,6 @@
    "sold": "2026-11-12",
    "price": 93.0,
    "net_profit": 93.0,
-   "days": 9
-  },
-  {
-   "item": "HP LaserJet M209dw Printer",
-   "category": "Computers & Accessories",
-   "platform": "Facebook Marketplace",
-   "sold": "2026-11-12",
-   "price": 31.0,
-   "net_profit": 31.0,
    "days": 9
   },
   {
@@ -761,6 +725,15 @@
   },
   {
    "item": "Dell Inspiron 16 5630 i7 Laptop (Unit 2 of 5)",
+   "category": "Computers & Accessories",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-11-12",
+   "price": 216.0,
+   "net_profit": 216.0,
+   "days": 9
+  },
+  {
+   "item": "Dell Inspiron 16 5630 i7 Laptop (Unit 3 of 5)",
    "category": "Computers & Accessories",
    "platform": "Facebook Marketplace",
    "sold": "2026-11-12",
@@ -805,6 +778,33 @@
    "days": 9
   },
   {
+   "item": "Dell Inspiron 16 5630 i5 Laptop (Unit 5 of 5)",
+   "category": "Computers & Accessories",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-11-12",
+   "price": 170.0,
+   "net_profit": 170.0,
+   "days": 9
+  },
+  {
+   "item": "Dell Inspiron 16 5630 i5 Laptop (Unit 2 of 5)",
+   "category": "Computers & Accessories",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-11-12",
+   "price": 170.0,
+   "net_profit": 170.0,
+   "days": 9
+  },
+  {
+   "item": "HP Pro c640 G2 Chromebook",
+   "category": "Computers & Accessories",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-11-12",
+   "price": 62.0,
+   "net_profit": 62.0,
+   "days": 9
+  },
+  {
    "item": "Apple iPad Pro 12.9 inch 1st Gen",
    "category": "Computers & Accessories",
    "platform": "Facebook Marketplace",
@@ -821,6 +821,15 @@
    "price": 10.0,
    "net_profit": 10.0,
    "days": 15
+  },
+  {
+   "item": "Car Headlights",
+   "category": "Vehicles",
+   "platform": "Facebook Marketplace",
+   "sold": "2026-11-24",
+   "price": 50.0,
+   "net_profit": 50.0,
+   "days": 6
   }
  ],
  "inventory": [
@@ -841,7 +850,7 @@
    "status": "Listed",
    "asking": 50.0,
    "potential_profit": 50.0,
-   "days": 183,
+   "days": 184,
    "aging": "90+ days",
    "aging_order": 4,
    "is_stale": true
@@ -852,7 +861,7 @@
    "status": "Listed",
    "asking": 120.0,
    "potential_profit": 120.0,
-   "days": 183,
+   "days": 184,
    "aging": "90+ days",
    "aging_order": 4,
    "is_stale": true
@@ -863,7 +872,7 @@
    "status": "Listed",
    "asking": 40.0,
    "potential_profit": 40.0,
-   "days": 183,
+   "days": 184,
    "aging": "90+ days",
    "aging_order": 4,
    "is_stale": true
@@ -874,7 +883,7 @@
    "status": "Listed",
    "asking": 150.0,
    "potential_profit": 150.0,
-   "days": 183,
+   "days": 184,
    "aging": "90+ days",
    "aging_order": 4,
    "is_stale": true
@@ -885,7 +894,7 @@
    "status": "Listed",
    "asking": 10.0,
    "potential_profit": 10.0,
-   "days": 183,
+   "days": 184,
    "aging": "90+ days",
    "aging_order": 4,
    "is_stale": true
@@ -896,7 +905,7 @@
    "status": "Listed",
    "asking": 40.0,
    "potential_profit": 40.0,
-   "days": 183,
+   "days": 184,
    "aging": "90+ days",
    "aging_order": 4,
    "is_stale": true
@@ -907,7 +916,7 @@
    "status": "Listed",
    "asking": 45.0,
    "potential_profit": 45.0,
-   "days": 183,
+   "days": 184,
    "aging": "90+ days",
    "aging_order": 4,
    "is_stale": true
@@ -918,7 +927,7 @@
    "status": "Listed",
    "asking": 35.0,
    "potential_profit": 35.0,
-   "days": 183,
+   "days": 184,
    "aging": "90+ days",
    "aging_order": 4,
    "is_stale": true
@@ -929,7 +938,7 @@
    "status": "Listed",
    "asking": 40.0,
    "potential_profit": 40.0,
-   "days": 149,
+   "days": 150,
    "aging": "90+ days",
    "aging_order": 4,
    "is_stale": true
@@ -940,7 +949,7 @@
    "status": "Listed",
    "asking": 100.0,
    "potential_profit": 100.0,
-   "days": 104,
+   "days": 105,
    "aging": "90+ days",
    "aging_order": 4,
    "is_stale": true
@@ -951,7 +960,7 @@
    "status": "Listed",
    "asking": 100.0,
    "potential_profit": 100.0,
-   "days": 97,
+   "days": 98,
    "aging": "90+ days",
    "aging_order": 4,
    "is_stale": true
@@ -962,7 +971,7 @@
    "status": "Listed",
    "asking": 50.0,
    "potential_profit": 50.0,
-   "days": 97,
+   "days": 98,
    "aging": "90+ days",
    "aging_order": 4,
    "is_stale": true
@@ -973,7 +982,7 @@
    "status": "Listed",
    "asking": 250.0,
    "potential_profit": 250.0,
-   "days": 97,
+   "days": 98,
    "aging": "90+ days",
    "aging_order": 4,
    "is_stale": true
@@ -984,9 +993,9 @@
    "status": "Listed",
    "asking": 30.0,
    "potential_profit": 30.0,
-   "days": 90,
-   "aging": "61\u201390 days",
-   "aging_order": 3,
+   "days": 91,
+   "aging": "90+ days",
+   "aging_order": 4,
    "is_stale": true
   },
   {
@@ -995,7 +1004,7 @@
    "status": "Listed",
    "asking": 25.0,
    "potential_profit": 25.0,
-   "days": 71,
+   "days": 72,
    "aging": "61\u201390 days",
    "aging_order": 3,
    "is_stale": true
@@ -1006,7 +1015,7 @@
    "status": "Listed",
    "asking": 40.0,
    "potential_profit": 40.0,
-   "days": 71,
+   "days": 72,
    "aging": "61\u201390 days",
    "aging_order": 3,
    "is_stale": true
@@ -1017,7 +1026,7 @@
    "status": "Listed",
    "asking": 80.0,
    "potential_profit": 80.0,
-   "days": 71,
+   "days": 72,
    "aging": "61\u201390 days",
    "aging_order": 3,
    "is_stale": true
@@ -1028,7 +1037,7 @@
    "status": "Listed",
    "asking": 30.0,
    "potential_profit": 30.0,
-   "days": 71,
+   "days": 72,
    "aging": "61\u201390 days",
    "aging_order": 3,
    "is_stale": true
@@ -1039,7 +1048,7 @@
    "status": "Listed",
    "asking": 40.0,
    "potential_profit": 40.0,
-   "days": 71,
+   "days": 72,
    "aging": "61\u201390 days",
    "aging_order": 3,
    "is_stale": true
@@ -1050,7 +1059,7 @@
    "status": "Listed",
    "asking": 100.0,
    "potential_profit": 100.0,
-   "days": 71,
+   "days": 72,
    "aging": "61\u201390 days",
    "aging_order": 3,
    "is_stale": true
@@ -1061,7 +1070,7 @@
    "status": "Listed",
    "asking": 50.0,
    "potential_profit": 50.0,
-   "days": 66,
+   "days": 67,
    "aging": "61\u201390 days",
    "aging_order": 3,
    "is_stale": true
@@ -1072,7 +1081,7 @@
    "status": "Listed",
    "asking": 280.0,
    "potential_profit": 280.0,
-   "days": 41,
+   "days": 42,
    "aging": "31\u201360 days",
    "aging_order": 2,
    "is_stale": false
@@ -1083,18 +1092,18 @@
    "status": "Listed",
    "asking": 50.0,
    "potential_profit": 50.0,
-   "days": 41,
+   "days": 42,
    "aging": "31\u201360 days",
    "aging_order": 2,
    "is_stale": false
   },
   {
-   "item": "NETGEAR ProSAFE GS105 Gigabit Switch",
+   "item": "Apple iPad Air 2 (Unit 4 of 4)",
    "category": "Computers & Accessories",
    "status": "Listed",
-   "asking": 15.0,
-   "potential_profit": 15.0,
-   "days": 21,
+   "asking": 80.0,
+   "potential_profit": 80.0,
+   "days": 22,
    "aging": "0\u201330 days",
    "aging_order": 1,
    "is_stale": false
@@ -1105,7 +1114,7 @@
    "status": "Listed",
    "asking": 50.0,
    "potential_profit": 50.0,
-   "days": 21,
+   "days": 22,
    "aging": "0\u201330 days",
    "aging_order": 1,
    "is_stale": false
@@ -1116,7 +1125,7 @@
    "status": "Listed",
    "asking": 80.0,
    "potential_profit": 80.0,
-   "days": 21,
+   "days": 22,
    "aging": "0\u201330 days",
    "aging_order": 1,
    "is_stale": false
@@ -1127,7 +1136,7 @@
    "status": "Listed",
    "asking": 80.0,
    "potential_profit": 80.0,
-   "days": 21,
+   "days": 22,
    "aging": "0\u201330 days",
    "aging_order": 1,
    "is_stale": false
@@ -1138,7 +1147,7 @@
    "status": "Listed",
    "asking": 80.0,
    "potential_profit": 80.0,
-   "days": 21,
+   "days": 22,
    "aging": "0\u201330 days",
    "aging_order": 1,
    "is_stale": false
@@ -1149,7 +1158,7 @@
    "status": "Listed",
    "asking": 75.0,
    "potential_profit": 75.0,
-   "days": 21,
+   "days": 22,
    "aging": "0\u201330 days",
    "aging_order": 1,
    "is_stale": false
@@ -1160,7 +1169,7 @@
    "status": "Listed",
    "asking": 50.0,
    "potential_profit": 50.0,
-   "days": 21,
+   "days": 22,
    "aging": "0\u201330 days",
    "aging_order": 1,
    "is_stale": false
@@ -1171,7 +1180,7 @@
    "status": "Listed",
    "asking": 300.0,
    "potential_profit": 300.0,
-   "days": 21,
+   "days": 22,
    "aging": "0\u201330 days",
    "aging_order": 1,
    "is_stale": false
@@ -1182,7 +1191,7 @@
    "status": "Listed",
    "asking": 50.0,
    "potential_profit": 50.0,
-   "days": 21,
+   "days": 22,
    "aging": "0\u201330 days",
    "aging_order": 1,
    "is_stale": false
@@ -1193,7 +1202,7 @@
    "status": "Listed",
    "asking": 40.0,
    "potential_profit": 40.0,
-   "days": 21,
+   "days": 22,
    "aging": "0\u201330 days",
    "aging_order": 1,
    "is_stale": false
@@ -1204,7 +1213,7 @@
    "status": "Listed",
    "asking": 75.0,
    "potential_profit": 75.0,
-   "days": 21,
+   "days": 22,
    "aging": "0\u201330 days",
    "aging_order": 1,
    "is_stale": false
@@ -1215,7 +1224,7 @@
    "status": "Listed",
    "asking": 80.0,
    "potential_profit": 80.0,
-   "days": 21,
+   "days": 22,
    "aging": "0\u201330 days",
    "aging_order": 1,
    "is_stale": false
@@ -1226,7 +1235,7 @@
    "status": "Listed",
    "asking": 80.0,
    "potential_profit": 80.0,
-   "days": 21,
+   "days": 22,
    "aging": "0\u201330 days",
    "aging_order": 1,
    "is_stale": false
@@ -1237,29 +1246,18 @@
    "status": "Listed",
    "asking": 80.0,
    "potential_profit": 80.0,
-   "days": 21,
+   "days": 22,
    "aging": "0\u201330 days",
    "aging_order": 1,
    "is_stale": false
   },
   {
-   "item": "Apple iPad Air 2 (Unit 4 of 4)",
+   "item": "NETGEAR ProSAFE GS105 Gigabit Switch",
    "category": "Computers & Accessories",
    "status": "Listed",
-   "asking": 80.0,
-   "potential_profit": 80.0,
-   "days": 21,
-   "aging": "0\u201330 days",
-   "aging_order": 1,
-   "is_stale": false
-  },
-  {
-   "item": "Car Headlights",
-   "category": "Vehicles",
-   "status": "Listed",
-   "asking": 75.0,
-   "potential_profit": 75.0,
-   "days": 6,
+   "asking": 15.0,
+   "potential_profit": 15.0,
+   "days": 22,
    "aging": "0\u201330 days",
    "aging_order": 1,
    "is_stale": false
@@ -1269,7 +1267,7 @@
   {
    "category": "Vehicles",
    "items": 3,
-   "sold": 1
+   "sold": 2
   },
   {
    "category": "Audio & Wearables",
@@ -1368,34 +1366,34 @@
    "baseline": "every day equal",
    "baseline_score": 1.95,
    "model": "weekday pattern",
-   "model_score": 1.94,
+   "model_score": 1.95,
    "metric": "log loss, lower is better",
    "passes": false
   },
   {
    "question": "Days until it sells",
    "baseline": "overall median",
-   "baseline_score": 30.77,
+   "baseline_score": 30.61,
    "model": "Weibull model",
-   "model_score": 32.41,
+   "model_score": 32.45,
    "metric": "average error, days",
    "passes": false
   },
   {
    "question": "Sale price from category and name",
    "baseline": "global median",
-   "baseline_score": 63.43,
+   "baseline_score": 62.93,
    "model": "forest: category + name",
-   "model_score": 54.56,
+   "model_score": 53.27,
    "metric": "average error, dollars",
    "passes": true
   },
   {
    "question": "Sale price given asking price",
    "baseline": "asking x median ratio",
-   "baseline_score": 26.48,
+   "baseline_score": 25.39,
    "model": "ridge: asking + category",
-   "model_score": 22.35,
+   "model_score": 21.71,
    "metric": "average error, dollars",
    "passes": false
   },
@@ -1449,34 +1447,18 @@
  ],
  "predictions": [
   {
-   "item": "Bicycle Tires",
-   "category": "Bikes & Cycling",
-   "asking": 50.0,
-   "days": 66,
-   "chance": 0.56,
-   "basis": "history"
-  },
-  {
    "item": "NES Switch Joycons",
    "category": "Video Games & Consoles",
    "asking": 80.0,
-   "days": 71,
+   "days": 72,
    "chance": 0.55,
    "basis": "history"
   },
   {
-   "item": "Apple iPad mini (Unit 2 of 3)",
+   "item": "Apple iPad Air 2 (Unit 3 of 4)",
    "category": "Computers & Accessories",
    "asking": 80.0,
-   "days": 21,
-   "chance": 0.52,
-   "basis": "history"
-  },
-  {
-   "item": "Apple iPad mini (Unit 3 of 3)",
-   "category": "Computers & Accessories",
-   "asking": 80.0,
-   "days": 21,
+   "days": 22,
    "chance": 0.52,
    "basis": "history"
   },
@@ -1484,7 +1466,7 @@
    "item": "Apple iPad Air 2 (Unit 4 of 4)",
    "category": "Computers & Accessories",
    "asking": 80.0,
-   "days": 21,
+   "days": 22,
    "chance": 0.52,
    "basis": "history"
   },
@@ -1492,15 +1474,15 @@
    "item": "Apple iPad mini (Unit 1 of 3)",
    "category": "Computers & Accessories",
    "asking": 80.0,
-   "days": 21,
+   "days": 22,
    "chance": 0.52,
    "basis": "history"
   },
   {
-   "item": "Apple iPad Air 2 (Unit 1 of 4)",
+   "item": "Apple iPad mini (Unit 2 of 3)",
    "category": "Computers & Accessories",
    "asking": 80.0,
-   "days": 21,
+   "days": 22,
    "chance": 0.52,
    "basis": "history"
   },
@@ -1508,23 +1490,31 @@
    "item": "Apple iPad Air 2 (Unit 2 of 4)",
    "category": "Computers & Accessories",
    "asking": 80.0,
-   "days": 21,
+   "days": 22,
    "chance": 0.52,
    "basis": "history"
   },
   {
-   "item": "Apple iPad Air 2 (Unit 3 of 4)",
+   "item": "Apple iPad mini (Unit 3 of 3)",
    "category": "Computers & Accessories",
    "asking": 80.0,
-   "days": 21,
+   "days": 22,
    "chance": 0.52,
    "basis": "history"
   },
   {
-   "item": "Samsung Galaxy Tablet (Unit 1 of 2)",
+   "item": "Apple iPad Air 2 (Unit 1 of 4)",
    "category": "Computers & Accessories",
-   "asking": 75.0,
-   "days": 21,
+   "asking": 80.0,
+   "days": 22,
+   "chance": 0.52,
+   "basis": "history"
+  },
+  {
+   "item": "Bicycle Tires",
+   "category": "Bikes & Cycling",
+   "asking": 50.0,
+   "days": 67,
    "chance": 0.51,
    "basis": "history"
   },
@@ -1532,7 +1522,15 @@
    "item": "Samsung Galaxy Tablet (Unit 2 of 2)",
    "category": "Computers & Accessories",
    "asking": 75.0,
-   "days": 21,
+   "days": 22,
+   "chance": 0.51,
+   "basis": "history"
+  },
+  {
+   "item": "Samsung Galaxy Tablet (Unit 1 of 2)",
+   "category": "Computers & Accessories",
+   "asking": 75.0,
+   "days": 22,
    "chance": 0.51,
    "basis": "history"
   },
@@ -1540,7 +1538,7 @@
    "item": "AOC Monitor with Cables",
    "category": "Computers & Accessories",
    "asking": 50.0,
-   "days": 21,
+   "days": 22,
    "chance": 0.48,
    "basis": "history"
   },
@@ -1548,23 +1546,23 @@
    "item": "Ray-Ban Silver Metal Prescription Glasses",
    "category": "Accessories",
    "asking": 100.0,
-   "days": 104,
-   "chance": 0.45,
+   "days": 105,
+   "chance": 0.44,
    "basis": "extrapolated"
   },
   {
    "item": "Apple Magic Keyboard",
    "category": "Computers & Accessories",
    "asking": 35.0,
-   "days": 20,
-   "chance": 0.45,
+   "days": 21,
+   "chance": 0.44,
    "basis": "history"
   },
   {
    "item": "NETGEAR ProSAFE GS105 Gigabit Switch",
    "category": "Computers & Accessories",
    "asking": 15.0,
-   "days": 21,
+   "days": 22,
    "chance": 0.38,
    "basis": "history"
   },
@@ -1572,7 +1570,7 @@
    "item": "Small Table",
    "category": "Furniture",
    "asking": 40.0,
-   "days": 71,
+   "days": 72,
    "chance": 0.36,
    "basis": "history"
   },
@@ -1580,7 +1578,7 @@
    "item": "Mini Bike Pump",
    "category": "Bikes & Cycling",
    "asking": 50.0,
-   "days": 21,
+   "days": 22,
    "chance": 0.36,
    "basis": "history"
   },
@@ -1588,79 +1586,79 @@
    "item": "Govee Outdoor Lights",
    "category": "Home & Garden",
    "asking": 300.0,
-   "days": 21,
-   "chance": 0.35,
-   "basis": "history"
-  },
-  {
-   "item": "Car Headlights",
-   "category": "Vehicles",
-   "asking": 75.0,
-   "days": 6,
-   "chance": 0.33,
-   "basis": "history"
-  },
-  {
-   "item": "Fjallraven Kanken Mini Backpack Olive Green",
-   "category": "Bags & Luggage",
-   "asking": 40.0,
-   "days": 183,
-   "chance": 0.3,
-   "basis": "extrapolated"
-  },
-  {
-   "item": "Carhartt fanny pack",
-   "category": "Bags & Luggage",
-   "asking": 40.0,
-   "days": 149,
-   "chance": 0.3,
-   "basis": "extrapolated"
-  },
-  {
-   "item": "Rayban Meta Gen 2 Glasses",
-   "category": "Audio & Wearables",
-   "asking": 280.0,
-   "days": 41,
-   "chance": 0.3,
-   "basis": "history"
-  },
-  {
-   "item": "A1 Smart Glasses / Bluetooth Audio Glasses",
-   "category": "Audio & Wearables",
-   "asking": 120.0,
-   "days": 183,
-   "chance": 0.29,
-   "basis": "extrapolated"
-  },
-  {
-   "item": "Happy Face Jar",
-   "category": "Home & Garden",
-   "asking": 30.0,
-   "days": 71,
-   "chance": 0.29,
+   "days": 22,
+   "chance": 0.36,
    "basis": "history"
   },
   {
    "item": "Marc Jacobs Perfume",
    "category": "Beauty & Fragrance",
    "asking": 100.0,
-   "days": 97,
-   "chance": 0.28,
+   "days": 98,
+   "chance": 0.32,
    "basis": "history"
+  },
+  {
+   "item": "Happy Face Jar",
+   "category": "Home & Garden",
+   "asking": 30.0,
+   "days": 72,
+   "chance": 0.3,
+   "basis": "history"
+  },
+  {
+   "item": "Rayban Meta Gen 2 Glasses",
+   "category": "Audio & Wearables",
+   "asking": 280.0,
+   "days": 42,
+   "chance": 0.3,
+   "basis": "history"
+  },
+  {
+   "item": "Fjallraven Kanken Mini Backpack Olive Green",
+   "category": "Bags & Luggage",
+   "asking": 40.0,
+   "days": 184,
+   "chance": 0.29,
+   "basis": "extrapolated"
+  },
+  {
+   "item": "Carhartt fanny pack",
+   "category": "Bags & Luggage",
+   "asking": 40.0,
+   "days": 150,
+   "chance": 0.29,
+   "basis": "extrapolated"
+  },
+  {
+   "item": "A1 Smart Glasses / Bluetooth Audio Glasses",
+   "category": "Audio & Wearables",
+   "asking": 120.0,
+   "days": 184,
+   "chance": 0.28,
+   "basis": "extrapolated"
   },
   {
    "item": "Kids Toys Games & Book Bundle UNO Sonic Hedgehog Plush",
    "category": "Toys & Collectibles",
    "asking": 35.0,
-   "days": 183,
-   "chance": 0.27,
+   "days": 184,
+   "chance": 0.28,
    "basis": "extrapolated"
   },
   {
    "item": "K18 Leave In",
    "category": "Beauty & Fragrance",
    "asking": 50.0,
-   "days": 97,
+   "days": 98,
+   "chance": 0.28,
+   "basis": "history"
+  },
+  {
+   "item": "Honda Car Radio",
+   "category": "Vehicles",
+   "asking": 40.0,
+   "days": 22,
    "chance": 0.24,
    "basis": "history"
   },
@@ -1668,31 +1666,39 @@
    "item": "Clothes Lot",
    "category": "Clothing & Shoes",
    "asking": 100.0,
-   "days": 71,
-   "chance": 0.24,
-   "basis": "history"
-  },
-  {
-   "item": "Honda Car Radio",
-   "category": "Vehicles",
-   "asking": 40.0,
-   "days": 21,
-   "chance": 0.22,
+   "days": 72,
+   "chance": 0.23,
    "basis": "history"
   },
   {
    "item": "Appliance Testing Module",
    "category": "Tools & Equipment",
    "asking": 10.0,
-   "days": 183,
-   "chance": 0.2,
+   "days": 184,
+   "chance": 0.21,
    "basis": "extrapolated"
+  },
+  {
+   "item": "Samsung S21 Ultra Phone",
+   "category": "Phones & Accessories",
+   "asking": 250.0,
+   "days": 98,
+   "chance": 0.19,
+   "basis": "history"
+  },
+  {
+   "item": "La Sportiva Mythos Climbing Shoes \u2013 Orange/Grey",
+   "category": "Sports & Fitness",
+   "asking": 30.0,
+   "days": 91,
+   "chance": 0.19,
+   "basis": "history"
   },
   {
    "item": "Goomba Hat",
    "category": "Clothing & Shoes",
    "asking": 40.0,
-   "days": 71,
+   "days": 72,
    "chance": 0.19,
    "basis": "history"
   },
@@ -1700,47 +1706,31 @@
    "item": "Unlocked iPhone 7 Plus",
    "category": "Phones & Accessories",
    "asking": 150.0,
-   "days": 183,
-   "chance": 0.18,
+   "days": 184,
+   "chance": 0.17,
    "basis": "extrapolated"
-  },
-  {
-   "item": "Samsung S21 Ultra Phone",
-   "category": "Phones & Accessories",
-   "asking": 250.0,
-   "days": 97,
-   "chance": 0.17,
-   "basis": "history"
-  },
-  {
-   "item": "La Sportiva Mythos Climbing Shoes \u2013 Orange/Grey",
-   "category": "Sports & Fitness",
-   "asking": 30.0,
-   "days": 90,
-   "chance": 0.17,
-   "basis": "history"
   },
   {
    "item": "Clarks Men's Shoes",
    "category": "Clothing & Shoes",
    "asking": 25.0,
-   "days": 71,
+   "days": 72,
    "chance": 0.17,
    "basis": "history"
-  },
-  {
-   "item": "ASICS Womens Running Shoes Gray Pink",
-   "category": "Clothing & Shoes",
-   "asking": 40.0,
-   "days": 183,
-   "chance": 0.16,
-   "basis": "extrapolated"
   },
   {
    "item": "ASICS Gel Nimbus Mens Running Shoes Navy Size 7.5",
    "category": "Clothing & Shoes",
    "asking": 45.0,
-   "days": 183,
+   "days": 184,
+   "chance": 0.16,
+   "basis": "extrapolated"
+  },
+  {
+   "item": "ASICS Womens Running Shoes Gray Pink",
+   "category": "Clothing & Shoes",
+   "asking": 40.0,
+   "days": 184,
    "chance": 0.16,
    "basis": "extrapolated"
   },
@@ -1748,15 +1738,15 @@
    "item": "Halloween Costumes",
    "category": "Clothing & Shoes",
    "asking": 50.0,
-   "days": 21,
-   "chance": 0.14,
+   "days": 22,
+   "chance": 0.15,
    "basis": "history"
   },
   {
    "item": "3 in 1 magnetic charger",
    "category": "Phones & Accessories",
    "asking": 50.0,
-   "days": 183,
+   "days": 184,
    "chance": 0.13,
    "basis": "extrapolated"
   },
@@ -1764,8 +1754,8 @@
    "item": "New Android Phone",
    "category": "Phones & Accessories",
    "asking": 50.0,
-   "days": 41,
-   "chance": 0.13,
+   "days": 42,
+   "chance": 0.12,
    "basis": "history"
   }
  ]
